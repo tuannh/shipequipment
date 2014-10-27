@@ -1,0 +1,19 @@
+﻿@model ShipEquipment.Biz.Domain.Page
+@{
+
+    if (Model != null)
+    {
+        ViewBag.Title = Model.Title;
+        Layout = Model.Layout ?? "~/Views/Layouts/Default.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Layouts/Default.cshtml";
+    }
+}
+
+<h2>Index</h2>
+
+
+
+@Html.Controls().Slider()

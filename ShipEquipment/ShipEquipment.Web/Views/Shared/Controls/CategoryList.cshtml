@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.Category>
+
+@helper CategoryLink(Category cate)
+{
+    <a href="/san-pham/@cate.Alias">@cate.Name</a>
+}
+
+@helper ViewCategory(Category cate)
+{
+    if (cate != null)
+    {
+        var lst = cate.GetSubCategory();
+        <li>
+            <a href="#">
+                @cate.Name
+            </a>
+            @if (lst != null)
+            {
+                <ul>
+                    @foreach (var category in lst)
+                    {
+                        @ViewCategory(category)
+                    }
+                </ul>
+            }
+        </li>
+    }
+}
+
+<ul>
+    @foreach (var banner in Model)
+    {
+        @ViewCategory(banner)
+    }
+</ul>

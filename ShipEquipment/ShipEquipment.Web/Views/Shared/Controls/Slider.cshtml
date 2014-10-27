@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.Banner>
+
+<ul>
+@foreach (var banner in Model)
+{
+    <li>
+        <a href="@(string.IsNullOrEmpty(banner.Url) ? "javascript:void(0)" : banner.Url)" @(string.IsNullOrEmpty(banner.Target) ? "" : string.Format("target=\"{0}\"", banner.Target))  title="@banner.Name">
+            @banner.Name
+        </a>
+        <p>
+            @banner.Description
+        </p>
+    </li>
+}
+</ul>

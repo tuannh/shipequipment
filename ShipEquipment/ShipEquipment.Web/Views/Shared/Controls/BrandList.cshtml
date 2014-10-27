@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.Brand>
+
+@if (Model != null)
+{
+    <ul>
+        @foreach (var banner in Model)
+        {
+            <li>
+                <a href="/nhan-hieu/@brand.Alias">@brand.Name</a>
+            </li>
+        }
+    </ul>
+}

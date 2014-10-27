@@ -1,0 +1,23 @@
+﻿@model ShipEquipment.Biz.Domain.Category
+
+@{
+    var sep = ">>";
+}
+
+@helper Breadcum(Category cate, string sep)
+{
+    if (cate.Parent != null)
+    {
+        @Breadcum(cate.Parent, sep)
+    }
+    @sep
+    <a href="#">@cate.Name</a>
+}
+<a href="/">
+    Trang chủ
+</a>
+
+@if (Model != null)
+{
+    @Breadcum(Model, sep)
+}
