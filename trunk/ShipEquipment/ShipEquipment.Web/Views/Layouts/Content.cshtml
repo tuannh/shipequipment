@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Html.JsBundle("~/js/default")
+</head>
+<body>
+
+    <a href="~/Views/Layouts/Content.cshtml">~/Views/Layouts/Content.cshtml</a>
+    @Html.Controls().MenuNavigator()
+
+    @RenderBody()
+
+    <footer>
+
+        footer footer footer footer<br />footer footer footer footer
+    </footer>
+    @Html.JsBundle("~/js/jqueryval")
+</body>
+</html>

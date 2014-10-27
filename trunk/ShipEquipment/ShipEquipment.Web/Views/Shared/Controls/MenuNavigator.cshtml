@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.Page>
+
+@{
+
+    var pageAlias = "index";
+    if (ShipEquipment.Core.SiteContext.Current.RouteData.Values["frontendpage"] != null)
+    {
+        pageAlias = ShipEquipment.Core.SiteContext.Current.RouteData.Values["frontendpage"].ToString();
+    }
+}
+
+<nav>
+    <ul>
+        @foreach (var p in Model)
+        {
+            var selected = string.Compare(p.Alias, pageAlias, true) == 0;
+            <li>
+                <a @(selected ? "class=\"active\"" : "") href="@Html.SiteUrls().FrontEndUrl(p.Alias)" title="@p.Name">
+                    @p.Name
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

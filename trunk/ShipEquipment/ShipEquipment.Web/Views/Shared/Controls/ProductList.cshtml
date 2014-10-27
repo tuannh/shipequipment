@@ -1,0 +1,10 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.Product>
+
+<ul>
+    @foreach (var product in Model)
+    {
+        <li>
+            <a href="#">@product.Name</a>
+        </li>
+    }
+</ul>
