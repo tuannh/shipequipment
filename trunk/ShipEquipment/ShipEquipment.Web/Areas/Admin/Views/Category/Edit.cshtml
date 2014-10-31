@@ -24,7 +24,13 @@
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
         </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.Alias, new { @class = "alias control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Alias)
+                @Html.ValidationMessageFor(model => model.Alias)
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -44,7 +50,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ParentId, "ParentId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ParentId", String.Empty)
+                @*@Html.DropDownList("ParentId", String.Empty)*@
+                @Html.DropDownListFor(model => model.ParentId, ViewBag.SelectCategory as List<SelectListItem>)
                 @Html.ValidationMessageFor(model => model.ParentId)
             </div>
         </div>
@@ -68,3 +75,11 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Name').blur(function () {
+            AutoGenerateAlias(this.value, 'Alias', true);
+        })
+    })
+</script>

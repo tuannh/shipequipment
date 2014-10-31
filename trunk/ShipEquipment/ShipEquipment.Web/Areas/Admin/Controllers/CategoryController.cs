@@ -63,7 +63,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         public ActionResult Create()
         {
             // ViewBag.ParentId = new SelectList(db.Categories, "Id", "Name");
-            ViewBag.SelectCategory = SelectCategoryList();
+            ViewBag.SelectCategory = SelectCategoryList(0);
 
             return View(new Category());
         }
@@ -78,14 +78,14 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             if (!category.IsValidName())
             {
                 ViewBag.Error = "Tên danh mục tồn tại";
-                ViewBag.SelectCategory = SelectCategoryList();
+                ViewBag.SelectCategory = SelectCategoryList(0);
                 return View(category);
             }
 
             if (!category.IsValidAlias())
             {
                 ViewBag.Error = "Alias tồn tại";
-                ViewBag.SelectCategory = SelectCategoryList();
+                ViewBag.SelectCategory = SelectCategoryList(0);
                 return View(category);
             }
 
@@ -101,7 +101,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             }
 
             // ViewBag.ParentId = new SelectList(db.Categories, "Id", "Name", category.ParentId);
-            ViewBag.SelectCategory = SelectCategoryList();
+            ViewBag.SelectCategory = SelectCategoryList(0);
             return View(category);
         }
 
@@ -117,7 +117,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ParentId = new SelectList(db.Categories, "Id", "Name", category.ParentId);
+            // ViewBag.ParentId = new SelectList(db.Categories, "Id", "Name", category.ParentId);
+            ViewBag.SelectCategory = SelectCategoryList(category.Id);
             return View(category);
         }
 
@@ -126,15 +127,19 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Active,ParentId,DisplayOrder")] Category category)
+        public ActionResult Edit([Bind(Include = "Id,Name,Alias,Description,Active,ParentId,DisplayOrder")] Category category)
         {
             if (ModelState.IsValid)
             {
+                if (category.ParentId == 0)
+                    category.ParentId = null;
+
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ParentId = new SelectList(db.Categories, "Id", "Name", category.ParentId);
+            //ViewBag.ParentId = new SelectList(db.Categories, "Id", "Name", category.ParentId);
+            ViewBag.SelectCategory = SelectCategoryList(category.Id);
             return View(category);
         }
 
@@ -175,9 +180,11 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
         #region support methods
 
-        private List<SelectListItem> SelectCategoryList()
+        private List<SelectListItem> SelectCategoryList(int cateId)
         {
-            var root = db.Categories.Where(p => p.Parent == null).ToList();
+            var root = db.Categories.Where(p => p.Parent == null && cateId != p.Id)
+                                    .ToList();
+
             var selectList = new List<SelectListItem>();
             var itemNone = new SelectListItem()
             {
@@ -196,18 +203,21 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                         Value = cate.Id.ToString()
                     };
                     selectList.Add(item);
-                    SubCategoryList(selectList, cate, "----");
+                    SubCategoryList(cateId, selectList, cate, "----");
                 }
             }
 
             return selectList;
         }
 
-        private void SubCategoryList(List<SelectListItem> selectList, Category parent, string indexText)
+        private void SubCategoryList(int cateId, List<SelectListItem> selectList, Category parent, string indexText)
         {
             var subCates = parent.GetSubCategory();
+
             if (subCates != null)
             {
+                subCates = subCates.Where(p => p.Id != cateId);
+
                 foreach (var cate in subCates)
                 {
                     var item = new SelectListItem()
@@ -217,7 +227,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     };
                     selectList.Add(item);
                     var newIndex = indexText + indexText;
-                    SubCategoryList(selectList, cate, newIndex);
+                    SubCategoryList(cateId, selectList, cate, newIndex);
                 }
             }
 

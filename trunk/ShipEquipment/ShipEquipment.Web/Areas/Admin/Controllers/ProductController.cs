@@ -41,7 +41,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name");
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Alias");
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Name,Code,ShortDescription,Description,Active,Price,SalePrice,MadeIn,CategoryId,BrandId")] Product product)
+        public ActionResult Create([Bind(Include="Id,Alias,Name,Code,ShortDescription,Description,Active,Price,SalePrice,MadeIn,DislayOrder,CategoryId,BrandId")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +60,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             }
 
             ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", product.BrandId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Alias", product.CategoryId);
             return View(product);
         }
 
@@ -77,7 +77,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", product.BrandId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Alias", product.CategoryId);
             return View(product);
         }
 
@@ -86,7 +86,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Name,Code,ShortDescription,Description,Active,Price,SalePrice,MadeIn,CategoryId,BrandId")] Product product)
+        public ActionResult Edit([Bind(Include="Id,Alias,Name,Code,ShortDescription,Description,Active,Price,SalePrice,MadeIn,DislayOrder,CategoryId,BrandId")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", product.BrandId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Alias", product.CategoryId);
             return View(product);
         }
 
