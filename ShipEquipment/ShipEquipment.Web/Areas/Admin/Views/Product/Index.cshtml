@@ -16,7 +16,10 @@
             @Html.DisplayNameFor(model => model.Brand.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
+            @Html.DisplayNameFor(model => model.Category.Alias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Alias)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -42,6 +45,9 @@
         <th>
             @Html.DisplayNameFor(model => model.MadeIn)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DislayOrder)
+        </th>
         <th></th>
     </tr>
 
@@ -51,7 +57,10 @@
             @Html.DisplayFor(modelItem => item.Brand.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
+            @Html.DisplayFor(modelItem => item.Category.Alias)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Alias)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -76,6 +85,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MadeIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DislayOrder)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

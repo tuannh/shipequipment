@@ -189,11 +189,6 @@
     <Content Include="Areas\Admin\Views\UserGuide\Details.cshtml" />
     <Content Include="Areas\Admin\Views\UserGuide\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\UserGuide\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Delete.cshtml" />
@@ -216,6 +211,11 @@
     <Content Include="Views\Shared\Controls\CategoryBreadcum.cshtml" />
     <Content Include="Views\Shared\Controls\BrandList.cshtml" />
     <Content Include="Views\Shared\Controls\LastViewProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
