@@ -136,6 +136,8 @@
     <Compile Include="Globals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteUrls.cs" />
+    <Compile Include="Utility\CopyHelper.cs" />
+    <Compile Include="Utility\ImageTools.cs" />
     <Compile Include="Utility\IOUtility.cs" />
     <Compile Include="Utility\SerializationUtility.cs" />
     <Compile Include="Web\Mvc\Bundle\BundleConfigurationManager.cs" />

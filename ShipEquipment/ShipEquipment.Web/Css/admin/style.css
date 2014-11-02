@@ -68,7 +68,7 @@ table.tb_table tbody th, table.tb_table tbody td {
 #copyright { background:url(/images/admin/bg-thead.png) repeat; clear: both; color: #909090; height: 25px; line-height: 15px; padding-top:8px; text-align: center; width: 100%; position:relative; bottom:0 }
 #copyright a { color: #909090; text-decoration: none; }
 #copyright a:hover { text-decoration: underline; color:#fe7b00}
-.inner_new{padding:5px 65px 20px;}
+.inner_new{padding:5px 65px 20px; }
 .inner_new div.form-group {width: 100%; float: left; padding: 8px 0;}
 .inner_new div label{margin-right:10px; width: 150px; display:inline-block; float: left;}
 .inner_new div .check{height: 16px;

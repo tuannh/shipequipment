@@ -102,7 +102,7 @@ namespace ShipEquipment.Core.Configurations
                 ThumbWidth = 200,
                 ThumbHeight = 150,
                 Quality = 80,
-                Background = "#FFFFFF"
+                Background = "#FFF"
             };
 
         }

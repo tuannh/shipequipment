@@ -195,11 +195,6 @@
     <Content Include="Areas\Admin\Views\Content\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Banner\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Banner\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Banner\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Banner\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Banner\Index.cshtml" />
     <Content Include="Views\Shared\Controls\Slider.cshtml" />
     <Content Include="Views\Shared\Controls\web.config" />
     <Content Include="Views\Shared\Controls\MenuNavigator.cshtml" />
@@ -229,6 +224,11 @@
     <Content Include="Areas\Admin\Views\Brand\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Banner\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Banner\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Banner\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Banner\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Banner\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
