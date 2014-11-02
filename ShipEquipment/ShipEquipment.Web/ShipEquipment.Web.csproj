@@ -110,6 +110,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Css\admin\style.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Config\log4net.config" />
@@ -117,6 +119,8 @@
     <Content Include="Config\Bundles.config" />
     <Content Include="Config\site.config" />
     <Content Include="Scripts\admin\category.list.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\common\browserdetect.min.js" />
     <Content Include="Scripts\common\captcha.js" />
     <Content Include="Scripts\common\execute.lazyload.js" />
@@ -124,6 +128,7 @@
     <Content Include="Scripts\common\html5.js" />
     <Content Include="Scripts\common\lazyload.js" />
     <Content Include="Scripts\common\modernizr-2.7.1.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\product.js" />
     <Content Include="Scripts\common\utilities.js" />
     <Content Include="Scripts\jquery\jquery-2.0.3.js" />
@@ -162,7 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Areas\Admin\Views\Layouts\Default.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Layouts\Default.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Details.cshtml" />
@@ -174,11 +179,6 @@
     <Content Include="Areas\Admin\Views\FAQ\Details.cshtml" />
     <Content Include="Areas\Admin\Views\FAQ\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\FAQ\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Brand\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Brand\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Brand\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Brand\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Video\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Video\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Video\Details.cshtml" />
@@ -216,6 +216,19 @@
     <Content Include="Areas\Admin\Views\Product\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Controls\Menu.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Views\Shared\Controls\Footer.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Controls\Header.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -226,11 +239,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Settings\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Common\Views\Shared\" />
-    <Folder Include="Css\" />
     <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>

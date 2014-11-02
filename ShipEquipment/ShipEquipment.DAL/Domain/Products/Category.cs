@@ -19,10 +19,12 @@ namespace ShipEquipment.Biz.Domain
 
         public int Id { get; set; }
 
-        [Display(Name = "Alias(tên hiển thị trên trình duyệt)")]
+        [Display(Name = "Alias")]
         [Required(ErrorMessage = "Alias không thể rỗng")]
+        [StringLength(100, ErrorMessage = "Alias không được quá 100 kí tự")]
         public string Alias { get; set; }
 
+        [StringLength(100, ErrorMessage="Tên không được quá 100 kí tự")]
         [Required(ErrorMessage = "Tên danh mục không thể rỗng")]
         [Display(Name = "Tên danh mục")]
         public string Name { get; set; }

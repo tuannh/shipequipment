@@ -19,7 +19,7 @@ namespace ShipEquipment.Core.Extensions
     {
         public static MvcHtmlString Pager(this SiteControl control, PagingModel pagingInfo)
         {
-            if (pagingInfo.TotalPages <= 0)
+            if (pagingInfo.TotalPages <= 1)
                 return new MvcHtmlString("");
 
             #region recheck page info
@@ -83,17 +83,18 @@ namespace ShipEquipment.Core.Extensions
                 {
                     var tag = new TagBuilder("a");
                     var cssClass = "";
+                    var href = "";
 
-                    if (i == 1)
-                        cssClass = !string.IsNullOrEmpty(pagingInfo.FirstPageNumberCssClass) ? pagingInfo.FirstPageNumberCssClass : defaultInfo.FirstPageNumberCssClass;
-
-                    else if (i == pagingInfo.CurrentPage)
+                    if (i == pagingInfo.CurrentPage){
                         cssClass = !string.IsNullOrEmpty(pagingInfo.CurrentPageCssClass) ? pagingInfo.CurrentPageCssClass : defaultInfo.CurrentPageCssClass;
-
-                    else
+                        href = "javascript:void(0);";
+                    }
+                    else { 
                         cssClass = !string.IsNullOrEmpty(pagingInfo.PageNumberCssClass) ? pagingInfo.PageNumberCssClass : defaultInfo.PageNumberCssClass;
+                        href = Globals.AppendQueryStringValue(pagingInfo.RequestUrl, pagingInfo.PageIndexQueryKeyName, i.ToString());
+                    }
 
-                    tag.MergeAttribute("href", Globals.AppendQueryStringValue(pagingInfo.RequestUrl, pagingInfo.PageIndexQueryKeyName, i.ToString()));
+                    tag.MergeAttribute("href", href);
                     tag.InnerHtml = i.ToString();
                     tag.AddCssClass(cssClass);
 
