@@ -10,6 +10,8 @@ using ShipEquipment.Biz.DAL;
 using ShipEquipment.Biz.Domain;
 using ShipEquipment.Core.Models;
 using ShipEquipment.Core.Controllers;
+using ShipEquipment.Core;
+using System.IO;
 
 namespace ShipEquipment.Web.Areas.Admin.Controllers
 {
@@ -98,6 +100,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+              
+
                 db.Brands.Add(brand);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -149,7 +153,12 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(brand);
+
+            db.Brands.Remove(brand);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+            // return View(brand);
         }
 
         // POST: Admin/Brand/Delete/5

@@ -28,6 +28,7 @@ namespace ShipEquipment.Biz.Domain
         [Display(Name = "Tên nhãn hiệu")]
         public string Name { get; set; }
 
+         [Display(Name = "Mô tả")]
         [MaxLength, Column(TypeName = "ntext")]
         public string Description { get; set; }
 
