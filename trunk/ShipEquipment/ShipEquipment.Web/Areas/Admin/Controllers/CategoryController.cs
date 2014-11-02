@@ -22,14 +22,23 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         {
             List<Category> lst = null;
 
-
             if (!string.IsNullOrEmpty(kw))
             {
-                lst = db.Categories.Where(a => (a.Name ?? "").ToLower().Contains(kw)).ToList();
+                var keyword = kw.ToLower();
+                lst = db.Categories.ToList();
+                lst = lst.Where(a => a.Name.ToLower().Contains(keyword) || (a.Description ?? "").ToLower().Contains(keyword))
+                         .OrderBy(a => a.DisplayOrder)
+                         .ThenBy(a => a.Name)
+                         .ToList();
+
+                if (lst.Count > 0)
+                    ViewBag.SearchReseult = string.Format("<b>{0}</b> kết quả được tìm thấy", lst.Count);
+                else
+                    ViewBag.SearchReseult = string.Format("Không tìm thấy kết quả với từ khóa <b>{0}</b>", kw);
             }
             else
             {
-                lst = db.Categories.ToList();
+                lst = GetShowList();
             }
 
             var pagingModel = new PagingModel();
@@ -37,6 +46,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             pagingModel.CurrentPage = PageIndex;
             pagingModel.TotalItems = lst.Count();
             pagingModel.RequestUrl = ControllerContext.RequestContext.HttpContext.Request.RawUrl;
+
+            lst = lst.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
 
             ViewBag.PagingModel = pagingModel;
             ViewBag.Keyword = kw;
@@ -97,7 +108,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 db.Categories.Add(category);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("index");
             }
 
             // ViewBag.ParentId = new SelectList(db.Categories, "Id", "Name", category.ParentId);
@@ -136,7 +147,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("index");
             }
             //ViewBag.ParentId = new SelectList(db.Categories, "Id", "Name", category.ParentId);
             ViewBag.SelectCategory = SelectCategoryList(category.Id);
@@ -155,7 +166,15 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(category);
+
+            if (category.GetSubCategory().Count() == 0)
+            {
+                db.Categories.Remove(category);
+                db.SaveChanges();
+            }
+            return RedirectToAction("index");
+
+            // return View(category);
         }
 
         // POST: /Admin/Category/Delete/5
@@ -166,7 +185,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             Category category = db.Categories.Find(id);
             db.Categories.Remove(category);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("index");
         }
 
         protected override void Dispose(bool disposing)
@@ -183,6 +202,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         private List<SelectListItem> SelectCategoryList(int cateId)
         {
             var root = db.Categories.Where(p => p.Parent == null && cateId != p.Id)
+                                    .OrderBy(p => p.DisplayOrder)
+                                    .ThenBy(p => p.Name)
                                     .ToList();
 
             var selectList = new List<SelectListItem>();
@@ -232,6 +253,49 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             }
 
         }
+
+        private List<Category> GetShowList()
+        {
+            var lst = db.Categories.Where(p => p.Parent == null)
+                                   .OrderBy(p => p.DisplayOrder)
+                                   .ThenBy(p => p.Name)
+                                   .ToList();
+            var lstResult = new List<Category>();
+
+            if (lst != null)
+            {
+                var count = lst.Count;
+                for (var i = 0; i < count; i++)
+                {
+                    var cate = lst.ElementAt(i);
+                    lstResult.Add(cate);
+                    GetSubCategoryList(lstResult, cate, "----");
+                }
+            }
+
+            return lstResult;
+
+        }
+
+        private void GetSubCategoryList(List<Category> selectList, Category parent, string indexText)
+        {
+            var subCates = parent.GetSubCategory();
+
+            if (subCates != null)
+            {
+                for (var i = 0; i < subCates.Count(); i++)
+                {
+                    var cate = subCates.ElementAt(i);
+                    var newIndex = indexText + indexText;
+
+                    cate.Name = indexText + cate.Name;
+                    selectList.Add(cate);
+                    GetSubCategoryList(selectList, cate, newIndex);
+                }
+            }
+
+        }
+
 
         #endregion
     }
