@@ -38,7 +38,6 @@ namespace ShipEquipment.Biz.Domain
         [Range(0, 9999, ErrorMessage = "Thứ tự hiển thị là 1 số trong khoảng [0, 9999]")]
         [RegularExpression(@"^[0-9]{0,4}$", ErrorMessage = "Thứ tự hiển thị là 1 số trong khoảng [0, 9999]")]
         [Display(Name = "Thứ tự hiển thị")]
-
         public int DisplayOrder { get; set; }
 
         public bool IsValidAlias()
