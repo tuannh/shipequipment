@@ -118,6 +118,28 @@
     <Content Include="Config\routes.config" />
     <Content Include="Config\Bundles.config" />
     <Content Include="Config\site.config" />
+    <Content Include="Images\admin\bg-btn-chonmua-hover.png" />
+    <Content Include="Images\admin\bg-btn-chonmua.png" />
+    <Content Include="Images\admin\bg-thead.png" />
+    <Content Include="Images\admin\bg.png" />
+    <Content Include="Images\admin\bg_menu.png" />
+    <Content Include="Images\admin\bg_titles.png" />
+    <Content Include="Images\admin\bg_top.png" />
+    <Content Include="Images\admin\bl3.gif" />
+    <Content Include="Images\admin\body.jpg" />
+    <Content Include="Images\admin\copyright_bg.png" />
+    <Content Include="Images\admin\false.gif" />
+    <Content Include="Images\admin\go_right.gif" />
+    <Content Include="Images\admin\header_block.png" />
+    <Content Include="Images\admin\i_add.gif" />
+    <Content Include="Images\admin\left_arrow.gif" />
+    <Content Include="Images\admin\line-li.png" />
+    <Content Include="Images\admin\logo.png" />
+    <Content Include="Images\admin\menu_container.gif" />
+    <Content Include="Images\admin\menu_container.png" />
+    <Content Include="Images\admin\nav.png" />
+    <Content Include="Images\admin\node.gif" />
+    <Content Include="Images\admin\true.gif" />
     <Content Include="Scripts\admin\category.list.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -242,7 +264,6 @@
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Common\Views\Shared\" />
-    <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
