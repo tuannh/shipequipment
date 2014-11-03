@@ -31,7 +31,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             {
                 var keyword = kw.ToLower();
                 lst = db.Banners.ToList();
-                lst = lst.Where(a => a.Name.ToLower().Contains(keyword) || (a.Description ?? "").ToLower().Contains(keyword))
+                lst = lst.Where(a => a.Name.ToLower().Contains(keyword) || (a.Description ?? "").ToLower().Contains(keyword) ||
+                                     (a.Url ??"").ToLower().Contains(keyword) || (a.Target??"").ToLower().Contains(keyword))
                          .OrderBy(a => a.DisplayOrder)
                          .ThenBy(a => a.Name)
                          .ToList();
@@ -113,7 +114,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     file.SaveAs(tmppath);
 
                     var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig().Banner;
-                    ImageTools.FixResizeImage(tmpname, path, config.Width, config.Height, ColorTranslator.FromHtml(config.Background), config.Quality);
+                    ImageTools.FixResizeImage(tmppath, path, config.Width, config.Height, ColorTranslator.FromHtml(config.Background), config.Quality);
 
                     try { System.IO.File.Delete(tmppath); }
                     catch { }
@@ -159,7 +160,6 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     if (!Directory.Exists(folerPath))
                         Directory.CreateDirectory(folerPath);
 
-                    // delete old banner file
                     var path = string.Format("{0}{1}", folerPath, banner.FileName);
                     if (System.IO.File.Exists(path))
                         System.IO.File.Delete(path);
@@ -172,7 +172,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     file.SaveAs(tmppath);
 
                     var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig().Banner;
-                    ImageTools.FixResizeImage(tmpname, path, config.Width, config.Height, ColorTranslator.FromHtml(config.Background), config.Quality);
+                    ImageTools.FixResizeImage(tmppath, path, config.Width, config.Height, ColorTranslator.FromHtml(config.Background), config.Quality);
 
                     try { System.IO.File.Delete(tmppath); }
                     catch { }
