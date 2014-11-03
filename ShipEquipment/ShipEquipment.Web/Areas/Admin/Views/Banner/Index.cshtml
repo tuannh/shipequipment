@@ -28,52 +28,48 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
+        <th style="width: 250px;">
             @Html.DisplayNameFor(model => model.FileName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Target)
-        </th>
-        <th>
+        <th style="width: 250px;">
             @Html.DisplayNameFor(model => model.Url)
         </th>
-        <th>
+        <th style="width: 80px;">
+            @Html.DisplayNameFor(model => model.Target)
+        </th>
+        <th style="width: 80px;">
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th style="width: 100px;">
             @Html.DisplayNameFor(model => model.DisplayOrder)
         </th>
-        <th></th>
+        <th class="col-command"></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr class="tb_content">
-            <td>
+            <td class="colLeft">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @if (string.IsNullOrEmpty(item.FileName))
+                @if (!string.IsNullOrEmpty(item.FileName))
                 {
-                    <img style="max-width: 200px;" alt="banner" src="~/Userfiles/Upload/images/Modules/BannerRotators/@item.FileName" />
+                    <img style="max-width: 180px;" alt="banner" src="~/Userfiles/Upload/images/Modules/BannerRotators/@item.FileName" />
                 }
-
-                @Html.DisplayFor(modelItem => item.FileName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Active)
+                @Html.DisplayFor(modelItem => item.Url)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Target)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Url)
+                @if (item.Active)
+                {
+                    <img src="~/images/admin/true.gif" alt="" style="width: 22px; height: 18px;">
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DisplayOrder)

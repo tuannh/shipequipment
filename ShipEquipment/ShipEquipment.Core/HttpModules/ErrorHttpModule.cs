@@ -34,7 +34,6 @@ namespace ShipEquipment.Core.HttpModules
 
         void context_Error(object sender, EventArgs e)
         {
-
             var application = (HttpApplication)sender;
             var context = application.Context;
 
