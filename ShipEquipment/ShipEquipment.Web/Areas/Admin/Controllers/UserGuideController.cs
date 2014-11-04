@@ -8,38 +8,59 @@ using System.Web;
 using System.Web.Mvc;
 using ShipEquipment.Biz.Domain;
 using ShipEquipment.Biz.DAL;
+using ShipEquipment.Core.Models;
+using ShipEquipment.Core.Controllers;
 
 namespace ShipEquipment.Web.Areas.Admin.Controllers
 {
-    public class UserGuideController : Controller
+    public class UserGuideController : AdminController
     {
         private ShipEquipmentContext db = new ShipEquipmentContext();
 
         // GET: /Admin/UserGuide/
-        public ActionResult Index()
+        public ActionResult Index(string kw)
         {
-            return View(db.UserGuides.ToList());
-        }
+            List<UserGuide> lst = null;
 
-        // GET: /Admin/UserGuide/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
+            if (!string.IsNullOrEmpty(kw))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var keyword = kw.ToLower();
+                lst = db.UserGuides.ToList();
+                lst = lst.Where(a => a.Name.ToLower().Contains(keyword) || (a.Content ?? "").ToLower().Contains(keyword))
+                         .OrderBy(a => a.DisplayOrder)
+                         .ThenBy(a => a.Name)
+                         .ToList();
+
+                if (lst.Count > 0)
+                    ViewBag.SearchReseult = string.Format("<b>{0}</b> kết quả được tìm thấy", lst.Count);
+                else
+                    ViewBag.SearchReseult = string.Format("Không tìm thấy kết quả với từ khóa <b>{0}</b>", kw);
             }
-            UserGuide userguide = db.UserGuides.Find(id);
-            if (userguide == null)
+            else
             {
-                return HttpNotFound();
+                lst = db.UserGuides.ToList();
             }
-            return View(userguide);
+
+            var pagingModel = new PagingModel();
+            pagingModel.ItemsPerPage = PageSize;
+            pagingModel.CurrentPage = PageIndex;
+            pagingModel.TotalItems = lst.Count();
+            pagingModel.RequestUrl = ControllerContext.RequestContext.HttpContext.Request.RawUrl;
+
+            lst = lst.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
+
+            ViewBag.PagingModel = pagingModel;
+            ViewBag.Keyword = kw;
+
+            return View(lst);
+
+            // return View(db.UserGuides.ToList());
         }
 
         // GET: /Admin/UserGuide/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new UserGuide());
         }
 
         // POST: /Admin/UserGuide/Create
@@ -47,7 +68,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Name,Content")] UserGuide userguide)
+        public ActionResult Create([Bind(Include = "Id,Name,Content,Alias,DisplayOrder")] UserGuide userguide)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +100,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Name,Content")] UserGuide userguide)
+        public ActionResult Edit([Bind(Include = "Id,Name,Content,Alias,DisplayOrder")] UserGuide userguide)
         {
             if (ModelState.IsValid)
             {
@@ -102,15 +123,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(userguide);
-        }
 
-        // POST: /Admin/UserGuide/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            UserGuide userguide = db.UserGuides.Find(id);
             db.UserGuides.Remove(userguide);
             db.SaveChanges();
             return RedirectToAction("Index");

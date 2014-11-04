@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\DatabaseInitializer.cs" />
     <Compile Include="DAL\ShipEquipmentContext.cs" />
     <Compile Include="Domain\Banner.cs" />
     <Compile Include="Domain\Content.cs" />

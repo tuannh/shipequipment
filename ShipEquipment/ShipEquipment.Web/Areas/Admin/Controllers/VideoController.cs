@@ -21,21 +21,6 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             return View(db.Videos.ToList());
         }
 
-        // GET: /Admin/Video/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Video video = db.Videos.Find(id);
-            if (video == null)
-            {
-                return HttpNotFound();
-            }
-            return View(video);
-        }
-
         // GET: /Admin/Video/Create
         public ActionResult Create()
         {
@@ -47,7 +32,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Name,Description,Url")] Video video)
+        public ActionResult Create([Bind(Include = "Id,Name,Alias,Description,Url,Active,DisplayOrder")] Video video)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +64,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Name,Description,Url")] Video video)
+        public ActionResult Edit([Bind(Include = "Id,Name,Alias,Description,Url,Active,DisplayOrder")] Video video)
         {
             if (ModelState.IsValid)
             {

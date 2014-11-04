@@ -1,4 +1,5 @@
-﻿using ShipEquipment.Core.Configurations;
+﻿using ShipEquipment.Biz.DAL;
+using ShipEquipment.Core.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,12 @@ namespace ShipEquipment.Web
     {
         protected void Application_Start()
         {
+            var dbContext = new ShipEquipmentContext();
+
+#if  DEBUG
+            dbContext.Initialize();
+#endif
+
             SiteConfiguration.GetConfig();
 
             MvcHandler.DisableMvcResponseHeader = true;
