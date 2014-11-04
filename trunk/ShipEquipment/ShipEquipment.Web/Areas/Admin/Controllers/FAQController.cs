@@ -73,8 +73,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // GET: /Admin/FAQ/Create
         public ActionResult Create()
         {
-            ViewBag.ParentId = new SelectList(db.FAQs, "Id", "Question");
-            return View();
+            // ViewBag.ParentId = new SelectList(db.FAQs, "Id", "Question");
+            return View(new FAQ());
         }
 
         // POST: /Admin/FAQ/Create
@@ -107,7 +107,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ParentId = new SelectList(db.FAQs, "Id", "Question", faq.ParentId);
+            // ViewBag.ParentId = new SelectList(db.FAQs, "Id", "Question", faq.ParentId);
             return View(faq);
         }
 

@@ -13,7 +13,10 @@ namespace ShipEquipment.Biz.DAL
 {
     public class ShipEquipmentContext : DbContext
     {
-        public ShipEquipmentContext() : base("ShipEquipmentDb") { }
+        public ShipEquipmentContext()
+            : base("ShipEquipmentDb")
+        {
+        }
 
         public DbSet<Brand> Brands { get; set; }
 
@@ -41,5 +44,11 @@ namespace ShipEquipment.Biz.DAL
 
         public DbSet<Page> Pages { get; set; }
 
+        public void Initialize()
+        {
+            Database.SetInitializer<ShipEquipmentContext>(new DatabaseInitializer());
+
+            this.Database.Initialize(true);
+        }
     }
 }

@@ -10,16 +10,17 @@ namespace ShipEquipment.Biz.Domain
 {
     public class NewsCategory
     {
+        public NewsCategory()
+        {
+            DisplayOrder = 1000;
+        }
+
         public int Id { get; set; }
 
         public string Alias { get; set; }
 
-        [Required(ErrorMessage = "Tên không thể rỗng")]
         public string Name { get; set; }
 
-        [MaxLength, Column(TypeName = "ntext")]
-        public string Description { get; set; }
-
-        public int Order { get; set; }
+        public int DisplayOrder { get; set; }
     }
 }
