@@ -6,10 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ShipEquipment.Biz.DAL;
 using ShipEquipment.Biz.Domain;
-using ShipEquipment.Core.Controllers;
+using ShipEquipment.Biz.DAL;
 using ShipEquipment.Core.Models;
+using ShipEquipment.Core.Controllers;
 using ShipEquipment.Core;
 using System.IO;
 using ShipEquipment.Core.Utility;
@@ -17,24 +17,26 @@ using System.Drawing;
 
 namespace ShipEquipment.Web.Areas.Admin.Controllers
 {
-    public class BannerController : AdminController
+    public class NewsController : AdminController
     {
-        public const string Folder = "~/Userfiles/Upload/images/Modules/BannerRotators/";
+        public const string Folder = "~/Userfiles/Upload/images/Modules/News/";
+
         private ShipEquipmentContext db = new ShipEquipmentContext();
 
-        // GET: Admin/Banner
+        // GET: /Admin/News/
         public ActionResult Index(string kw)
         {
-            List<Banner> lst = null;
+            //var newsarticles = db.NewsArticles.Include(n => n.Category);
+            //return View(newsarticles.ToList());
+            List<NewsArticle> lst = null;
 
             if (!string.IsNullOrEmpty(kw))
             {
                 var keyword = kw.ToLower();
-                lst = db.Banners.ToList();
-                lst = lst.Where(a => a.Name.ToLower().Contains(keyword) || (a.Description ?? "").ToLower().Contains(keyword) ||
-                                     (a.Url ??"").ToLower().Contains(keyword) || (a.Target??"").ToLower().Contains(keyword))
+                lst = db.NewsArticles.ToList();
+                lst = lst.Where(a => a.Title.ToLower().Contains(keyword) || (a.Summary ?? "").ToLower().Contains(keyword) || (a.Content ?? "").ToLower().Contains(keyword))
                          .OrderBy(a => a.DisplayOrder)
-                         .ThenBy(a => a.Name)
+                         .ThenBy(a => a.Title)
                          .ToList();
 
                 if (lst.Count > 0)
@@ -44,7 +46,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             }
             else
             {
-                lst = db.Banners.OrderBy(a => a.DisplayOrder).ThenBy(a => a.Name).ToList();
+                lst = db.NewsArticles.ToList();
             }
 
             var pagingModel = new PagingModel();
@@ -61,37 +63,24 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             return View(lst);
         }
 
-        // GET: Admin/Banner/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var banner = db.Banners.Find(id);
-            if (banner == null)
-            {
-                return HttpNotFound();
-            }
-            return View(banner);
-        }
-
-        // GET: Admin/Banner/Create
+        // GET: /Admin/News/Create
         public ActionResult Create()
         {
-            return View(new Banner());
+            ViewBag.CategoryId = new SelectList(db.NewsCategories, "Id", "Name");
+            return View(new NewsArticle());
         }
 
-        // POST: Admin/Banner/Create
+        // POST: /Admin/News/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Order,FileName,Active,Target,Url,DisplayOrder")] Banner banner, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "Id,Alias,Title,Summary,Content,Active,CategoryId")] NewsArticle newsarticle, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                db.Banners.Add(banner);
+                newsarticle.CreatedDate = DateTime.Now;
+                db.NewsArticles.Add(newsarticle);
                 db.SaveChanges();
 
                 if (file != null)
@@ -101,11 +90,11 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                         Directory.CreateDirectory(folerPath);
 
                     // delete old banner file
-                    var path = string.Format("{0}{1}", folerPath, banner.FileName);
+                    var path = string.Format("{0}{1}", folerPath, newsarticle.Photo);
                     if (System.IO.File.Exists(path))
                         System.IO.File.Delete(path);
 
-                    var filename = string.Format("{0}-{1}", banner.Id, file.FileName);
+                    var filename = string.Format("{0}-{1}", newsarticle.Id, file.FileName);
                     path = string.Format("{0}{1}", folerPath, filename);
 
 
@@ -119,37 +108,41 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     try { System.IO.File.Delete(tmppath); }
                     catch { }
 
-                    banner.FileName = filename;
+                    newsarticle.Photo = filename;
                     db.SaveChanges();
                 }
+
+
 
                 return RedirectToAction("Index");
             }
 
-            return View(banner);
+            ViewBag.CategoryId = new SelectList(db.NewsCategories, "Id", "Name", newsarticle.CategoryId);
+            return View(newsarticle);
         }
 
-        // GET: Admin/Banner/Edit/5
+        // GET: /Admin/News/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Banner banner = db.Banners.Find(id);
-            if (banner == null)
+            NewsArticle newsarticle = db.NewsArticles.Find(id);
+            if (newsarticle == null)
             {
                 return HttpNotFound();
             }
-            return View(banner);
+            ViewBag.CategoryId = new SelectList(db.NewsCategories, "Id", "Name", newsarticle.CategoryId);
+            return View(newsarticle);
         }
 
-        // POST: Admin/Banner/Edit/5
+        // POST: /Admin/News/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,FileName,Active,Target,Url,DisplayOrder")] Banner banner, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "Id,Alias,Title,Summary,Content,Active,CategoryId,CreatedDate")] NewsArticle newsarticle, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -159,11 +152,11 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     if (!Directory.Exists(folerPath))
                         Directory.CreateDirectory(folerPath);
 
-                    var path = string.Format("{0}{1}", folerPath, banner.FileName);
+                    var path = string.Format("{0}{1}", folerPath, newsarticle.Photo);
                     if (System.IO.File.Exists(path))
                         System.IO.File.Delete(path);
 
-                    var filename = string.Format("{0}-{1}", banner.Id, file.FileName);
+                    var filename = string.Format("{0}-{1}", newsarticle.Id, file.FileName);
                     path = string.Format("{0}{1}", folerPath, filename);
 
                     var tmpname = string.Format("{0}-{1}", Guid.NewGuid().ToString(), file.FileName);
@@ -176,40 +169,37 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     try { System.IO.File.Delete(tmppath); }
                     catch { }
 
-                    banner.FileName = filename;
+                    newsarticle.Photo = filename;
                 }
 
-                db.Entry(banner).State = EntityState.Modified;
+                newsarticle.UpdatedDate = DateTime.Now;
+                db.Entry(newsarticle).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-            return View(banner);
+            ViewBag.CategoryId = new SelectList(db.NewsCategories, "Id", "Alias", newsarticle.CategoryId);
+            return View(newsarticle);
         }
 
-        // GET: Admin/Banner/Delete/5
+        // GET: /Admin/News/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Banner banner = db.Banners.Find(id);
-            if (banner == null)
+            NewsArticle newsarticle = db.NewsArticles.Find(id);
+            if (newsarticle == null)
             {
                 return HttpNotFound();
             }
-            return View(banner);
-        }
 
-        // POST: Admin/Banner/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Banner banner = db.Banners.Find(id);
-            db.Banners.Remove(banner);
+            db.NewsArticles.Remove(newsarticle);
             db.SaveChanges();
             return RedirectToAction("Index");
+
+            //return View(newsarticle);
         }
 
         protected override void Dispose(bool disposing)

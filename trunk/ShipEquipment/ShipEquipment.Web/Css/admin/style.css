@@ -86,3 +86,5 @@ table.tb_table tbody th, table.tb_table tbody td {
 .colLeft { text-align: left !important; }
 .col-command {width: 100px;}
 .error {color: #F00;}
+
+.inner-fix { display: inline-block; }
