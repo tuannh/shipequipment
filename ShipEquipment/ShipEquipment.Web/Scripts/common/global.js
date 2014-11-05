@@ -90,7 +90,7 @@ function GenerateAlias(inputText, maxLength) {
     // trim space, - and _ of strim
     result = result.replace(/^[\s\-_]+|[\s\-_]+$/g, "");    
     
-    return result.substring(0, maxLength);
+    return result.substring(0, maxLength).toLowerCase();
 }
 
 function AutoGenerateAlias(inputText, targetObjectId, isOverwrite) {
