@@ -1,0 +1,495 @@
+
+@media only screen and (max-width:1480px) {
+#back-top { right: -6% }
+}
+
+@media only screen and (max-width:1380px) {
+body { max-width: 1380px }
+}
+
+@media only screen and (max-width:1300px) {
+}
+
+@media only screen and (max-width:1280px) {
+body { max-width: 1280px }
+.main { max-width: 100% }
+#cart { right: 2% }
+.content { padding: 0 2%; width: 96%; margin: auto }
+#search { right: 2% }
+.contentTop { padding: 0px 2% 0; width: 96% }
+.nav { width: 100% }
+.contentF { margin: 0 2%; width: 96% }
+.colLeft { width: 75% }
+.colRight { width: 23.5% }
+.video-clip { width: 75% }
+.news { width: 23.5% }
+.filter { width: 100% }
+.frm3,
+.frm2 { width: 100% }
+.img_new2 { width: 30%; float: left; }
+.text { width: 67% }
+.label h4 { margin: 0 20px; width: 80px; float: left; font-size: 14px; color: #fff; padding: 7px 0 20px }
+.label li a { display: block; padding: 7px 15px; text-align: center; color: #fff }
+.sort .sort_left label { width: 100px; float: left }
+.resp-tabs-list li{ padding: 7px 24px}
+}
+
+@media only screen and (max-width:1200px) {
+.nav-item a{ padding:0 18px}
+
+}
+@media only screen and (max-width:1180px) {
+body { max-width: 1180px }
+.main { max-width: 94% }
+.productsList ul li { width: 30% }
+.productsList ul li:nth-of-type(4n+1) { clear: none; margin-left: 20px; border-left: 1px solid #eee }
+.productsList ul li:nth-of-type(3n+1) { clear: left; margin-left: 0; border-left: none }
+.resp-tabs-list li {
+    padding: 7px 25px;
+}
+}
+
+@media only screen and (max-width:1160px) {
+.nav-item a { padding: 0 15px }
+.resp-tabs-list li {
+    padding: 7px 8px;
+}
+}
+
+@media only screen and (max-width:1100px) {
+.nav-item a { padding: 0px 12px }
+.nav-submenu-item a { padding: 10px 15px }
+.nav-submenu-item2 a { padding: 10px 15px }
+}
+
+@media only screen and (max-width:1040px) {
+.nav-item a { padding: 0 10px; }
+.nav-submenu-item a { padding: 10px 15px }
+.nav-submenu-item2 a { padding: 10px 15px }
+.video-clip { width: 65% }
+.news { width: 33.5% }
+.inner-frm2 { background: none }
+.video-clip .video p { color: #221208; position: relative; margin-top: 0 }
+.resp-tabs-list li {
+    padding: 7px 4px;
+}
+}
+
+@media only screen and (max-width: 980px) {
+#body { background: none }
+/*nav*/
+.nav-mobile { display: block; }
+.name { display: block }
+.addArrow { display: none !important }
+.nav { width: 100%; top: 7px; left: 0%; background: #231f20; padding-top: 40px; height: auto; padding-bottom: 0 }
+.nav-list { display: none }
+.nav-item { width: 100%; float: none; padding: 0; text-align: left }
+.nav-item:nth-child(1) { width: 100% }
+.nav-item > a:hover,
+.nav-item a.active { color: #fff; background: #de4509 }
+.nav-submenu { position: static; width: 100%; padding: 0 }
+.nav-submenu2 { position: static; left: 0; top: 0; width: 100%; padding: 0; margin: 0 }
+.nav-item:hover .nav-submenu { display: none; }
+.nav-submenu-item:hover .nav-submenu2 { display: none }
+.nav-item:hover { }
+.nav-item > a { text-align: left; background: #e45300; margin-right: 0; color: #fff; line-height: 24px; padding: 8px 20px; display: block; border-bottom: 1px solid #ab3a0e }
+.nav-submenu-item a { padding: 10px 20px; font-size: 15px }
+.nav-item:hover a { color: #fff; background: #de4509 }
+.nav-item a.first { padding-left: 20px }
+.nav-click { display: block }
+.nav-mobile-open { border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0; -moz-border-radius: 5px 5px 0 0; }
+.iosSliderFull { padding-top: 10px }
+.colLeft { width: 100%; margin-bottom: 0 }
+.colRight { width: 100%; float: left; margin-top: 0 }
+.frm3 { }
+.iosSlider .slider .item .inner .text1 { top: 25px }
+}
+
+@media only screen and (max-width: 920px) {
+}
+
+@media only screen and (max-width: 890px) {
+}
+
+@media only screen and (max-width: 860px) {
+.iosSlider .slider .item .inner .text1 { background: rgba(255, 255, 255, 0.5); position: absolute; right: 20px; top: 20px; text-align: left; z-index: 10; color: #1a1a1a; font-size: 18px; box-shadow: 1px 1px 3px #212121; height: 170px; width: 170px }
+.iosSlider .slider .item .inner .text1 p { margin: 51px 20px 0; text-align: center; }
+}
+ @media only screen and (max-width: 848px) {
+.contact_form { float: left; width: 100% }
+.contact_form .inputText { width: 99%; padding: 0 }
+.productForm { float: left }
+.contact_form label { width: 100%; margin-bottom: 5px }
+.contact_form .textarea { width: 99%; padding: 0 }
+ @media only screen and (max-width: 787px) {
+.top {
+position: relative;
+padding-bottom: 15px;
+height:auto
+}
+.height {
+display: none
+}
+ .contact_form {
+width: 100%;
+float: left
+}
+.info_center {
+width: 100%
+}
+.frm3 {
+margin-top:15px
+}
+}
+ @media only screen and (max-width: 767px) {
+header {
+}
+.top {
+padding-bottom:0
+}
+.logo {
+width:100%;
+text-align:center;
+height:auto;
+margin-bottom:15px
+}
+.top-right {
+width:100%;
+text-align:center;
+margin:0 0 15px;
+background:url(/images/thx/bg_top-right.png) repeat;
+padding:5px 0
+}
+.clear2 {
+clear:both
+}
+#search {
+right:0;
+margin:0 auto 10px;
+position:relative;
+top:0
+}
+
+.iosSlider .slider .item .inner .text1 {background: rgba(255, 255, 255, 0.5);position: absolute; right:10px; top: 24%;  text-align: left; z-index:10; color:#1a1a1a; font-size:14px; box-shadow:1px 1px 3px #212121; height:70px; width:210px; border-radius:0}
+.iosSlider .slider .item .inner .text1 p {
+    margin: 15px 10px 0;
+    text-align:left;
+}
+.colLeft {
+float: left;
+width: 100%;
+margin-bottom: 15px
+}
+.colRight {
+float: left;
+width: 100%;
+padding-bottom: 10px
+}
+.video-clip {
+width:100%
+}
+.news {
+background: url("/images/thx/bg-top-video.jpg") no-repeat scroll center top rgba(0, 0, 0, 0);
+ border-radius: 10px 10px 0 0;
+ float: left;
+ overflow: hidden;
+ position: relative;
+ width: 100%;
+}
+.news h2 img {
+vertical-align:top;
+margin:8px 5px 0 15px
+}
+.video-clip .video {
+width:48.5%;
+margin-right:3%
+}
+.video-clip .video:nth-of-type(2) {
+margin-right:0
+}
+.productsList ul li {
+float:left;
+width:47%;
+padding:0px 0%
+}
+.productsList ul li:nth-of-type(3n+1) {
+ clear: none;
+ margin-left: 20px;
+ border-left:1px solid #eee
+}
+ .productsList ul li:nth-of-type(2n+1) {
+ clear: left;
+ margin-left: 0;
+ border-left:none
+}
+ .left_card_inner {
+padding: 2%;
+width: 96%
+}
+.productForm {
+float: right
+}
+footer {
+padding-top: 5px
+}
+ .box {
+margin-top: 15px
+}
+.box .box-heading {
+margin-bottom: 20px
+}
+footer .design_by {
+text-align:center;
+padding:10px 0 0
+}
+footer .design_by p {
+display:inline-block;
+margin-bottom:15px
+}
+footer .design_by .face-book {
+position:relative;
+display:inline-block;
+float:left;
+width:100%
+}
+}
+@media only screen and (max-width: 720px) {
+.label ul {
+float:left;
+width:100%;
+padding:0 20px 10px
+}
+.sort .count_page {
+float:left;
+width:100%;
+padding:10px 20px;
+text-align:left
+}
+}
+@media only screen and (max-width: 600px) {
+#body {
+padding-top:0
+}
+.main {
+max-width: 100%;
+border-radius:0;
+margin:0 auto 0
+}
+.content {
+padding: 0 2%;
+width: 90%;
+margin: auto
+}
+.contentTop {
+padding: 0px 2% 0;
+width: 90%
+}
+.contentF {
+margin: 0 2%;
+width: 90%
+}
+}
+ @media only screen and (max-width: 560px) {
+.top {
+height:auto
+}
+.omoss {
+padding: 2% 0
+}
+.productForm {
+float: left
+}
+}
+ @media only screen and (max-width:480px) {
+.video-clip .video {
+width:100%;
+margin:0;
+padding-bottom:20px
+}
+ .productsList ul li {
+float:left;
+width:90%;
+padding:0px 5%;
+border-left:none;
+margin:0;
+border-bottom:1px dotted #d2d2d2
+}
+.productsList ul li:last-child {
+border-bottom:none
+}
+.content_products {
+padding:0
+}
+.productsList ul li:nth-of-type(3n+1) {
+ clear: none;
+ margin-left:0;
+ border-left:none
+}
+ #owl2 .content_products, #owl3 .content_products {
+float:none;
+width:94%
+}
+.iosSlider .slider .item .inner .text1 {background: rgba(255, 255, 255, 0.5);position: absolute; right:10px; top: 23%;  text-align: left; z-index:10; color:#1a1a1a; font-size:12px; box-shadow:1px 1px 3px #212121; height:44px; width:180px; border-radius:0}
+.iosSlider .slider .item .inner .text1 p {
+    margin: 5px 5px 0;
+    text-align:left;
+}
+
+}
+@media only screen and (max-width:400px) {
+#search {
+width:280px;
+background: url(/images/thx/bg_search_m.png) no-repeat left top
+}
+#search input {
+border: none;
+background: none;
+margin: 0
+}
+#search input.text {
+width: 190px;
+padding-left: 7px;
+color: #78706c;
+font-size: 13px;
+float: left;
+outline: none;
+height:28px;
+line-height: 32px;
+font-family: helvetica_condensedmedium, Arial, sans-serif
+}
+#search input.button {
+float: right;
+color: #FFF;
+height: 28px;
+width: 45px;
+cursor: pointer;
+margin: 0;
+padding: 0;
+}
+ .img_new2 {
+width: 100%
+}
+.text {
+width:100%;
+float: left
+}
+ .contenttab {
+padding: 2%
+}
+}
+ @media only screen and (max-width:340px) {
+.logo {
+margin-bottom:30px
+}
+#cart, .language {
+margin-left:5px
+}
+.content {
+padding: 0 5%;
+width: 90%
+}
+.contentF {
+margin: 0 5%;
+width: 90%
+}
+.right_panel {
+margin-bottom: 10px;
+padding: 0 4%;
+width: 92%;
+}
+.colLeft .category {
+padding-bottom: 15px
+}
+.left_card_inner {
+padding: 5%;
+width: 90%;
+}
+.right_top {
+width: 78%;
+right: 5%
+}
+.bx-wrapper {
+width: 78%;
+display: none;
+max-width: 100% !important;
+padding: 25px 11% 5px
+}
+.bx-wrapper .slide {
+width: 240px !important
+}
+.contact_form .button {
+margin-left: 0
+}
+.sok ul li label {
+width: 43%;
+float: left
+}
+.img_content {
+float: left;
+padding: 5%;
+text-align: center;
+width: 90%;
+}
+.text_infor {
+padding: 0 5% 13%;
+width: 90%;
+}
+.price_product {
+left: 5%
+}
+.sale {
+width: 91.8%;
+display: none;
+padding: 4%
+}
+.sok select.op1 {
+width: 150px
+}
+.sok select.op2 {
+width: 150px
+}
+.sok select.op3 {
+width: 150px
+}
+.sok select.op4 {
+width: 150px
+}
+.sok select.op5 {
+width: 150px
+}
+.contenttab .formLeft {
+width: 100%;
+float: left
+}
+.contenttab .formRight {
+width: 100%;
+float: left
+}
+.cartPS .buttons_added {
+margin-right: 12px
+}
+.contact_form .inputText, .contact_form .textarea {
+width: 96%;
+padding: 0 2%
+}
+.contact_form li {
+width: 100%
+}
+.info-center {
+width: 96%;
+padding: 0 2%
+}
+.contact_form {
+width: 96%;
+padding: 2%
+}
+.contact_form .button {
+margin-left: 0 !important
+}
+.bottom .kontakt p.tel, .bottom .kontakt p.mail {
+width: 100%;
+margin: 0
+}
+}
+ @media only screen and (max-width:260px) {
+}

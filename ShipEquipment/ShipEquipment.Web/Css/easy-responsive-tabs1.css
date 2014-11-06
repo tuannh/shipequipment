@@ -1,0 +1,141 @@
+@font-face { font-family: 'oswaldregular'; src: url('/css/fonts/oswald-regular-webfont.eot'); src: url('/css/fonts/oswald-regular-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/oswald-regular-webfont.woff') format('woff'), url('/css/fonts/oswald-regular-webfont.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+ p { margin: 0px; padding: 0 }
+ul.resp-tabs-list{ height:34px; padding:0; margin:25px 0 0px 0}
+.resp-tabs-list li { display: inline-block; padding: 7px 26px 7px 26px ; margin: 0 3px 0 0; list-style: none; cursor: pointer; float: left; color: #fff; line-height: 20px; display:inline-block;font-size: 16px; text-align: center; text-transform:uppercase;-webkit-border-radius:6px 6px 0 0px; -moz-border-radius: 6px 6px 0 0px; border-radius:6px 6px 0 0px; background:url(/images/thx/line_tab_li.png) repeat left 0px}
+.resp-tabs-list li:first-child{ }
+.resp-tabs-list li:hover { color:#fff ; background:#d85625}
+.resp-tabs-container {}
+h3.resp-accordion { cursor: pointer; padding: 5px; display: none; margin-bottom: 0 !important; font-size: 16px; text-transform: uppercase; font-weight: normal; color:#fff; background:#2a2522 }
+.resp-tab-content { display: none}
+.resp-tab-active { color: #fff!important; border: none;  margin: 5px 0; background:#d85625 !important }
+.resp-content-active, .resp-accordion-active { display: block; }
+h3.resp-accordion { font-size: 14px }
+h3.resp-tab-active { }
+h3.resp-tab-title:last-child { border-bottom: 12px solid #DDD !important; background: blue; }
+/*-----------Vertical tabs-----------*/
+.resp-vtabs ul.resp-tabs-list { float: left; width: 30%; }
+.resp-vtabs .resp-tabs-list li { display: block; padding: 15px 15px !important; margin: 0; cursor: pointer; float: none; }
+.resp-vtabs .resp-tabs-container { padding: 0px; background-color: #fff; border: 1px solid #DDD; float: left; width: 68%; min-height: 250px; border-radius: 4px; clear: none; }
+.resp-vtabs .resp-tab-content { border: none; }
+.resp-vtabs li.resp-tab-active { border: 1px solid #DDD; border-right: none; background-color: #fff; position: relative; z-index: 1; margin-right: -1px !important; padding: 14px 15px 15px 14px !important; }
+.resp-arrow { width: 0; height: 0; float: right; margin-top: 5px; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 12px solid #DDD; }
+h3.resp-tab-active span.resp-arrow { border: none; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 12px solid #fff; }
+/*-----------Accordion styles-----------*/
+h3.resp-tab-active {  width: 96%; padding: 0 2%; margin: 0; color:#fff !important; background:#b6330e !important }
+.resp-easy-accordion h3.resp-accordion { display: block; }
+.resp-easy-accordion .resp-tab-content { border: 1px solid #DDD; }
+.resp-easy-accordion .resp-tab-content:last-child { border-bottom: 1px solid #DDD !important; }
+.resp-jfit { width: 100%; margin: 0px; }
+.resp-tab-content-active { display: block; }
+h3.resp-accordion:first-child { border-top: 1px solid #DDD !important; margin-bottom: 0 }
+.resp-tabs-container h3:hover{background:#ff4700 !important}
+.contenttab{ width:97.8%;border:1px solid #eee; overflow:hidden; padding-top:20px; border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px; -moz-border-radius: 0 0 10px 10px}
+.contenttab ul{ list-style:none; padding:0; margin:0}
+.contenttab li{ width:250px; margin:0px 0px 0px 20px; float:left; padding:0 0px 28px; border-left:1px solid #eee}
+.contenttab li:nth-of-type(3n+1) {
+    clear: left;
+    margin-left: 0;
+	border-left:none
+}
+.contenttab2{border:1px solid #eee; overflow:hidden; padding-top:20px; border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px; -moz-border-radius: 0 0 10px 10px; margin-bottom:30px}
+.contenttab2 ul{ list-style:none; padding:0; margin:0}
+.contenttab2 li{ width:250px; margin:0px 0px 0px 20px; float:left; padding:0 0px 28px; border-left:1px solid #eee}
+.contenttab2 li:nth-of-type(4n+1) {
+    clear: left;
+    margin-left: 0;
+	border-left:none
+}
+/*  css product sale */
+.contentSale { float: left;position:relative; padding-left:20px}
+.imgSale{ float: left; width:100%; text-align: center }
+.imgSale img { opacity: 1; width: 100% }
+.imgSale img:hover { opacity: 0.7 }
+.priceSale { line-height: 22px; font-size: 22px; font-weight:bold; color: #221208 !important; float:right }
+.priceSale1 { line-height: 18px; font-size:18px; font-weight:bold; color: #5a5a5a !important; float:right }
+.textSale { margin: 0; position: relative; width: 100%; float:left}
+.textSale h4 { font-size: 13px; color: #221208; font-weight: normal; text-transform: uppercase; margin-bottom: 5px }
+.textSale h4  a{color:#221208}
+.textSale h4  a:hover{color:#ff4700}
+.textSale p { padding-bottom:10px; color:#ff6600 }
+.innerTab1{ padding:0 1%}
+.contentSale a.btn_chonmua{position:absolute; display:none; top:7%; right:0px; background:url(/images/thx/bg-btn-chonmua.png) no-repeat left top; height:29px; width:101px; padding-left:10px;line-height:29px; text-transform:uppercase; z-index:800; color:#fff;-moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s}
+.contentSale a.btn_chonmua:hover{background:url(/images/thx/bg-btn-chonmua-hover.png) no-repeat left top; text-decoration:none}
+.contentSale:hover  a.btn_chonmua{ display:block}
+@media only screen and (max-width: 1240px) {
+.resp-tabs-list li{padding: 7px 34px}
+
+}
+@media only screen and (max-width: 1180px) {
+.resp-tabs-list li{padding: 7px 18px}
+.contenttab li, .contenttab2 li{ width:30%}
+
+.contenttab2 li:nth-of-type(4n+1) {
+    clear: none;
+    margin-left: 20px;border-left:1px solid #eee
+}
+.contenttab2 li:nth-of-type(3n+1) {
+    clear: left;
+    margin-left: 0;
+	border-left:none
+}
+
+}
+
+@media only screen and (max-width: 1100px) {
+
+.resp-tabs-list li{}
+
+}
+@media only screen and (max-width: 1040px) {
+	.resp-tabs-list li {
+    padding: 7px 12px;
+}
+}
+
+@media only screen and (max-width: 980px) {
+.contenttab{ width:100%}
+
+.innerTab{ width:96%}
+.innerTab1{ width:96%}
+}
+@media only screen and (max-width: 880px) {
+
+}
+/*Here your can change the breakpoint to set the accordion, when screen resolution changed*/
+@media only screen and (max-width: 768px) {
+
+#horizontalTab1{margin:15px 0 !important}
+ul.resp-tabs-list { display: none; }
+h3.resp-accordion { display:block;  padding: 7px 3%; width: 94% ; border-bottom: 1px solid #DDD }
+.resp-tab-content {}
+.contenttab li, .contenttab2 li{ float:left; width:47%; padding:0px 0%}
+.innerTab{overflow:hidden; background:#fff; padding:15px 3%; width:94%}
+.innerTab1{overflow:hidden; background:#fff; padding:15px 3%; width:94%}
+.contenttab li:nth-of-type(3n+1), .contenttab2 li:nth-of-type(3n+1) {
+    clear: none;
+    margin-left: 20px;
+	 border-left:1px solid #eee
+}
+
+.contenttab li:nth-of-type(2n+1), .contenttab2 li:nth-of-type(2n+1) {
+    clear: left;
+    margin-left: 0;
+	border-left:none
+}
+.contenttab, .contenttab2{ margin-bottom:20px; padding-top:0}
+}
+
+@media only screen and (max-width: 560px) {
+}
+
+@media only screen and (max-width: 480px) {
+
+.contenttab li, .contenttab2 li{ float:left; width:90%; padding:0px 5%; border-left:none; margin:0; border-bottom:1px dotted #d2d2d2}
+.contenttab li:last-child, .contenttab2 li:last-child{ border-bottom:none}
+.contentSale { padding:0}
+.contenttab li:nth-of-type(3n+1), .contenttab2 li:nth-of-type(3n+1) {
+    clear: none;
+    margin-left:0;
+	 border-left:none
+}
+}

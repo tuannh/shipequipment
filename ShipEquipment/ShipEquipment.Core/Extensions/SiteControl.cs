@@ -85,11 +85,13 @@ namespace ShipEquipment.Core.Extensions
                     var cssClass = "";
                     var href = "";
 
-                    if (i == pagingInfo.CurrentPage){
+                    if (i == pagingInfo.CurrentPage)
+                    {
                         cssClass = !string.IsNullOrEmpty(pagingInfo.CurrentPageCssClass) ? pagingInfo.CurrentPageCssClass : defaultInfo.CurrentPageCssClass;
                         href = "javascript:void(0);";
                     }
-                    else { 
+                    else
+                    {
                         cssClass = !string.IsNullOrEmpty(pagingInfo.PageNumberCssClass) ? pagingInfo.PageNumberCssClass : defaultInfo.PageNumberCssClass;
                         href = Globals.AppendQueryStringValue(pagingInfo.RequestUrl, pagingInfo.PageIndexQueryKeyName, i.ToString());
                     }
@@ -253,8 +255,8 @@ namespace ShipEquipment.Core.Extensions
             var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
             var db = new ShipEquipmentContext();
 
-            var banners = (from b in db.Banners
-                           select b).ToList();
+            var banners = db.Banners.Where(a => a.Active).OrderBy(a => a.DisplayOrder).ThenBy(a => a.Name).ToList();
+
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, banners);
 
             return new MvcHtmlString(result);

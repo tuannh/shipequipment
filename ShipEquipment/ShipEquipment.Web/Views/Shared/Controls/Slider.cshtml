@@ -1,15 +1,39 @@
 ﻿@model IEnumerable<ShipEquipment.Biz.Domain.Banner>
 
-<ul>
-@foreach (var banner in Model)
-{
-    <li>
-        <a href="@(string.IsNullOrEmpty(banner.Url) ? "javascript:void(0)" : banner.Url)" @(string.IsNullOrEmpty(banner.Target) ? "" : string.Format("target=\"{0}\"", banner.Target))  title="@banner.Name">
-            @banner.Name
-        </a>
-        <p>
-            @banner.Description
-        </p>
-    </li>
+@{
+    var banners = Model;
+    var index = 0;
+    var count = banners.Count();
 }
-</ul>
+
+<div class='iosSliderFull'>
+    <div class='fluidHeight'>
+        <div class='sliderContainer'>
+            <div class='iosSlider'>
+                <div class='slider'>
+                    @foreach (var banner in Model)
+                    {
+                        var selected = index == 0 ? "selected" : "";
+                        index++;
+                        <div class='item @selected'>
+                            <div class='inner'>
+                                <img src='~/Userfiles/Upload/images/Modules/BannerRotators/@banner.FileName' alt="" />
+                                <div class='text1'>
+                                    <p><a title="@banner.Name" href="@(string.IsNullOrEmpty(banner.Url) ? "javascript:void(0)" : banner.Url)" @(string.IsNullOrEmpty(banner.Url) ? "" : string.Format("target='{0}'", banner.Target))>@banner.Name</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+            <div class='slideSelectors'>
+                @for (var i = 0; i < count; i++)
+                {
+                    var selected = i == 0 ? "selected" : "";
+                    <div class="item @selected" style="cursor: pointer;"></div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

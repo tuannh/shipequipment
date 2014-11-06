@@ -4,16 +4,10 @@
     if (Model != null)
     {
         ViewBag.Title = Model.Title;
-        Layout = Model.Layout ?? "~/Views/Layouts/Default.cshtml";
+        Layout = Model.Layout ?? "~/Views/Layouts/Index.cshtml";
     }
     else
     {
-        Layout = "~/Views/Layouts/Default.cshtml";
+        Layout = "~/Views/Layouts/Index.cshtml";
     }
 }
-
-<h2>Index</h2>
-
-
-
-@Html.Controls().Slider()
