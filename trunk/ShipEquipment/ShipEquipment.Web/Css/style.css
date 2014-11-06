@@ -1,0 +1,341 @@
+/* CSS Document */
+html, body, div, span, h1, h2, h3, h4, h5 strong, ol, ul, li { margin: 0; border: 0; padding: 0; outline: 0; vertical-align: baseline }
+header, nav, menu, article, section, aside, footer { display: block }
+.clear { clear: both }
+.clear2 { clear: none }
+img { border: none; overflow: hidden; max-width: 100% }
+a { text-decoration: none; color: #ff4700 }
+a:hover { color: #221208; text-decoration: underline }
+p { margin: 0 0 16px; line-height: 18px }
+ul { padding: 0 15px; line-height: 18px; list-style: disc }
+ol { padding: 0 15px; line-height: 18px; margin-left: 7px }
+ul li, ol li { }
+body { background:url(/images/thx/body.jpg) repeat; font-family:"Myriad Pro", Helvetica, Arial, sans-serif; text-align: left; font-size: 14px; display: block; color: #221208 }
+#body {  position: relative; z-index: 1; padding-top:30px; background:url(/images/thx/bg-body.jpg) no-repeat center top}
+.main { margin: 0 auto 30px auto; position: relative; display: block; background:#fff; width:1170px; border-radius:10px;-webkit-border-radius:10px; -moz-border-radius: 10px; box-shadow:1px 1px 3px #212121 }
+.left-banner{ position:absolute; top:0; left:0px; background:url(/images/thx/fish-left.jpg) no-repeat -670px top; width:696px; height:1495px; display:block}
+.right-banner{ position:absolute; top:0; right:0px; background:url(/images/thx/fish-right.jpg) no-repeat 670px top;width:696px; height:1495px; display:block}
+.content { height: 100%; max-width: 1110px; margin: 0 auto; position: relative; padding:0 30px }
+
+
+/*=========header=========*/
+
+.out_wrapper { min-width: 1170px; overflow: hidden; background: #f4ede6 }
+header { margin: 0px auto 0px; position: relative; max-width: 1170px; z-index: 9999; background:#fff url(/images/thx/bg-header.png) repeat-x left top; border-radius:10px 10px 0px 0px;-webkit-border-radius:10px 10px 0px 0px; -moz-border-radius:10px 10px 0px 0px}
+.newheader { margin-bottom: 20px }
+.contentTop { height: auto; max-width: 1110px; margin: 0 auto; position: relative }
+.logo { width: 320px; height: 113px; float: left; position: relative; z-index: 200; display: block; margin-top:12px }
+.logo img {}
+.logo img:hover { opacity: 0.8 }
+#search { height: 28px; position: relative; width:347px; z-index: 50; position:absolute; top:55px; right:0px; background: url(/images/thx/bg_search.png) no-repeat left top }
+#search input { border: none; background: none; margin: 0 }
+#search input.text { width: 190px; padding-left: 7px; color: #78706c; font-size: 13px; float: left; outline: none; height:28px; line-height: 32px; font-family: helvetica_condensedmedium, Arial, sans-serif }
+#search input.button { float: right; color: #FFF; height: 28px; width: 64px; cursor: pointer; margin: 0; padding: 0; }
+#search *:-moz-placeholder, #search2 *:-moz-placeholder {
+    color: #757778;
+    line-height: 28px;
+    opacity: 1;
+}
+#search .placeholder-fix:focus::-moz-placeholder, #search2 .placeholder-fix:focus::-moz-placeholder {
+    color: transparent;
+}
+#search .placeholder-fix:-moz-placeholder, #search2 .placeholder-fix:-moz-placeholder {
+    color: transparent;
+}
+.contentTop .link { float: right; display: block; position: relative; margin-top: 45px }
+.contentTop .link a { display: block; float: left; width: 36px; height: 32px; -moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s; margin-left: 3px }
+.contentTop .link a:hover { opacity: 0.5 }
+/*=========menu=========*/
+.top-right{float:right; width:340px; text-align:right; padding-top:20px}
+.language{position:relative; margin-left:35px; display:inline-block}
+.language img{vertical-align:top}
+.signIn{position:relative;display:inline-block; color:#b4b3b4; background:url(/images/thx/signIn.png) no-repeat left 0px; padding-left:25px; line-height:25px}
+.signIn a{ color:#b4b3b4}
+.signIn a:hover{ color:#fd7100}
+/********** Mini Cart  ***********/
+#cart { position: relative; cursor:pointer; padding-left: 25px; margin-left:35px;display:inline-block; background: url(/images/thx/card.png) no-repeat 10px 0px}
+#cart .heading { position: relative; cursor: pointer }
+#cart .heading h4 { background: #9a3b05; width: 38px; height: 38px; float: left; margin: 4px 0px 0 0; padding: 0px 0 0 5px; z-index: 1012; position: relative; }
+#cart a { text-decoration: none; color: #b4b3b4; display: inline-block; z-index: 1012; position: relative; padding: 0 5px 0 10px; text-shadow:1px 1px 2px #212121 }
+#cart a span { display: inline-block; color: #b4b3b4; font-weight: normal }
+/* nav */
+.cart_1 { float:right; display:none;}
+.nav { float: left; width: 1110px; height:44px; position: relative; float: left; padding-bottom:30px; border-bottom:1px solid #f1f1f1 }
+.nav-list { text-align: left; list-style: none; padding: 0; margin: 0; display: block }
+.nav-item { float: left; *display:inline;
+zoom: 1; position: relative; margin: 0; text-align: center; background:url(/images/thx/bg-li.png) no-repeat right 15px }
+.right { border-right: none; box-shadow: none }
+.nav-item.last{ background:none}
+.nav-item a { display:block; color: #3c382f; font-family:"Myriad Pro",  Helvetica, Arial, sans-serif; font-size: 16px; padding: 0px 22px 0 22px; -moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s; line-height: 44px }
+.nav-item > a:hover, .nav-item a.active { background: #fd7100; text-decoration: none ; color:#fff}
+.nav-item > a:hover .addArrow{ display:none !important}
+.nav-item:hover .nav-submenu { display: block; }
+.nav-item:hover a { background: #fd7100; color:#fff}
+/* Navigation submenu */
+.nav-submenu { display: none; position: absolute; left: 0; width: 220px; list-style: none; padding: 0; margin: 0 }
+.nav-submenu-item { position: relative }
+.nav-submenu-item a { background: #ff4800 !important; border-bottom: 1px solid #ec4908; display: block; padding:12px 15px; text-align: left; text-transform: none; line-height: 20px; color: #fff!important }
+.nav-submenu-item a:hover { background: #f0e6e1!important; text-decoration: none; color: #231f20 !important }
+.nav-submenu2 { display: none; position: absolute; left: 100%; top: 0; width: 100%; list-style: none; padding: 0; margin: 0 }
+
+.nav-submenu-item:hover .nav-submenu2 { display: block }
+.nav-submenu-item2 a { background: #fc6327 !important; border-bottom: 1px solid #ff4800; display: block; padding:12px 15px; text-align: left }
+.nav-submenu-item2 a:hover { background: #e6e6e6 !important; text-decoration: none; color: #231f20 }
+.nav-mobile { display: none; cursor: pointer; position: absolute; top: 10px; right: 3%; background: url(/images/thx/nav.png) no-repeat center center; background-size: 22px; height: 22px; width: 22px; z-index: 9999 }
+.nav-click { position: absolute; top: 0px; right: 1%; display: none; height: 40px; width: 40px; cursor: pointer; }
+.name { display: none; position: absolute; top: 0; left: 20px; color: #FFF;  text-transform: uppercase; text-shadow: 0 0 1px #3D3D3B; font-size: 18px; padding-top: 7px }
+.nav-click i { display: block; height: 40px; width: 40px; background: url(/images/thx/drop.png) no-repeat center center }
+.nav-rotate { -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg); }
+.addArrow { background: url(/images/thx/arrowMenuSub.png) no-repeat right 6px; position: absolute; right: 10px; top: 10px; width: 15px; height: 56px }
+/*--------- /HEADER--------*/
+
+
+/*=========banner=========*/
+.banner { margin: 240px auto 0px; z-index: 0; position: relative }
+/*====end banner======*/
+/*=========container=========*/
+
+.container { float: left; width: 1004px; padding-right: 20px }
+.content h1 { font-size: 22px; color: #221208; font-weight: normal; text-transform: uppercase; display: inline; background: #fff; padding-right: 10px; line-height: 22px }
+.content .title { background: url(/images/thx/bg_title.png) repeat-x left 24px; line-height: 22px; padding-top: 25px; position: relative; z-index: 100 }
+.main2 { }
+
+.vi { width:910px; }
+.content_products_new{background: none repeat scroll 0 0 #fcfcfc;
+    border: 1px solid #eee;
+    float: left;
+    position: relative;
+    width: 86%; padding:7%}
+.text_new p{margin-left:10px}
+.img_new img{ width:100%}
+.content_products_new a.btn_chonmua{position:absolute; bottom:7%; right:20px; background:url(/images/thx/bg-btn-chonmua.png) no-repeat left top; height:29px; width:101px; padding-left:10px; display:block; line-height:29px; text-transform:uppercase; z-index:800; color:#fff;-moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s}
+.content_products_new a.btn_chonmua:hover{background:url(/images/thx/bg-btn-chonmua-hover.png) no-repeat left top; text-decoration:none}
+#owl {overflow: hidden; z-index: 1000; position: relative; margin: 0px -10px 0; padding-top: 10px}
+#owl a.btn:hover { border: 1px solid #0074d9; background: url(/images/thx/link_marker.png) no-repeat scroll 100px 14px transparent; text-decoration: none }
+#owl .owl-item { float: left; width: 100%; }
+.ie7 #owl .owl-item { width: 327px }
+.ie7 #owl .item { width: 306px; float: left; margin-bottom: 20px }
+#owl .item { padding: 10px; position: relative; text-align: left; }
+#owl .item img { display: block }
+#owl .item img:hover { opacity: 0.7 }
+#owl .fl { line-height: 18px; margin-right: 32px; margin-left: 1px; float: left; }
+#owl blockquote { line-height: 22px; padding: 27px 30px 26px; position: relative; overflow: hidden; border: 1px solid #ebebeb; background-color: #fff; }
+.owl-wrapper-outer { }
+#owl .owl-prev, #owl .owl-next { cursor: pointer; position: absolute; background:#727272 url(/images/thx/prevnext2.png) 0 0 no-repeat; display: block; height: 20px; right: 42px; top: 46%; width: 35px; height:35px; overflow: hidden; text-indent: -999px; z-index:9999px ;border-radius:500px;-webkit-border-radius:500px; -moz-border-radius:500px;-moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s}
+#owl .owl-next { right: 20px; background-position:-28px 8px }
+#owl .owl-prev { left: 24px ; background-position: 3px 8px}
+#owl .owl-next:hover { background-position: -28px -32px }
+#owl .owl-prev:hover { background-position: 3px -32px }/* If PaginationNumbers is true */
+/* Owl content */
+.owl-carousel .owl-wrapper { display: none; position: relative; -webkit-transform: translate3d(0px, 0px, 0px); -webkit-perspective: 1000; }
+/* Owl1 */
+#owl1 { overflow: hidden; z-index: 1000; position: relative; padding:20px 10px 0 10px; width:98% }
+#owl1 a.btn:hover { border: 1px solid #0074d9; background: url(/images/thx/link_marker.png) no-repeat scroll 100px 14px transparent; text-decoration: none }
+#owl1 .owl-item { float: left; width: 100%; }
+.ie7 #owl1 .owl-item { width: 327px }
+.ie7 #owl1 .item { width: 306px; float: left; margin-bottom: 20px }
+#owl1 .item { padding: 10px; position: relative; text-align: left; }
+#owl1 .item img { display: block }
+#owl1 .item img:hover { opacity: 0.7 }
+#owl1 .fl { line-height: 18px; margin-right: 32px; margin-left: 1px; float: left; }
+#owl1 blockquote { line-height: 22px; padding: 27px 30px 26px; position: relative; overflow: hidden; border: 1px solid #ebebeb; background-color: #fff; }
+.owl-wrapper-outer { }
+#owl1 .owl-prev, #owl1 .owl-next { cursor: pointer; position: absolute; background:#727272 url(/images/thx/prevnext2.png) 0 0 no-repeat; display: block; height: 20px; right: 42px; top: 36%; width: 35px; height:35px; overflow: hidden; text-indent: -999px; z-index:9999px ;border-radius:500px;-webkit-border-radius:500px; -moz-border-radius:500px;-moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s}
+#owl1 .owl-next { right: 20px; background-position:-28px 8px }
+#owl1 .owl-prev { left: 24px ; background-position: 3px 8px}
+#owl1 .owl-next:hover { background-position: -28px -32px }
+#owl1 .owl-prev:hover { background-position: 3px -32px }/* If PaginationNumbers is true */
+
+
+/* Owl2 */
+#owl2 { overflow: hidden; z-index: 1000; position: relative; padding:20px 10px 0 10px; width:98% }
+#owl2 a.btn:hover { border: 1px solid #0074d9; background: url(/images/thx/link_marker.png) no-repeat scroll 100px 14px transparent; text-decoration: none }
+#owl2 .owl-item { float: left; width: 100%; }
+.ie7 #owl2 .owl-item { width: 327px }
+.ie7 #owl2 .item { width: 306px; float: left; margin-bottom: 20px }
+#owl2 .item { padding: 10px; position: relative;  text-align:center }
+#owl2 .item img { display: block }
+#owl2 .item img:hover { opacity: 0.7 }
+#owl2 .fl { line-height: 18px; margin-right: 32px; margin-left: 1px; float: left; }
+#owl2 blockquote { line-height: 22px; padding: 27px 30px 26px; position: relative; overflow: hidden; border: 1px solid #ebebeb; background-color: #fff; }
+.owl-wrapper-outer { }
+#owl2 .owl-prev, #owl2 .owl-next { cursor: pointer; position: absolute; background:#727272 url(/images/thx/prevnext2.png) 0 0 no-repeat; display: block; height: 20px; right: 42px; top:41%; width: 35px; height:35px; overflow: hidden; text-indent: -999px; z-index:9999px ;border-radius:500px;-webkit-border-radius:500px; -moz-border-radius:500px;-moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s}
+#owl2 .owl-next { right: 20px; background-position:-28px 8px }
+#owl2 .owl-prev { left: 24px ; background-position: 3px 8px}
+#owl2 .owl-next:hover { background-position: -28px -32px }
+#owl2 .owl-prev:hover { background-position: 3px -32px }/* If PaginationNumbers is true */
+
+
+/* Owl3 */
+#owl3 { overflow: hidden; z-index: 1000; position: relative; padding:20px 10px 0 10px; width:98% }
+#owl3 a.btn:hover { border: 1px solid #0074d9; background: url(/images/thx/link_marker.png) no-repeat scroll 100px 14px transparent; text-decoration: none }
+#owl3 .owl-item { float: left; width: 100%; }
+.ie7 #owl2 .owl-item { width: 327px }
+.ie7 #owl2 .item { width: 306px; float: left; margin-bottom: 20px }
+#owl3 .item { padding: 10px; position: relative; text-align:center }
+#owl3 .item img { display: block }
+#owl3 .item img:hover { opacity: 0.7 }
+#owl3 .fl { line-height: 18px; margin-right: 32px; margin-left: 1px; float: left; }
+#owl3 blockquote { line-height: 22px; padding: 27px 30px 26px; position: relative; overflow: hidden; border: 1px solid #ebebeb; background-color: #fff; }
+.owl-wrapper-outer { }
+#owl3 .owl-prev, #owl3 .owl-next { cursor: pointer; position: absolute; background:#727272 url(/images/thx/prevnext2.png) 0 0 no-repeat; display: block; height: 20px; right: 42px; top:41%; width: 35px; height:35px; overflow: hidden; text-indent: -999px; z-index:9999px ;border-radius:500px;-webkit-border-radius:500px; -moz-border-radius:500px;-moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s}
+#owl3 .owl-next { right: 20px; background-position:-28px 8px }
+#owl3 .owl-prev { left: 24px ; background-position: 3px 8px}
+#owl3 .owl-next:hover { background-position: -28px -32px }
+#owl3 .owl-prev:hover { background-position: 3px -32px }/* If PaginationNumbers is true */
+/*2nd*/
+/*------- colLeft -------*/
+.colLeft{width:847px; float:left}
+.colLeft .category { width: 100%; height: auto; display: block; float: left; background:#7c7870 }
+.newtitle { display: block }
+.colLeft h3 { display: block; background: #ff4800; padding: 8px 16px; color: #fff; font-size: 16px; text-transform: uppercase; font-weight: normal; display: block; position: relative; line-height: 24px }
+.text_sale .btnSale:hover { text-decoration: none; color: #fff; background: #004a91 }
+.linkFace { float: left; width: 100% }
+.linkFace img { width: 100% }
+.show-click { position: absolute; top: 16px; right: 5px; width: 20px; height: 20px; z-index: 9999; background: url(/images/thx/iconClickSale.png) no-repeat 0 0; cursor: pointer; opacity: 1 }
+.show-click:hover { opacity: 0.7 }
+/*=========end coloLeft=========*/
+
+/*========colright==============*/
+
+.colRight { width: 260px; float:right; display: block; position: relative; z-index: 110;margin-top: 23px }
+.colRight .weather{float:left; width:100%; margin-bottom:25px}
+.colRight .weather img{ width:100%; margin:0; vertical-align:top}
+.colRight .frm{ float:left; width:100%;border-radius:10px 10px 10px 10px;-webkit-border-radius:10px 10px 10px 10px; -moz-border-radius:10px 10px 10px 10px; background:#fff4e3; margin-bottom:20px; border:1px solid #d3d2d1; margin-bottom:25px}
+.colRight h2{ background:url(/images/thx/bg-h2.png) no-repeat right top; height:40px; line-height:44px; color:#fff; text-transform:uppercase;border-radius:10px 10px 0px 0px;-webkit-border-radius:10px 10px 0px 0px; -moz-border-radius:10px 10px 0px 0px; font-size:20px; font-weight:normal}
+.colRight h2 img{ vertical-align:top; margin:8px 5px 0 15px}
+.colRight .frm .inner-shop-card{padding:20px}
+.colRight .frm .inner-shop-card span{ color:#e94f10}
+.colRight .frm .inner-shop-card p{ margin-bottom:25px}
+.colRight .frm .inner-shop-card .total{text-align:right; margin-bottom:0}
+.colRight .frm .address{ padding:10px; text-align:center}
+.colRight .frm .partner{padding:10px; text-align:center}
+
+
+/* .frm2  */
+
+.frm2{float:left; width:100%; background:url(/images/thx/bg-top-video.jpg) no-repeat center top; overflow:hidden; position:relative;border-radius:10px 10px 0px 0px;-webkit-border-radius:10px 10px 0px 0px; -moz-border-radius:10px 10px 0px 0px;  padding-bottom:30px}
+.frm2 h2{height:40px; line-height:44px; color:#fff; text-transform:uppercase;font-size:20px; margin-bottom:25px; font-weight:normal}
+.frm2 h2 img{ vertical-align:top; margin:8px 5px 0 15px}
+.inner-frm2{background:url(/images/thx/bg-bottom-video.jpg) no-repeat center bottom}
+.inner-frm3{background:url(/images/thx/bg-bottom-video.jpg) no-repeat center bottom; padding-bottom:40px}
+.inner-frm3 h2{ margin-bottom:0}
+.bottom{ position:absolute; z-index:0; width:100%; height:40px; background:url(/images/thx/bg-bottom-video.jpg) no-repeat center bottom; left:0; bottom:0}
+.video-clip{float:left; width:810px}
+.video-clip .video{ float:left; width:47%; margin-right:20px; padding-bottom:50px; position:relative}
+.video-clip .video p{ margin-top:20px; color:#fff; position:absolute; bottom:0px; left:0; padding:0 15px; font-size:12px}
+.news{ float:right; width:295px}
+.news  h2 img{ vertical-align:top; margin:8px 5px 0 0px}
+
+.news li{ list-style:none; background:url(/images/thx/arrowCategory.png) no-repeat left 4px; padding-left:20px; margin-bottom:5px}
+.news li a{color:#a6a3a2}
+.news li a:hover{color:#fe7b00}
+/*=========product=========*/
+
+
+.productsList { border:1px solid #eee; overflow:hidden; border-radius:10px;-webkit-border-radius:10px; -moz-border-radius:10px; margin-bottom:30px}
+.productsList ul { list-style: none; padding: 0; margin: 0 }
+.productsList ul li { width:250px; margin:0px 0px 0px 20px; float:left; padding:20px 0px 28px; border-left:1px solid #eee }
+.productsList ul li:nth-of-type(4n+1) {
+    clear: left;
+    margin-left: 0;
+	border-left:none
+}
+
+.productsView { background:#fef5e4; border-left:1px solid #eee;border-right:1px solid #eee; overflow:hidden}
+.productsView ul { list-style: none; padding: 0; margin: 0 }
+.productsView ul li { width:250px; margin:0px 0px 0px 20px; float:left; padding:20px 0px}
+.productsView ul li:nth-of-type(4n+1) {
+    clear: left;
+    margin-left: 0;
+	border-left:none
+}
+
+.content_products {float: left;position:relative; padding-left:20px }
+.productsView .content_products{ padding-left:0 !important}
+.img_content { float: left; width:100%; text-align: center; margin-bottom:10px }
+.img_content img { opacity: 1; width: 100% }
+.img_content img:hover { opacity: 0.7 }
+.text_infor { margin: 0; position: relative; width: 100%; float:left}
+.text_infor h4 { font-size: 13px; color: #221208; font-weight: normal; text-transform: uppercase; margin-bottom: 5px }
+.text_infor h4  a{color:#221208}
+.text_infor h4  a:hover{color:#ff4700}
+.text_infor p { margin-bottom:15px; color:#ff6600 }
+.content_products a.btn_chonmua{position:absolute; display:none; top:7%; right:0px; background:url(/images/thx/bg-btn-chonmua.png) no-repeat left top; height:29px; width:101px; padding-left:10px;line-height:29px; text-transform:uppercase; z-index:800; color:#fff;-moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s}
+.content_products a.btn_chonmua:hover{background:url(/images/thx/bg-btn-chonmua-hover.png) no-repeat left top; text-decoration:none}
+.content_products:hover  a.btn_chonmua{ display:block}
+.price { line-height: 22px; font-size: 22px; font-weight:bold; color: #221208 !important; float:right }
+
+/* filter */
+.filter{ float:left; width:824px; padding:13px 0; background:url(/images/thx/bg-filter.jpg) no-repeat left top; overflow:hidden; border-radius:10px;-webkit-border-radius:10px; -moz-border-radius:10px; margin-top:25px}
+.filter p.link{ padding:0 20px 10px; border-bottom:1px solid #fff}
+.filter p.link a{ color:#fff; display:inline-block}
+.filter p.link span{display:inline-block; padding:0 5px; color:#fff}
+.filter p.link a:hover, .filter p.link a.active{ color:#fd7100; text-decoration:none}
+/* label */
+.label{ float:left; width:100%; padding:10px 0}
+.label h4{margin:0 20px; width:115px; float:left; font-size:14px; color:#fff; padding:7px 0 20px}
+.label ul{ float:left; width:auto; padding:0}
+.label li{ display:inline-block}
+.label li a{ display:block; padding:7px 20px; text-align:center; color:#fff}
+.label li a:hover, .label li a.active{ background:#fe7b00; text-decoration:none}
+
+/* sort */
+.sort{ float:left; color:#fff; width:100%;border-top:1px solid #fff; padding-top:15px}
+.sort .sort_left{padding:0 20px; float:left}
+.sort .sort_left label{ width:138px; float:left}
+.sort .count_page{ float:right; text-align:right; padding-right:20px}
+.sort .count_page p{ margin-bottom:0}
+.sort .count_page a{ color:#fff; margin-left:10px}
+.sort .count_page a:hover, .sort .count_page a.active{color:#fe7b00; text-decoration:none}
+
+.mheight{ min-height:93px}
+
+.frm3{float:left; width:824px; background:url(/images/thx/bg-top-video.jpg) no-repeat center top; overflow:hidden; position:relative;border-radius:10px 10px 0px 0px;-webkit-border-radius:10px 10px 0px 0px; -moz-border-radius:10px 10px 0px 0px; margin-top:25px}
+.frm3 h2{height:40px; line-height:44px; color:#fff; text-transform:uppercase;font-size:20px; font-weight:normal}
+.frm3 h2 img{ vertical-align:top; margin:8px 5px 0 15px}
+
+.inner-frm4{border-left:1px solid #eee;border-right:1px solid #eee;border-bottom:1px solid #eee; overflow:hidden;border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px; -moz-border-radius:0 0 10px 10px; margin-bottom:0px; padding-bottom:5px}
+.text_infor2{ text-align:center}
+.frm3 p.date{ margin-bottom:15px}
+.frm3 p.link{ padding:13px 20px 10px}
+.frm3 p.link a{ color:#fff; display:inline-block}
+.frm3 p.link span{display:inline-block; padding:0 5px; color:#fff}
+.frm3 p.link a:hover,.frm3 p.link a.active{ color:#fd7100; text-decoration:none}
+.frm3 .content_products{ padding-left:0 !important}
+
+.inner-frm5{border-left:1px solid #eee;border-right:1px solid #eee;border-bottom:1px solid #eee; overflow:hidden;border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px; -moz-border-radius:0 0 10px 10px; margin-bottom:20px; padding-bottom:5px}
+
+
+/* */
+
+/*======= service======*/
+.inner-frm6{border-left:1px solid #eee;border-right:1px solid #eee;border-bottom:1px solid #eee; overflow:hidden;border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px; -moz-border-radius:0 0 10px 10px; margin-bottom:20px; padding:20px 20px 0}
+
+.news2 { width:100%; float: left;border-bottom:1px dotted #eee; padding-bottom:20px ; margin-bottom:20px}
+.margin_right { margin-right: 0 !important }
+.text h3 { font-size: 14px; margin-bottom: 10px; text-transform:uppercase; background:none; padding:8px 0 }
+.text h3 a { color: #ff4700 }
+.text h3 a:hover{color: #023af4 }
+.img_new2 { width: 244px; float: left;}
+.img_new2 img { margin: 10px 12px 0 0; width:100%; border:1px solid #cdcdcd; box-shadow:0 0 1px #999 }
+.text { width: 520px; float: right; position:relative }
+.text p { color: #3e4e5a; margin-bottom: 10px !important }
+.text .btn_view { color: #023af4; font-weight: normal; font-style: italic; text-decoration:underline; }
+.text .btn_view:hover { text-decoration: underline;color:#ff4700 }
+.news2:last-child{ border-bottom:none}
+
+/* footer */
+footer { margin: 0 auto; position: relative; color: #fff; z-index: 300; overflow: hidden; padding:30px 0 20px; border-top:1px solid #f0f0f0 }
+.contentF { max-width: 1110px; margin: auto; position: relative; height: 43px }
+footer .design_by { width: 100%; float: left; font-size: 13px; color: #8e8e8e; padding-bottom:10px }
+footer .design_by a { color: #ff6600; text-decoration: underline }
+footer .design_by a:hover { color: #8e8e8e ; text-decoration: underline }
+footer .design_by span.color{ color:#ff6600}
+footer .design_by p.text_footer { float: left; line-height: 22px; margin-bottom: 0px }
+footer .design_by .face-book{ position:absolute; right:0; top:0px}
+#back-top { bottom: 20px; content: ""; display: block; height: 28px; margin-bottom: 0; position: absolute; right: -6%; z-index: 300; }
+#back-top a { background: none repeat scroll 0 0 #7c7870; display: block; border-radius: 500px 500px 500px 500px; width: 50px; height: 50px }
+#back-top span { background: url(/images/thx/up-arrow.png) no-repeat scroll center center transparent; display: block; height: 46px; margin-bottom: 7px; width:50px; }
+#back-top a:hover { background-color: #ff4800 }
+/*------ /footer ------*/

@@ -1,0 +1,28 @@
+.iosSliderFull { position: relative; width: 100%; max-width:1170px; margin:auto ; padding-top:30px}
+.fluidHeight { width: 100%; height: 0; padding-bottom:33px; background:url(/images/thx/bg-banner.png) repeat-x left bottom}
+.sliderContainer { height: 100%; max-height: 1080px; padding: 0 0; }
+.iosSlider { position: relative; top: 0; left: 0; overflow: hidden; width: 100%; height: 100%!important; }
+.iosSlider .slider { width: 100%; height: 100%; }
+.iosSlider .slider .item { width: 1180px; height: 100%; padding: 0 0 0 0; text-align: center; }
+.iosSlider .slider .item .inner { position: relative; top: 0; left: 0; width: 100%; margin: 0 auto; height: 100%; background-position: 50% 0; background-repeat: no-repeat; z-index: 1; }
+.iosSlider .slider .item .inner img { position: relative; top: 0; left: 0; width: 100%; margin: 0 auto; z-index: 1; cursor:pointer }
+.iosSlider .slider .item .inner .text1 {background: rgba(255, 255, 255, 0.5);position: absolute; right:30px; top: 20%;  text-align: left; z-index:10; color:#1a1a1a; font-size:18px; box-shadow:1px 1px 3px #212121;border-radius:500px;-webkit-border-radius:500px; -moz-border-radius:500px; height:210px; width:210px}
+.iosSlider .slider .item .inner .text1 p{ margin:83px 20px 0; text-align:center}
+.iosSlider .slider .item .inner .text1 a{color:#1a1a1a}
+.iosSlider .slider .item .inner .text1 a:hover{ color:#fff; text-decoration:none}
+.iosSlider .slider .item .inner .text2 { background: none repeat scroll 0 0 #000; opacity: 0; filter: alpha(opacity=0); padding: 10px 7px 7px; position: absolute; left: 100px; top: 115px; text-align: left; }
+.iosSlider .slider .item .inner .text2 span { display: block; color: #fff; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 120%; line-height: 120%; font-weight: 100; padding: 0 8px; }
+.slideSelectors{ text-align: center; position:relative; z-index:200; padding-top:10px}
+.sliderContainer .slideSelectors .prev, .sliderContainer .slideSelectors .next { /*background: none repeat scroll 0 0 rgb(26, 26, 26); border: 2px solid rgb(255, 255, 255); border-radius: 500px; */color: rgb(255, 255, 255); font-size: 80px;  left: 0px; line-height: 36px; margin: -20px 0 0; opacity: 0.2; padding: 0; position: absolute; text-align: center; top: 43%; z-index: 9999; -webkit-transition: all 0.3s ease-in-out 0s; -moz-transition: all 0.3s ease-in-out 0s; -o-transition: all 0.3s ease-in-out 0s; -ms-transition: all 0.3s ease-in-out 0s; transition: all 0.3s ease-in-out 0s}
+.sliderContainer .slideSelectors .prev:hover, .sliderContainer .slideSelectors .next:hover { color: rgb(255, 255, 255); opacity: 0.9; text-decoration: none; }
+.sliderContainer .slideSelectors .prev:hover{ left:10px}
+.sliderContainer .slideSelectors .next:hover{ right:10px}
+.sliderContainer .slideSelectors .next { left: auto; right: 0px; }
+.sliderContainer .slideSelectors .item { display:inline-block;width: 11px; height: 11px; background: #fff; margin: 1px 1px 1px 4px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px;-webkit-box-shadow: -1px -1px 2px 0px black; -moz-box-shadow: 1px -1px 2px 0px black;box-shadow: 1px -1px 2px 0px black;}
+.sliderContainer .slideSelectors .item.first { margin-left: 1px; }
+.sliderContainer .slideSelectors .dot{ display:inline-block; background:url(/images/thx/bg_derection.png) repeat left top; padding:9px 5px 3px 5px; position:relative}
+.sliderContainer .slideSelectors .dot .leftconner{ background:url(/images/thx/connerleft.png) no-repeat left top; position:absolute; left:-37px; top:0; width:37px; height:30px}
+.sliderContainer .slideSelectors .dot .rightconner{ background:url(/images/thx/connerright.png) no-repeat left top; position:absolute; right:-37px; top:0; width:37px; height:30px}
+.sliderContainer .slideSelectors .selected, .sliderContainer .slideSelectors .item:hover { width: 11px; height: 11px; background: #fe7b00;-webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px;-webkit-box-shadow: -1px -1px 2px 0px black; -moz-box-shadow: 1px -1px 2px 0px black;box-shadow: 1px -1px 2px 0px black;}
+.sliderContainer .slideSelectors .selected.first { margin-left: 0; }
+.sliderContainer .scrollbarContainer { position: relative; bottom: 4px; left: 0; width: 1024px; height: 4px; margin: 0 auto; z-index: 1; }
