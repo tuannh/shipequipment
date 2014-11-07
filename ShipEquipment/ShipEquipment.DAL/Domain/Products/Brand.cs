@@ -28,7 +28,7 @@ namespace ShipEquipment.Biz.Domain
         [Display(Name = "Tên nhãn hiệu")]
         public string Name { get; set; }
 
-         [Display(Name = "Mô tả")]
+        [Display(Name = "Mô tả")]
         [MaxLength, Column(TypeName = "ntext")]
         public string Description { get; set; }
 
@@ -39,6 +39,9 @@ namespace ShipEquipment.Biz.Domain
         [RegularExpression(@"^[0-9]{0,4}$", ErrorMessage = "Thứ tự hiển thị là 1 số trong khoảng [0, 9999]")]
         [Display(Name = "Thứ tự hiển thị")]
         public int DisplayOrder { get; set; }
+
+        [Display(Name = "Photo")]
+        public string Photo { get; set; }
 
         public bool IsValidAlias()
         {
