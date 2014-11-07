@@ -1,53 +1,28 @@
 ﻿@model IEnumerable<ShipEquipment.Biz.Domain.Page>
 
 @{
-
     var pageAlias = "index";
     if (ShipEquipment.Core.SiteContext.Current.RouteData.Values["frontendpage"] != null)
     {
         pageAlias = ShipEquipment.Core.SiteContext.Current.RouteData.Values["frontendpage"].ToString();
     }
+    var count = Model.Count();
+    var index = 1;
 }
-
-@*<nav>
-    <ul>
-        @foreach (var p in Model)
-        {
-            var selected = string.Compare(p.Alias, pageAlias, true) == 0;
-            <li>
-                <a @(selected ? "class=\"active\"" : "") href="@Html.SiteUrls().FrontEndUrl(p.Alias)" title="@p.Name">
-                    @p.Name
-                </a>
-            </li>
-        }
-    </ul>
-</nav>*@
 
 
 <ul class="nav-list">
-    <li class="nav-item"> <a href="index.html" title="Trangchu" class="active">Trang chủ</a></li>
-    <li class="nav-item">
-        <a href="sanpham.html" title="Sanpham">Sản phẩm</a>
-        <ul class="nav-submenu">
-            <li class="nav-submenu-item">
-                <a href="#">Lorem ipsum sub1</a>
-                <ul class="nav-submenu2">
-                    <li class="nav-submenu-item2"> <a href="#">Lorem ipsum sub2</a> </li>
-                    <li class="nav-submenu-item2"> <a href="#">Lorem ipsum sub2</a> </li>
-                    <li class="nav-submenu-item2"> <a href="#">Lorem ipsum sub2</a> </li>
-                    <li class="nav-submenu-item2"> <a href="#">Lorem ipsum sub2</a> </li>
-                </ul>
+    @if (Model != null)
+    {
+        foreach (var page in Model)
+        {
+            var active = string.Compare(page.Alias, pageAlias, true) == 0 ? "active" : "";
+            var last = index == count ? "last" : "";
+            index++;
+
+            <li class="nav-item @last">
+                <a href="/@page.Alias" title="@page.Name" class="@active">@page.Name</a>
             </li>
-            <li class="nav-submenu-item"> <a href="#">Lorem ipsum sub1</a> </li>
-            <li class="nav-submenu-item"> <a href="#">Lorem ipsum sub1</a> </li>
-            <li class="nav-submenu-item"> <a href="#">Lorem ipsum sub1</a> </li>
-        </ul>
-    </li>
-    <li class="nav-item"> <a href="tintuc.html" title="Tintuc">Tin tức</a> </li>
-    <li class="nav-item"> <a href="cauthi.html" title="Cau thi">Câu thi</a> </li>
-    <li class="nav-item"> <a href="hinhanh-clip.html" title="HinhanhClip">Hình ảnh & clip</a> </li>
-    <li class="nav-item"> <a href="huongdan.html" title="Huongdan">Hướng dẫn</a> </li>
-    <li class="nav-item"> <a href="faq.html" title="Huongdan">FAQ</a> </li>
-    <li class="nav-item"> <a href="lienhe.html" title="Lienhe">Liên hệ</a> </li>
-    <li class="nav-item last"> <a href="sanpham-dacbiet-khuyenmai.html" title="Spdacbiet"> SP Đặc Biệt - Khuyến mãi </a> </li>
+        }
+    }
 </ul>

@@ -30,3 +30,17 @@ INSERT [dbo].[Brands] ([Id], [Alias], [Name], [Description], [Active], [DisplayO
 INSERT [dbo].[Brands] ([Id], [Alias], [Name], [Description], [Active], [DisplayOrder], [Photo]) VALUES (3, N'nha-cung-cap-3', N'Nhà cung cấp 3', N'Mô tả nhà cung cấp 3', 1, 1000, N'3-partner32.png')
 SET IDENTITY_INSERT [dbo].[Brands] OFF
 GO
+
+SET IDENTITY_INSERT [dbo].[Pages] ON 
+
+INSERT [dbo].[Pages] ([Id], [Title], [Name], [Alias], [IsDefault], [Active], [MetaKeyword], [MetaDescription], [Layout]) VALUES (1, N'Trang chủ', N'Trang chủ', N'index', 1, 1, NULL, NULL, N'~/Views/Layouts/Index.cshtml')
+INSERT [dbo].[Pages] ([Id], [Title], [Name], [Alias], [IsDefault], [Active], [MetaKeyword], [MetaDescription], [Layout]) VALUES (2, N'Sản phẩm', N'Sản phẩm', N'san-pham', 0, 1, NULL, NULL, N'~/Views/Layouts/Product.cshtml')
+INSERT [dbo].[Pages] ([Id], [Title], [Name], [Alias], [IsDefault], [Active], [MetaKeyword], [MetaDescription], [Layout]) VALUES (3, N'Tin tức', N'Tin tức', N'tin-tuc', 0, 1, NULL, NULL, N'~/Views/Layouts/News.cshtml')
+INSERT [dbo].[Pages] ([Id], [Title], [Name], [Alias], [IsDefault], [Active], [MetaKeyword], [MetaDescription], [Layout]) VALUES (4, N'Câu thi', N'Câu thi', N'cau-thi', 0, 0, NULL, NULL, NULL)
+INSERT [dbo].[Pages] ([Id], [Title], [Name], [Alias], [IsDefault], [Active], [MetaKeyword], [MetaDescription], [Layout]) VALUES (5, N'Hình ảnh & clip', N'Hình ảnh & clip', N'hinh-anh-clip', 0, 1, NULL, NULL, N'~/Views/Layouts/Photo.cshtml')
+INSERT [dbo].[Pages] ([Id], [Title], [Name], [Alias], [IsDefault], [Active], [MetaKeyword], [MetaDescription], [Layout]) VALUES (6, N'Hướng dẫn', N'Hướng dẫn', N'huong-dan', 0, 1, NULL, NULL, N'~/Views/Layouts/Guide.cshtml')
+INSERT [dbo].[Pages] ([Id], [Title], [Name], [Alias], [IsDefault], [Active], [MetaKeyword], [MetaDescription], [Layout]) VALUES (7, N'FAQ', N'FAQ', N'faq', 0, 1, NULL, NULL, N'~/Views/Layouts/Faq.cshtml')
+INSERT [dbo].[Pages] ([Id], [Title], [Name], [Alias], [IsDefault], [Active], [MetaKeyword], [MetaDescription], [Layout]) VALUES (8, N'Liên hệ', N'Liên hệ', N'lien-he', 0, 1, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
+INSERT [dbo].[Pages] ([Id], [Title], [Name], [Alias], [IsDefault], [Active], [MetaKeyword], [MetaDescription], [Layout]) VALUES (9, N'Sản phẩm đặc biệt & Khuyến mãi', N'Sản phẩm đặc biệt & Khuyến mãi', N'khuyen-mai', 0, 1, NULL, NULL, N'~/Views/Layouts/Promotion.cshtml')
+SET IDENTITY_INSERT [dbo].[Pages] OFF
+GO
