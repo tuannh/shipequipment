@@ -342,6 +342,7 @@
     <Content Include="Areas\Admin\Views\News\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Layouts\Edit.cshtml" />
     <Content Include="Views\Layouts\Index.cshtml" />
+    <Content Include="Views\Shared\Controls\BrandList-Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

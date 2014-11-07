@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.Brand>
+@{
+    var brands = new List<Brand>();
+    if (Model != null)
+    {
+        brands = Model.Take(3).ToList();
+    }
+}
+
+<div class="frm">
+    <h2><img src="/images/thx/arrow-icon.png" alt="" />NHÀ CUNG CẤP</h2>
+    <div class="partner">
+        @foreach (var brand in brands)
+        {
+            <a title="@brand.Name" href="/nha-cung-cap/@brand.Alias/">
+                @if (!string.IsNullOrEmpty(brand.Photo))
+                {
+                    <img src="/Userfiles/Upload/images/Modules/Brand/@brand.Photo" alt="@brand.Name"  />
+                }
+                else
+                {
+                    @brand.Name
+                }
+            </a>
+        }
+    </div>
+</div>

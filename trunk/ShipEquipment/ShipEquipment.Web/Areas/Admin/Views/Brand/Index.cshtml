@@ -6,6 +6,8 @@
     var pagingModel = ViewBag.PagingModel as PagingModel;
     pagingModel.SummaryInfoTemplate = "Trang {0}/{1} ({2} danh mục)";
     var kw = ViewBag.Keyword as string;
+
+    
 }
 <div class="header">
     <h1>Quản lý danh mục</h1>
@@ -28,6 +30,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
+        <th style="width: 200px;">
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
         <th style="width: 80px;">
             @Html.DisplayNameFor(model => model.Active)
         </th>
@@ -44,6 +49,12 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
+                @if (!string.IsNullOrEmpty(item.Photo))
+                {
+                    <img style="max-width: 174px;" alt="banner" src="~/Userfiles/Upload/images/Modules/Brand/@item.Photo" />
+                }
+            </td>
+            <td>
                 @if (item.Active)
                 {
                     <img src="~/images/admin/true.gif" alt="" style="width: 22px; height: 18px;">
@@ -53,14 +64,14 @@
                 @Html.DisplayFor(modelItem => item.DisplayOrder)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Sửa", "edit", new { id = item.Id }) |
                 @if (true)
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "cmd-delete" })
+                    @Html.ActionLink("Xóa", "delete", new { id = item.Id }, new { @class = "cmd-delete" })
                 }
                 else
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "cmd-delete-no" })
+                    @Html.ActionLink("Xóa", "delete", new { id = item.Id }, new { @class = "cmd-delete-no" })
                 }
             </td>
         </tr>

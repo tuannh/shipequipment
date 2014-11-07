@@ -102,8 +102,9 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     var tmppath = string.Format("{0}{1}", folerPath, tmpname);
                     file.SaveAs(tmppath);
 
-                    var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig().Banner;
-                    ImageTools.FixResizeImage(tmppath, path, config.Width, config.Height, ColorTranslator.FromHtml(config.Background), config.Quality);
+                    var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig();
+                    var bannerConfig = config.Banner;
+                    ImageTools.FixResizeImage(tmppath, path, bannerConfig.Width, bannerConfig.Height, ColorTranslator.FromHtml(bannerConfig.Background), config.Quality);
 
                     try { System.IO.File.Delete(tmppath); }
                     catch { }
@@ -163,8 +164,9 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     var tmppath = string.Format("{0}{1}", folerPath, tmpname);
                     file.SaveAs(tmppath);
 
-                    var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig().Banner;
-                    ImageTools.FixResizeImage(tmppath, path, config.Width, config.Height, ColorTranslator.FromHtml(config.Background), config.Quality);
+                    var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig();
+                    var newsConfig = config.News;
+                    ImageTools.FixResizeImage(tmppath, path, newsConfig.Width, newsConfig.Height, ColorTranslator.FromHtml(newsConfig.Background), config.Quality);
 
                     try { System.IO.File.Delete(tmppath); }
                     catch { }

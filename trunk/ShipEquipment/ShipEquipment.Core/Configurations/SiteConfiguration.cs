@@ -95,16 +95,43 @@ namespace ShipEquipment.Core.Configurations
                 FilterErrorCode = "*"
             };
 
-            Banner = new Banner()
+            Quality = 80;
+
+            Banner = new ImageResize()
+            {
+                Width = 1110,
+                Height = 344,
+                ThumbWidth = 200,
+                ThumbHeight = 61,
+                Background = "#FFF"
+            };
+
+            Brand = new ImageResize()
+            {
+                Width = 174,
+                Height = 71,
+                ThumbWidth = 174,
+                ThumbHeight = 71,
+                Background = "#FFF"
+            };
+
+            Product = new ImageResize()
             {
                 Width = 800,
                 Height = 600,
                 ThumbWidth = 200,
                 ThumbHeight = 150,
-                Quality = 80,
                 Background = "#FFF"
             };
 
+            News = new ImageResize()
+           {
+               Width = 800,
+               Height = 600,
+               ThumbWidth = 200,
+               ThumbHeight = 150,
+               Background = "#FFF"
+           };
         }
 
         #endregion
@@ -147,14 +174,22 @@ namespace ShipEquipment.Core.Configurations
         }
 
         [DataMember(Order = 6)]
-        public Banner Banner { get; set; }
+        public bool AddTrailingSlash { get; set; }
 
         [DataMember(Order = 7)]
-        public bool AddTrailingSlash
-        {
-            get;
-            set;
-        }
+        public int Quality { get; set; }
+
+        [DataMember(Order = 8)]
+        public ImageResize Banner { get; set; }
+
+        [DataMember(Order = 9)]
+        public ImageResize Brand { get; set; }
+
+        [DataMember(Order = 10)]
+        public ImageResize Product { get; set; }
+
+        [DataMember(Order = 11)]
+        public ImageResize News { get; set; }
 
         #endregion
     }
@@ -206,7 +241,7 @@ namespace ShipEquipment.Core.Configurations
         }
     }
 
-    public class Banner
+    public class ImageResize
     {
         public int Width { get; set; }
 
@@ -216,10 +251,12 @@ namespace ShipEquipment.Core.Configurations
 
         public int ThumbHeight { get; set; }
 
-        public int Quality { get; set; }
-
+        /// <summary>
+        /// Gets or sets the background.  Default color: #FFF
+        /// </summary>
+        /// <value>
+        /// The background.
+        /// </value>
         public string Background { get; set; }
     }
-
-
 }

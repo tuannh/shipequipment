@@ -12,11 +12,14 @@ using ShipEquipment.Core.Models;
 using ShipEquipment.Core.Controllers;
 using ShipEquipment.Core;
 using System.IO;
+using System.Drawing;
+using ShipEquipment.Core.Utility;
 
 namespace ShipEquipment.Web.Areas.Admin.Controllers
 {
     public class BrandController : AdminController
     {
+        public const string Folder = "~/Userfiles/Upload/images/Modules/Brand/";
         private ShipEquipmentContext db = new ShipEquipmentContext();
 
         // GET: Admin/Brand
@@ -83,7 +86,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Alias,Description,Active,DisplayOrder")] Brand brand)
+        public ActionResult Create([Bind(Include = "Id,Name,Alias,Description,Active,DisplayOrder")] Brand brand, HttpPostedFileBase file)
         {
             if (!brand.IsValidName())
             {
@@ -97,13 +100,41 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 return View(brand);
             }
 
-
             if (ModelState.IsValid)
             {
-              
-
                 db.Brands.Add(brand);
                 db.SaveChanges();
+
+                if (file != null)
+                {
+                    var folerPath = Globals.MapPath(Folder);
+                    if (!Directory.Exists(folerPath))
+                        Directory.CreateDirectory(folerPath);
+
+                    // delete old banner file
+                    var path = string.Format("{0}{1}", folerPath, brand.Photo);
+                    if (System.IO.File.Exists(path))
+                        System.IO.File.Delete(path);
+
+                    var filename = string.Format("{0}-{1}", brand.Id, file.FileName);
+                    path = string.Format("{0}{1}", folerPath, filename);
+
+                    var tmpname = string.Format("{0}-{1}", Guid.NewGuid().ToString(), file.FileName);
+                    var tmppath = string.Format("{0}{1}", folerPath, tmpname);
+                    file.SaveAs(tmppath);
+
+                    var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig();
+                    // var brandConfig = config.Brand;
+                    //ImageTools.FixResizeImage(tmppath, path, brandConfig.Width, brandConfig.Height, ColorTranslator.FromHtml(brandConfig.Background), config.Quality);
+                    ImageTools.SaveImage(tmppath, path, config.Quality);
+
+                    try { System.IO.File.Delete(tmppath); }
+                    catch { }
+
+                    brand.Photo = filename;
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
 
@@ -130,12 +161,41 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Alias,Description,Active,DisplayOrder")] Brand brand)
+        public ActionResult Edit([Bind(Include = "Id,Name,Alias,Description,Active,DisplayOrder, Photo")] Brand brand, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    var folerPath = Globals.MapPath(Folder);
+                    if (!Directory.Exists(folerPath))
+                        Directory.CreateDirectory(folerPath);
+
+                    var path = string.Format("{0}{1}", folerPath, brand.Photo);
+                    if (System.IO.File.Exists(path))
+                        System.IO.File.Delete(path);
+
+                    var filename = string.Format("{0}-{1}", brand.Id, file.FileName);
+                    path = string.Format("{0}{1}", folerPath, filename);
+
+                    var tmpname = string.Format("{0}-{1}", Guid.NewGuid().ToString(), file.FileName);
+                    var tmppath = string.Format("{0}{1}", folerPath, tmpname);
+                    file.SaveAs(tmppath);
+
+                    var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig();
+                    //var brandConfig = config.Brand;
+                    //ImageTools.FixResizeImage(tmppath, path, brandConfig.Width, brandConfig.Height, ColorTranslator.FromHtml(brandConfig.Background), config.Quality);
+                    ImageTools.SaveImage(tmppath, path);
+
+                    try { System.IO.File.Delete(tmppath); }
+                    catch { }
+
+                    brand.Photo = filename;
+                }
+
                 db.Entry(brand).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             return View(brand);
