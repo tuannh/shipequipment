@@ -1,6 +1,7 @@
 ﻿@model ShipEquipment.Biz.Domain.FAQ
 
 @{
+    Layout = "~/Areas/Admin/Views/Shared/Layouts/Edit.cshtml";
     ViewBag.Title = "Thêm faq";
 }
 
@@ -28,7 +29,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Answer, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Answer)
+                @Html.TextAreaFor(model => model.Answer, new { @class = "myeditor" })
                 @Html.ValidationMessageFor(model => model.Answer)
             </div>
         </div>
@@ -66,5 +67,7 @@
         $('.btnDiscard').click(function () {
             location.href = $(this).attr('data-href');
         })
+
+        $('.myeditor').clawEditor('basic');
     })
 </script>

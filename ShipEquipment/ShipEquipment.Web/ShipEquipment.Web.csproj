@@ -110,7 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Banner.sql" />
+    <Content Include="App_Data\script-data.sql" />
     <Content Include="Css\admin\style.css" />
     <Content Include="Css\common.css" />
     <Content Include="Css\easy-responsive-tabs.css" />
@@ -351,6 +351,13 @@
     <Content Include="Views\Shared\Partial\Home-Video-News.cshtml" />
     <Content Include="Views\Shared\Partial\SearchBox.cshtml" />
     <Content Include="Views\Shared\Partial\MiniShopcart.cshtml" />
+    <Content Include="Views\Shared\Controls\NewsList.cshtml" />
+    <Content Include="Views\Layouts\News-Detail.cshtml" />
+    <Content Include="Views\Shared\Controls\NewsDetail.cshtml" />
+    <Content Include="Views\Layouts\Faqs.cshtml" />
+    <Content Include="Views\Shared\Controls\FaqList.cshtml" />
+    <Content Include="Views\Layouts\UserGuide.cshtml" />
+    <Content Include="Views\Shared\Controls\UserGuide.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

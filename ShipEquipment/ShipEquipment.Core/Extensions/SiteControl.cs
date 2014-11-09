@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -268,6 +270,7 @@ namespace ShipEquipment.Core.Extensions
             var db = new ShipEquipmentContext();
 
             var pages = db.Pages.Where(p => p.Active).ToList();
+            control.HtmlHelper.ViewContext.ViewBag.NewsCategory = db.NewsCategories.ToList();
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, pages);
 
             return new MvcHtmlString(result);
@@ -387,7 +390,8 @@ namespace ShipEquipment.Core.Extensions
             var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
             var db = new ShipEquipmentContext();
 
-            var lst = db.NewsArticles.Where(p => p.Active)
+            var lst = db.NewsArticles.Include(n => n.Category)
+                                 .Where(p => p.Active)
                                  .OrderByDescending(p => p.CreatedDate)
                                  .ThenBy(p => p.Title)
                                  .ToList();
@@ -423,9 +427,12 @@ namespace ShipEquipment.Core.Extensions
             if (routeData != null && routeData.Values != null && routeData.Values["newsalias"] != null)
                 newsalias = routeData.Values["newsalias"].ToString();
 
-            var news = db.NewsArticles.FirstOrDefault(p => p.Active && string.Compare(p.Alias, newsalias, true) == 0);
-
-            var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, news);
+            var result = "";
+            var news = db.NewsArticles.Include(a => a.Category).FirstOrDefault(p => p.Active && string.Compare(p.Alias, newsalias, true) == 0);
+            if (news != null)
+            {
+                result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, news);
+            }
 
             return new MvcHtmlString(result);
         }
@@ -457,6 +464,36 @@ namespace ShipEquipment.Core.Extensions
                                    .OrderBy(p => p.DisplayOrder)
                                    .ThenBy(p => p.Name)
                                    .ToList();
+
+            var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
+
+            return new MvcHtmlString(result);
+        }
+
+        public static MvcHtmlString FaqList(this SiteControl control, string viewName = "FaqList.cshtml")
+        {
+            var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
+            var db = new ShipEquipmentContext();
+
+            var lst = db.FAQs.Where(p => p.Active)
+                             .OrderBy(p => p.DisplayOrder)
+                             .ThenBy(p => p.Question)
+                             .ToList();
+
+            var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
+
+            return new MvcHtmlString(result);
+        }
+
+        public static MvcHtmlString UserGuide(this SiteControl control, string viewName = "UserGuide.cshtml")
+        {
+            var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
+            var db = new ShipEquipmentContext();
+
+            var lst = db.UserGuides.Where(p => p.Active)
+                             .OrderBy(p => p.DisplayOrder)
+                             .ThenBy(p => p.Name)
+                             .ToList();
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
 

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.NewsArticle>
+
+<p class="link">
+    <a href="/">Trang chủ</a><span>&gt;&gt;</span><a href="/tin-tuc/" class="active">Tin tức</a>
+</p>
+<div class="inner-frm6">
+    @foreach (var article in Model)
+    {
+        var hasPhoto = !string.IsNullOrEmpty(article.Photo);
+        <div class="news2">
+            @if (hasPhoto)
+            {
+                <div class="img_new2"> <a href="/tin-tuc/chi-tiet/@article.Alias"><img src="~/userfiles/upload/images/modules/news/@article.Photo" alt="" /></a> </div>
+            }
+
+            <div class="text" style="@(!hasPhoto ? "width: 100%;" :"")" >
+                <h3><a href="/tin-tuc/chi-tiet/@article.Alias">@article.Title</a></h3>
+                <p>
+                    @article.Summary
+                </p>
+                <a href="/tin-tuc/chi-tiet/@article.Alias" class="btn_view">Chi tiết</a>
+            </div>
+        </div>
+    }
+
+</div>

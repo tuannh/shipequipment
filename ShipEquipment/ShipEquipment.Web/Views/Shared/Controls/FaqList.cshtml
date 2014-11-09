@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.FAQ>
+
+<p class="link">
+    <a href="/">Trang chủ</a><span>&gt;&gt;</span><a href="javascript:void(0)" class="active">FAQs</a>
+</p>
+<div class="inner-frm6">
+    @foreach (var faq in Model)
+    {
+        <div class="news2">
+            <div class="text" style="width: 100%;">
+                <h3 class="faq-ask">
+                    <a name="faq@(faq.Id)" href="javascript:void(0);">
+                        @faq.Question
+                    </a>
+                </h3>
+                <div class="faq-answer">
+                    @Html.Raw(faq.Answer)
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.faq-answer').toggle();
+
+        $('.faq-ask').click(function () {
+            $(this).next().toggle();
+        })
+    })
+</script>

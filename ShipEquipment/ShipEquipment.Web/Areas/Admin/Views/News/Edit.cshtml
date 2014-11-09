@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Cập nhật tin tức";
     Layout = "~/Areas/Admin/Views/Shared/Layouts/Edit.cshtml";
+    var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig().News;
 }
 
 <h1>Cập nhật tin tức</h1>
@@ -18,6 +19,7 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.CreatedDate)
+        @Html.HiddenFor(model => model.Photo)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
@@ -46,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Content)
+                @Html.TextAreaFor(model => model.Content, new { @class = "myeditor" })
                 @Html.ValidationMessageFor(model => model.Content)
             </div>
         </div>
@@ -76,13 +78,14 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label>@(string.Format("Thumb photo({0}x{1})", config.ThumbWidth, config.ThumbHeight))</label>
             <div class="col-md-10">
                 <input type="file" name="file" id="file" data-val-required="Chưa chọn photo" />
-
                 @if (!string.IsNullOrEmpty(Model.Photo))
                 {
-                    <img style="max-width: 150px;" alt="banner" src="~/userfiles/upload/images/modules/news/@Model.Photo" />
+                    <br />
+                    <img style="max-width: 244px;" alt="banner" src="~/userfiles/upload/images/modules/news/@Model.Photo" />
                 }
             </div>
         </div>
@@ -119,5 +122,7 @@
         $('.btnDiscard').click(function () {
             location.href = $(this).attr('data-href');
         })
+
+        $('.myeditor').clawEditor('standard');
     })
 </script>

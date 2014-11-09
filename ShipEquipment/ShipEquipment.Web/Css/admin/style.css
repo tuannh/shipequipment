@@ -88,3 +88,6 @@ table.tb_table tbody th, table.tb_table tbody td {
 .error {color: #F00;}
 
 .inner-fix { display: inline-block; }
+
+
+.col-md-10 {float: left;}
