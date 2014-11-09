@@ -261,6 +261,7 @@ namespace ShipEquipment.Core.Extensions
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, banners);
 
+            db.Dispose();
             return new MvcHtmlString(result);
         }
 
@@ -273,6 +274,7 @@ namespace ShipEquipment.Core.Extensions
             control.HtmlHelper.ViewContext.ViewBag.NewsCategory = db.NewsCategories.ToList();
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, pages);
 
+            db.Dispose();
             return new MvcHtmlString(result);
         }
 
@@ -289,6 +291,7 @@ namespace ShipEquipment.Core.Extensions
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, rootCategories);
 
+            db.Dispose();
             return new MvcHtmlString(result);
         }
 
@@ -336,6 +339,7 @@ namespace ShipEquipment.Core.Extensions
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
 
+            db.Dispose();
             return new MvcHtmlString(result);
         }
 
@@ -343,6 +347,7 @@ namespace ShipEquipment.Core.Extensions
         {
             var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
             var lst = new List<Product>();
+            var db = new ShipEquipmentContext();
 
             var lastView = HttpContext.Current.Request.Cookies["lastview"];
             if (lastView != null)
@@ -353,13 +358,14 @@ namespace ShipEquipment.Core.Extensions
                 {
                     var lstIds = arrIds.Select(a => int.Parse(a)).ToList();
 
-                    var db = new ShipEquipmentContext();
+                    
                     lst = db.Products.Where(p => lstIds.Contains(p.Id)).ToList();
                 }
             }
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
 
+            db.Dispose();
             return new MvcHtmlString(result);
         }
 
@@ -382,6 +388,7 @@ namespace ShipEquipment.Core.Extensions
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, product);
 
+            db.Dispose();
             return new MvcHtmlString(result);
         }
 
@@ -414,6 +421,7 @@ namespace ShipEquipment.Core.Extensions
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
 
+            db.Dispose();
             return new MvcHtmlString(result);
         }
 
@@ -428,12 +436,13 @@ namespace ShipEquipment.Core.Extensions
                 newsalias = routeData.Values["newsalias"].ToString();
 
             var result = "";
-            var news = db.NewsArticles.Include(a => a.Category).FirstOrDefault(p => p.Active && string.Compare(p.Alias, newsalias, true) == 0);
+            var news = db.NewsArticles.Include(a => a.Category).FirstOrDefault(p => p.Active && string.Compare(p.Alias, newsalias, true) == 0 && p.Active);
             if (news != null)
             {
                 result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, news);
             }
 
+            db.Dispose();
             return new MvcHtmlString(result);
         }
 
@@ -467,6 +476,7 @@ namespace ShipEquipment.Core.Extensions
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
 
+            db.Dispose();
             return new MvcHtmlString(result);
         }
 
@@ -482,6 +492,7 @@ namespace ShipEquipment.Core.Extensions
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
 
+            db.Dispose();
             return new MvcHtmlString(result);
         }
 
@@ -497,6 +508,29 @@ namespace ShipEquipment.Core.Extensions
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
 
+            db.Dispose();
+            return new MvcHtmlString(result);
+        }
+
+        public static MvcHtmlString UserGuideDetail(this SiteControl control, string viewName = "UserGuideDetail.cshtml")
+        {
+            var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
+            var db = new ShipEquipmentContext();
+
+            var userguide = "";
+            var routeData = SiteContext.Current.RouteData;
+            if (routeData != null && routeData.Values != null && routeData.Values["userguide"] != null)
+                userguide = routeData.Values["userguide"].ToString();
+
+            var result = "";
+            var obj = db.UserGuides.FirstOrDefault(a => string.Compare(a.Alias, userguide, true) == 0 && a.Active);
+
+            if (obj != null)
+            {
+                result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, obj);
+            }
+
+            db.Dispose();
             return new MvcHtmlString(result);
         }
 

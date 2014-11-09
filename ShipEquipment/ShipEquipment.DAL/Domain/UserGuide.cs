@@ -28,6 +28,10 @@ namespace ShipEquipment.Biz.Domain
         [Display(Name = "Tên userguide")]
         public string Name { get; set; }
 
+        [MaxLength, Column(TypeName = "ntext")]
+        [Display(Name = "Tóm tắt")]
+        public string Summary { get; set; }
+
         [Display(Name = "Nội dung")]
         [MaxLength, Column(TypeName = "ntext")]
         public string Content { get; set; }
@@ -39,5 +43,8 @@ namespace ShipEquipment.Biz.Domain
         [RegularExpression(@"^[0-9]{0,4}$", ErrorMessage = "Thứ tự hiển thị là 1 số trong khoảng [0, 9999]")]
         [Display(Name = "Thứ tự hiển thị")]
         public int DisplayOrder { get; set; }
+
+        [Display(Name = "Photo")]
+        public string Photo { get; set; }
     }
 }

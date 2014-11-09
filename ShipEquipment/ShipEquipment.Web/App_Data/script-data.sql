@@ -65,17 +65,6 @@ ALTER TABLE dbo.FAQs CHECK CONSTRAINT ALL
 SET IDENTITY_INSERT dbo.FAQs OFF
 
 
--- `dbo.NewsCategories`
-SET IDENTITY_INSERT dbo.NewsCategories ON
-
-INSERT dbo.NewsCategories (Id, Name, [Alias], DisplayOrder) VALUES (1, N'Tin tức', N'tin-tuc', 1)
-INSERT dbo.NewsCategories (Id, Name, [Alias], DisplayOrder) VALUES (2, N'Thông tin khuyến mãi', N'thong-tin-khuyen-mai', 2)
-INSERT dbo.NewsCategories (Id, Name, [Alias], DisplayOrder) VALUES (3, N'Thông tin thị trường', N'thong-tin-thi-truong', 3)
-INSERT dbo.NewsCategories (Id, Name, [Alias], DisplayOrder) VALUES (4, N'Tin tức & sự kiên', N'tin-tuc-su-kien', 4)
-INSERT dbo.NewsCategories (Id, Name, [Alias], DisplayOrder) VALUES (5, N'Kiến thức tham khảo', N'kien-thuc-tham-khao', 5)
-SET IDENTITY_INSERT dbo.NewsCategories OFF
-
-
 -- `dbo.Pages`
 SET IDENTITY_INSERT dbo.Pages ON
 

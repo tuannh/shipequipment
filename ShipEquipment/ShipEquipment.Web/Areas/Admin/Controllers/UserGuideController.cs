@@ -10,11 +10,16 @@ using ShipEquipment.Biz.Domain;
 using ShipEquipment.Biz.DAL;
 using ShipEquipment.Core.Models;
 using ShipEquipment.Core.Controllers;
+using System.IO;
+using ShipEquipment.Core;
+using ShipEquipment.Core.Utility;
+using System.Drawing;
 
 namespace ShipEquipment.Web.Areas.Admin.Controllers
 {
     public class UserGuideController : AdminController
     {
+        public const string Folder = "~/Userfiles/Upload/images/Modules/userguide/";
         private ShipEquipmentContext db = new ShipEquipmentContext();
 
         // GET: /Admin/UserGuide/
@@ -69,12 +74,42 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Content,Alias,DisplayOrder")] UserGuide userguide)
+        public ActionResult Create([Bind(Include = "Id,Name,Content,Alias,DisplayOrder,Summary")] UserGuide userguide, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
                 db.UserGuides.Add(userguide);
                 db.SaveChanges();
+
+                if (file != null)
+                {
+                    var folerPath = Globals.MapPath(Folder);
+                    if (!Directory.Exists(folerPath))
+                        Directory.CreateDirectory(folerPath);
+
+                    // delete old banner file
+                    var path = string.Format("{0}{1}", folerPath, userguide.Photo);
+                    if (System.IO.File.Exists(path))
+                        System.IO.File.Delete(path);
+
+                    var filename = string.Format("{0}-{1}", userguide.Id, file.FileName);
+                    path = string.Format("{0}{1}", folerPath, filename);
+
+                    var tmpname = string.Format("{0}-{1}", Guid.NewGuid().ToString(), file.FileName);
+                    var tmppath = string.Format("{0}{1}", folerPath, tmpname);
+                    file.SaveAs(tmppath);
+
+                    var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig();
+                    var bannerConfig = config.UserGuide;
+                    ImageTools.FixResizeImage(tmppath, path, bannerConfig.ThumbWidth, bannerConfig.ThumbHeight, ColorTranslator.FromHtml(bannerConfig.Background), config.Quality);
+
+                    try { System.IO.File.Delete(tmppath); }
+                    catch { }
+
+                    userguide.Photo = filename;
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
 
@@ -102,10 +137,38 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Content,Alias,DisplayOrder")] UserGuide userguide)
+        public ActionResult Edit([Bind(Include = "Id,Name,Content,Alias,DisplayOrder,Summary,Photo")] UserGuide userguide, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    var folerPath = Globals.MapPath(Folder);
+                    if (!Directory.Exists(folerPath))
+                        Directory.CreateDirectory(folerPath);
+
+                    var path = string.Format("{0}{1}", folerPath, userguide.Photo);
+                    if (System.IO.File.Exists(path))
+                        System.IO.File.Delete(path);
+
+                    var filename = string.Format("{0}-{1}", userguide.Id, file.FileName);
+                    path = string.Format("{0}{1}", folerPath, filename);
+
+                    var tmpname = string.Format("{0}-{1}", Guid.NewGuid().ToString(), file.FileName);
+                    var tmppath = string.Format("{0}{1}", folerPath, tmpname);
+                    file.SaveAs(tmppath);
+
+                    var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig();
+                    var newsConfig = config.News;
+                    ImageTools.FixResizeImage(tmppath, path, newsConfig.ThumbWidth, newsConfig.ThumbHeight, ColorTranslator.FromHtml(newsConfig.Background), config.Quality);
+
+                    try { System.IO.File.Delete(tmppath); }
+                    catch { }
+
+                    userguide.Photo = filename;
+                }
+
+
                 db.Entry(userguide).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

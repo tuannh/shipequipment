@@ -128,10 +128,19 @@ namespace ShipEquipment.Core.Configurations
            {
                Width = 800,
                Height = 600,
-               ThumbWidth = 200,
-               ThumbHeight = 150,
+               ThumbWidth = 244,
+               ThumbHeight = 182,
                Background = "#FFF"
            };
+
+            UserGuide = new ImageResize()
+            {
+                Width = 800,
+                Height = 600,
+                ThumbWidth = 244,
+                ThumbHeight = 182,
+                Background = "#FFF"
+            };
         }
 
         #endregion
@@ -191,6 +200,9 @@ namespace ShipEquipment.Core.Configurations
         [DataMember(Order = 11)]
         public ImageResize News { get; set; }
 
+        [DataMember(Order = 11)]
+        public ImageResize UserGuide { get; set; }
+
         #endregion
     }
 
@@ -243,20 +255,25 @@ namespace ShipEquipment.Core.Configurations
 
     public class ImageResize
     {
-        public int Width { get; set; }
-
-        public int Height { get; set; }
-
-        public int ThumbWidth { get; set; }
-
-        public int ThumbHeight { get; set; }
-
         /// <summary>
         /// Gets or sets the background.  Default color: #FFF
         /// </summary>
         /// <value>
         /// The background.
         /// </value>
+        [DataMember(Order = 1)]
         public string Background { get; set; }
+
+        [DataMember(Order = 2)]
+        public int Width { get; set; }
+
+        [DataMember(Order = 3)]
+        public int Height { get; set; }
+
+        [DataMember(Order = 4)]
+        public int ThumbWidth { get; set; }
+
+        [DataMember(Order = 5)]
+        public int ThumbHeight { get; set; }
     }
 }

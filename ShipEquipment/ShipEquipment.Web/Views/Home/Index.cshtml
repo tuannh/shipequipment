@@ -1,5 +1,8 @@
 ﻿@model ShipEquipment.Biz.Domain.Page
 @{
+    ViewBag.IsUserGuideList = true;
+    ViewBag.IsNewsList= true;
+    
     var pageAlias = ViewBag.PageAlias;
     if (Model != null)
     {
@@ -12,6 +15,12 @@
     }
     else if (string.Compare(pageAlias, "chi-tiet-tin", true) == 0)
     {
-        Layout = "~/Views/Layouts/News-Detail.cshtml";
+        ViewBag.IsNewsList = false;
+        Layout = "~/Views/Layouts/News.cshtml";
+    }
+    else if (string.Compare(pageAlias, "chi-tiet-huong-dan", true) == 0)
+    {
+        Layout = "~/Views/Layouts/UserGuide.cshtml";
+        ViewBag.IsUserGuideList = false;
     }
 }

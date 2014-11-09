@@ -352,12 +352,12 @@
     <Content Include="Views\Shared\Partial\SearchBox.cshtml" />
     <Content Include="Views\Shared\Partial\MiniShopcart.cshtml" />
     <Content Include="Views\Shared\Controls\NewsList.cshtml" />
-    <Content Include="Views\Layouts\News-Detail.cshtml" />
     <Content Include="Views\Shared\Controls\NewsDetail.cshtml" />
     <Content Include="Views\Layouts\Faqs.cshtml" />
     <Content Include="Views\Shared\Controls\FaqList.cshtml" />
     <Content Include="Views\Layouts\UserGuide.cshtml" />
     <Content Include="Views\Shared\Controls\UserGuide.cshtml" />
+    <Content Include="Views\Shared\Controls\UserGuideDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
