@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>ViewBag.Title</title>
+    @Html.CssBundle("~/css/news")
+    @Html.JsBundle("~/js/default")
+</head>
+<body>
+    <div id="body">
+        <div class="main">
+            <header class="top">
+                <div class="contentTop">
+                    <div class="logo"><a href="/"><img src="/images/thx/logo.png" alt="logo" /></a></div>
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/MiniShopcart.cshtml"); }
+                    <!--Mini Shopping Cart End-->
+
+                    <div class="clear2"></div>
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/SearchBox.cshtml"); }
+                    <nav class="nav">
+                        @Html.Controls().MenuNavigator()
+                    </nav>
+                    <!-- /Nav -->
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </header>
+            <div class="content">
+                <div class="colLeft">
+                    <div class="frm3">
+                        <p class="link"><a href="#">Trang chủ</a><span>&gt;&gt;</span><a href="#" class="active">Tin tức</a></p>
+                        <div class="inner-frm6">
+                            <div class="news2">
+                                <div class="img_new2"> <a href="#"><img src="/images/thx/new1.jpg" alt="" /></a> </div>
+                                <div class="text">
+                                    <h3><a href="#">Những lão ngư trên dòng Nhật Lệ</a></h3>
+                                    <p> Họ hầu hết đã ở tầm tuổi 70, 80. Ngày ngày, từ sáng tinh mơ cho đến chiều tà, họ chèo chống trên chiếc thuyền nhỏ hay ôm cần câu đứng trên cầu Nhật Lệ (Quảng Bình). Vừa là thú vui vừa để rèn luyện sức khỏe, và cũng không ít người đi câu là để thỏa nỗi nhớ một thời tuổi thanh xuân với nghề sông nước...</p>
+                                    <a href="#" class="btn_view">Chi tiết</a>
+                                </div>
+                            </div>
+                            <!--end news-->
+                            <div class="news2">
+                                <div class="img_new2"> <a href="#"><img src="/images/thx/new2.jpg" alt="" /></a> </div>
+                                <div class="text">
+                                    <h3><a href="#">Câu cá đêm ở Trường Sa</a></h3>
+                                    <p>
+
+                                        Mỗi chuyến tàu ra với quần đảo Trường Sa, các thủy thủ không bỏ lỡ cơ hội buông câu và hò reo khi bắt được cá lớn. Câu đêm với họ không chỉ là thú vui mà còn giúp cải thiện bữa cơm người lính.
+                                    </p>
+                                    <a href="#" class="btn_view">Chi tiết</a>
+                                </div>
+                            </div>
+                            <!--end news-->
+
+                            <div class="news2">
+                                <div class="img_new2"> <a href="#"><img src="/images/thx/new3.jpg" alt="" /></a> </div>
+                                <div class="text">
+                                    <h3><a href="#">Quái Ngư trên sông Mê Kông</a></h3>
+                                    <p>Các loài cá tra dầu,cá hô… khổng lồ của dòng sông Mê Kông đang đứng bên bờ vực tuyệt chủng do tình trạng đánh bắt quá mức của người dân.</p>
+                                    <a href="#" class="btn_view">Chi tiết</a>
+                                </div>
+                            </div>
+                            <!--end news-->
+
+                            <div class="news2">
+                                <div class="img_new2"> <a href="#"><img src="/images/thx/new4.jpg" alt="" /></a> </div>
+                                <div class="text">
+                                    <h3><a href="#">Anh người phụ nữ bắt được cá chép gần 40 kg</a></h3>
+                                    <p>Người phụ nữ này đã phá kỉ lục thế giới về con cá chép to nhất được câu bởi một người phụ nữ. </p>
+                                    <a href="#" class="btn_view">Chi tiết</a>
+                                </div>
+                            </div>
+                            <!--end news-->
+                        </div>
+                    </div>
+                </div>
+                <aside class="colRight">
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/Shopcart.cshtml"); }
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/Weather.cshtml"); }
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/RightContact.cshtml"); }
+                    @Html.Controls().BrandList("BrandList-Home.cshtml")
+                </aside>
+                <div class="frm2">
+                    @Html.Controls().LastViewProduct(true)
+                </div>
+                <div class="clear"></div>
+                <footer>
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/Footer.cshtml"); }
+                </footer>
+            </div>
+            <!--end main-->
+        </div>
+
+        @RenderBody()
+        @Html.JsBundle("~/js/page/news")
+</body>
+</html>

@@ -74,6 +74,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Alias,Title,Summary,Content,Active,CategoryId")] NewsArticle newsarticle, HttpPostedFileBase file)
         {
@@ -142,6 +143,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Alias,Title,Summary,Content,Active,CategoryId,CreatedDate")] NewsArticle newsarticle, HttpPostedFileBase file)
         {
