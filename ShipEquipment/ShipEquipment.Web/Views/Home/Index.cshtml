@@ -1,9 +1,11 @@
 ﻿@model ShipEquipment.Biz.Domain.Page
 @{
+    ViewBag.Title = "TuanHangXanh";
     ViewBag.IsUserGuideList = true;
     ViewBag.IsNewsList= true;
     
     var pageAlias = ViewBag.PageAlias;
+    
     if (Model != null)
     {
         ViewBag.Title = Model.Title;

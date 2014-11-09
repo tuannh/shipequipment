@@ -1,22 +1,57 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>ViewBag.Title</title>
+    @Html.CssBundle("~/css/news")
     @Html.JsBundle("~/js/default")
 </head>
 <body>
+    <div id="body">
+        <div class="main">
+            <header class="top">
+                <div class="contentTop">
+                    <div class="logo"><a href="/"><img src="/images/thx/logo.png" alt="logo" /></a></div>
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/MiniShopcart.cshtml"); }
+                    <!--Mini Shopping Cart End-->
 
-    <a href="~/Views/Layouts/Content.cshtml">~/Views/Layouts/Content.cshtml</a>
-    @Html.Controls().MenuNavigator()
+                    <div class="clear2"></div>
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/SearchBox.cshtml"); }
+                    <nav class="nav">
+                        @Html.Controls().MenuNavigator()
+                    </nav>
+                    <!-- /Nav -->
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </header>
+            <div class="content">
+                <div class="colLeft">
+                    <div class="frm3">
+                        @{ var pageAlias = ViewBag.PageAlias as string; }
+                        @Html.Controls().Content(pageAlias)
+                    </div>
+                </div>
+                <aside class="colRight">
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/Shopcart.cshtml"); }
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/Weather.cshtml"); }
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/RightContact.cshtml"); }
+                    @Html.Controls().BrandList("BrandList-Home.cshtml")
+                </aside>
+                <div class="frm2">
+                    @Html.Controls().LastViewProduct(true)
+                </div>
+                <div class="clear"></div>
+                <footer>
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/Footer.cshtml"); }
+                </footer>
+            </div>
+            <!--end main-->
+        </div>
 
+    </div>
     @RenderBody()
-
-    <footer>
-
-        footer footer footer footer<br />footer footer footer footer
-    </footer>
-    @Html.JsBundle("~/js/jqueryval")
+    @Html.JsBundle("~/js/page/news")
 </body>
 </html>
