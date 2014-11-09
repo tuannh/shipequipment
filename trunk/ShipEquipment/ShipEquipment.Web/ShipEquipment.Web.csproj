@@ -236,6 +236,8 @@
     <Content Include="Scripts\common\lazyload.js" />
     <Content Include="Scripts\common\modernizr-2.7.1.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pages\news.js" />
+    <Content Include="Scripts\pages\index.js" />
     <Content Include="Scripts\product.js" />
     <Content Include="Scripts\common\utilities.js" />
     <Content Include="Scripts\jquery\jquery-2.0.3.js" />
@@ -263,7 +265,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -312,7 +313,7 @@
     <Content Include="Views\Shared\Controls\Slider.cshtml" />
     <Content Include="Views\Shared\Controls\web.config" />
     <Content Include="Views\Shared\Controls\MenuNavigator.cshtml" />
-    <Content Include="Views\Layouts\Default.cshtml" />
+    <Content Include="Views\Layouts\News.cshtml" />
     <Content Include="Views\Layouts\Content.cshtml" />
     <Content Include="Views\Shared\Controls\CategoryList.cshtml" />
     <Content Include="Views\Shared\Controls\ProductList.cshtml" />
@@ -343,6 +344,13 @@
     <Content Include="Areas\Admin\Views\Shared\Layouts\Edit.cshtml" />
     <Content Include="Views\Layouts\Index.cshtml" />
     <Content Include="Views\Shared\Controls\BrandList-Home.cshtml" />
+    <Content Include="Views\Shared\Partial\Footer.cshtml" />
+    <Content Include="Views\Shared\Partial\Weather.cshtml" />
+    <Content Include="Views\Shared\Partial\Shopcart.cshtml" />
+    <Content Include="Views\Shared\Partial\RightContact.cshtml" />
+    <Content Include="Views\Shared\Partial\Home-Video-News.cshtml" />
+    <Content Include="Views\Shared\Partial\SearchBox.cshtml" />
+    <Content Include="Views\Shared\Partial\MiniShopcart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

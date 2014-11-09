@@ -339,3 +339,11 @@ footer .design_by .face-book{ position:absolute; right:0; top:0px}
 #back-top span { background: url(/images/thx/up-arrow.png) no-repeat scroll center center transparent; display: block; height: 46px; margin-bottom: 7px; width:50px; }
 #back-top a:hover { background-color: #ff4800 }
 /*------ /footer ------*/
+
+
+.detail{ padding-bottom:30px; overflow:hidden}
+.detail h3{ margin-bottom:20px; background:none; border-bottom:1px solid #eee; color:#0e1414; padding:0}
+.img_detail{text-align:center}
+.text-detail{ float:left; width:100%}
+.text-detail p{ font-size:15px; line-height:25px}
+.news-detail{ margin-bottom:20px}
