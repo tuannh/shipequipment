@@ -31,11 +31,11 @@
                     <div class="frm3">
                         @if (ViewBag.IsUserGuideList)
                         {
-                            @Html.Controls().UserGuide()
+                        @Html.Controls().UserGuide()
                         }
                         else
                         {
-                             @Html.Controls().UserGuideDetail()
+                        @Html.Controls().UserGuideDetail()
                         }
                     </div>
                 </div>
@@ -55,8 +55,8 @@
             </div>
             <!--end main-->
         </div>
-
-        @RenderBody()
-        @Html.JsBundle("~/js/page/news")
+    </div>
+    @RenderBody()
+    @Html.JsBundle("~/js/page/news")
 </body>
 </html>

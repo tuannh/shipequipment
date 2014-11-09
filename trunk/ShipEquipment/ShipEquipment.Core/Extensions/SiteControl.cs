@@ -358,7 +358,7 @@ namespace ShipEquipment.Core.Extensions
                 {
                     var lstIds = arrIds.Select(a => int.Parse(a)).ToList();
 
-                    
+
                     lst = db.Products.Where(p => lstIds.Contains(p.Id)).ToList();
                 }
             }
@@ -534,7 +534,23 @@ namespace ShipEquipment.Core.Extensions
             return new MvcHtmlString(result);
         }
 
+        public static MvcHtmlString Content(this SiteControl control, string contentName, string viewName = "Content.cshtml")
+        {
+            var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
+            var db = new ShipEquipmentContext();
 
+            var obj = db.Contents.FirstOrDefault(a => string.Compare(a.Alias, contentName, true) == 0 || string.Compare(a.PageAlias, contentName, true) == 0);
+
+            var result = "";
+            if (obj != null)
+            {
+                result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, obj);
+            }
+
+            db.Dispose();
+
+            return new MvcHtmlString(result);
+        }
 
 
         #region render view
