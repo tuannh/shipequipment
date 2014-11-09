@@ -1,18 +1,23 @@
 ﻿@model IEnumerable<ShipEquipment.Biz.Domain.UserGuide>
-
 <p class="link">
     <a href="/">Trang chủ</a><span>&gt;&gt;</span><a href="javascript:void(0)" class="active">Hướng dẫn</a>
 </p>
 <div class="inner-frm6">
     @foreach (var guide in Model)
     {
+        var hasPhoto = !string.IsNullOrEmpty(guide.Photo);
         <div class="news2">
-            <div class="text" style="width: 100%;" >
+            @if (hasPhoto)
+            {
+                <div class="img_new2"> <a href="/huong-dan/@guide.Alias"><img src="~/userfiles/upload/images/modules/news/@guide.Photo" alt="" /></a> </div>
+            }
+
+            <div class="text" style="@(!hasPhoto ? "width: 100%;" :"")">
                 <h3><a href="/huong-dan/@guide.Alias">@guide.Name</a></h3>
                 <p>
-                    @article.Summary
+                    @guide.Summary
                 </p>
-                <a href="/tin-tuc/chi-tiet/@article.Alias" class="btn_view">Chi tiết</a>
+                <a href="/huong-dan/@guide.Alias" class="btn_view">Chi tiết</a>
             </div>
         </div>
     }

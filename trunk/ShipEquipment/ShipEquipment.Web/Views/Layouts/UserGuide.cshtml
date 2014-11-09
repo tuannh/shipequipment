@@ -29,7 +29,14 @@
             <div class="content">
                 <div class="colLeft">
                     <div class="frm3">
-                        @Html.Controls().FaqList()
+                        @if (ViewBag.IsUserGuideList)
+                        {
+                            @Html.Controls().UserGuide()
+                        }
+                        else
+                        {
+                             @Html.Controls().UserGuideDetail()
+                        }
                     </div>
                 </div>
                 <aside class="colRight">
