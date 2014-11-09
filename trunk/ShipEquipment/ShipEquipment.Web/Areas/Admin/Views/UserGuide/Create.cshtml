@@ -1,6 +1,7 @@
 ﻿@model ShipEquipment.Biz.Domain.UserGuide
 
 @{
+    Layout = "~/Areas/Admin/Views/Shared/Layouts/Edit.cshtml";
     ViewBag.Title = "Thêm userguide";
 }
 
@@ -34,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "myeditor" } })
                 @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -76,5 +77,7 @@
         $('.btnDiscard').click(function () {
             location.href = $(this).attr('data-href');
         })
+
+        $('.myeditor').clawEditor('standard');
     })
 </script>

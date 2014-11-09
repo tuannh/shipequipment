@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.UserGuide>
+
+<p class="link">
+    <a href="/">Trang chủ</a><span>&gt;&gt;</span><a href="javascript:void(0)" class="active">Hướng dẫn</a>
+</p>
+<div class="inner-frm6">
+    @foreach (var guide in Model)
+    {
+        <div class="news2">
+            <div class="text" style="width: 100%;" >
+                <h3><a href="/huong-dan/@guide.Alias">@guide.Name</a></h3>
+                <p>
+                    @article.Summary
+                </p>
+                <a href="/tin-tuc/chi-tiet/@article.Alias" class="btn_view">Chi tiết</a>
+            </div>
+        </div>
+    }
+
+</div>

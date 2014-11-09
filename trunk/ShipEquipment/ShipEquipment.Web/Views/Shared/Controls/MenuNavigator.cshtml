@@ -8,6 +8,9 @@
     }
     var count = Model.Count();
     var index = 1;
+
+    var newsCategory = ViewBag.NewsCategory as IEnumerable<ShipEquipment.Biz.Domain.NewsCategory>;
+    var cateAlias = Html.ViewContext.RouteData.Values["newscategoryalias"] as string;
 }
 
 
@@ -22,6 +25,18 @@
 
             <li class="nav-item @last">
                 <a href="/@page.Alias" title="@page.Name" class="@active">@page.Name</a>
+                @if (string.Compare(page.Alias, "tin/tin-tuc", true) == 0 && newsCategory != null)
+                {
+                    <ul class="nav-submenu">
+                        @foreach (var cate in newsCategory)
+                        {
+                            var activeCate = string.Compare(cateAlias, cate.Alias, true) == 0 ? "active" : "";
+                            <li class="nav-submenu-item">
+                                <a class="@activeCate" href="/tin/@cate.Alias">@cate.Name</a>
+                            </li>
+                        }
+                    </ul>
+                }
             </li>
         }
     }

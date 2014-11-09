@@ -67,6 +67,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Content,Alias,DisplayOrder")] UserGuide userguide)
         {
@@ -99,6 +100,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Content,Alias,DisplayOrder")] UserGuide userguide)
         {

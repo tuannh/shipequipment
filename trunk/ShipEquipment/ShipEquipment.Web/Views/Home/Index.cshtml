@@ -1,13 +1,17 @@
 ﻿@model ShipEquipment.Biz.Domain.Page
 @{
-
+    var pageAlias = ViewBag.PageAlias;
     if (Model != null)
     {
         ViewBag.Title = Model.Title;
         Layout = Model.Layout ?? "~/Views/Layouts/Index.cshtml";
     }
-    else
+    else if (string.Compare(pageAlias, "tin-tuc", true) == 0)
     {
-        Layout = "~/Views/Layouts/Index.cshtml";
+        Layout = "~/Views/Layouts/News.cshtml";
+    }
+    else if (string.Compare(pageAlias, "chi-tiet-tin", true) == 0)
+    {
+        Layout = "~/Views/Layouts/News-Detail.cshtml";
     }
 }

@@ -26,7 +26,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // GET: /Admin/News/
         public ActionResult Index(string kw)
         {
-            //var newsarticles = db.NewsArticles.Include(n => n.Category);
+            var newsarticles = db.NewsArticles.Include(n => n.Category);
             //return View(newsarticles.ToList());
             List<NewsArticle> lst = null;
 
@@ -104,8 +104,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     file.SaveAs(tmppath);
 
                     var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig();
-                    var bannerConfig = config.Banner;
-                    ImageTools.FixResizeImage(tmppath, path, bannerConfig.Width, bannerConfig.Height, ColorTranslator.FromHtml(bannerConfig.Background), config.Quality);
+                    var bannerConfig = config.News;
+                    ImageTools.FixResizeImage(tmppath, path, bannerConfig.ThumbWidth, bannerConfig.ThumbHeight, ColorTranslator.FromHtml(bannerConfig.Background), config.Quality);
 
                     try { System.IO.File.Delete(tmppath); }
                     catch { }
@@ -145,7 +145,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Alias,Title,Summary,Content,Active,CategoryId,CreatedDate")] NewsArticle newsarticle, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "Id,Alias,Title,Summary,Content,Active,CategoryId,CreatedDate,Photo")] NewsArticle newsarticle, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -168,7 +168,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
                     var config = ShipEquipment.Core.Configurations.SiteConfiguration.GetConfig();
                     var newsConfig = config.News;
-                    ImageTools.FixResizeImage(tmppath, path, newsConfig.Width, newsConfig.Height, ColorTranslator.FromHtml(newsConfig.Background), config.Quality);
+                    ImageTools.FixResizeImage(tmppath, path, newsConfig.ThumbWidth, newsConfig.ThumbHeight, ColorTranslator.FromHtml(newsConfig.Background), config.Quality);
 
                     try { System.IO.File.Delete(tmppath); }
                     catch { }

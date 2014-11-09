@@ -19,15 +19,21 @@ namespace ShipEquipment.Web.Controllers
             var page = dbContext.Pages
                                 .Where(p => string.Compare(p.Alias, alias, true) == 0)
                                 .FirstOrDefault();
-            if (page != null)
-                return View(page);
 
-            page = dbContext.Pages
-                                .Where(p => p.IsDefault)
-                                .FirstOrDefault();
+            ViewBag.PageAlias = alias;
+
 
             if (page != null)
                 return View(page);
+
+            if (alias == "index")
+            {
+                page = dbContext.Pages.Where(p => p.IsDefault)
+                                      .FirstOrDefault();
+
+                if (page != null)
+                    return View(page);
+            }
 
             return View();
         }
