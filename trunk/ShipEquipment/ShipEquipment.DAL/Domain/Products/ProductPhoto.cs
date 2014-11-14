@@ -14,7 +14,7 @@ namespace ShipEquipment.Biz.Domain
 
         public string FileName { get; set; }
 
-        public int Order { get; set; }
+        public int DisplayOrder { get; set; }
 
         public int ProductId { get; set; }
 

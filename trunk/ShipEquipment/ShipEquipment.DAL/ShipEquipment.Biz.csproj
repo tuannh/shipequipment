@@ -63,8 +63,8 @@
     <Compile Include="Domain\FAQ.cs" />
     <Compile Include="Domain\News\NewsArticle.cs" />
     <Compile Include="Domain\News\NewsCategory.cs" />
-    <Compile Include="Domain\Products\ProductPhoto.cs" />
     <Compile Include="Domain\Products\Product.cs" />
+    <Compile Include="Domain\Products\ProductPhoto.cs" />
     <Compile Include="Domain\Users\District.cs" />
     <Compile Include="Domain\Orders\Order.cs" />
     <Compile Include="Domain\Users\Province.cs" />

@@ -115,6 +115,7 @@
     <Content Include="Css\common.css" />
     <Content Include="Css\easy-responsive-tabs.css" />
     <Content Include="Css\easy-responsive-tabs1.css" />
+    <Content Include="Css\jquery\jquery-ui.css" />
     <Content Include="Css\resize.css" />
     <Content Include="Css\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -237,6 +238,8 @@
     <Content Include="Scripts\common\html5.js" />
     <Content Include="Scripts\common\lazyload.js" />
     <Content Include="Scripts\common\modernizr-2.7.1.js" />
+    <Content Include="Scripts\jquery\jquery-ui.js" />
+    <Content Include="Scripts\jquery\jquery.loadTemplate-1.4.5.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\news.js" />
     <Content Include="Scripts\pages\index.js" />
@@ -1196,18 +1199,6 @@
     <Content Include="utility\ckfinder\_samples\sample.css" />
     <Content Include="utility\ckfinder\_samples\standalone.html" />
     <Content Include="utility\ckfinder\_samples\standalone_v1.html" />
-    <Content Include="utility\ckfinder\_source\CKFinder.ico" />
-    <Content Include="utility\ckfinder\_source\CKFinder.Net.csproj" />
-    <Content Include="utility\ckfinder\_source\CKFinder.Net.sln" />
-    <Content Include="utility\ckfinder\_source\Resources\Plugins\FileEditor\CKFinder.ico" />
-    <Content Include="utility\ckfinder\_source\Resources\Plugins\FileEditor\FileEditor.csproj" />
-    <Content Include="utility\ckfinder\_source\Resources\Plugins\FileEditor\FileEditor.sln" />
-    <Content Include="utility\ckfinder\_source\Resources\Plugins\ImageResize\CKFinder.ico" />
-    <Content Include="utility\ckfinder\_source\Resources\Plugins\ImageResize\ImageResize.csproj" />
-    <Content Include="utility\ckfinder\_source\Resources\Plugins\ImageResize\ImageResize.sln" />
-    <Content Include="utility\ckfinder\_source\Resources\Plugins\Watermark\CKFinder.ico" />
-    <Content Include="utility\ckfinder\_source\Resources\Plugins\Watermark\Watermark.csproj" />
-    <Content Include="utility\ckfinder\_source\Resources\Plugins\Watermark\Watermark.sln" />
     <Content Include="utility\claw.editor.js" />
     <Content Include="utility\claw.inline.editor.js" />
     <Content Include="Web.config">
@@ -1238,59 +1229,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="utility\ckfinder\_source\AccessControlRules.cs" />
-    <Compile Include="utility\ckfinder\_source\AssemblyInfo.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CKFinderEvent.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CKFinderEventArgs.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CKFinderPlugin.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\CommandHandlerBase.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\CopyFilesCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\CreateFolderCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\DeleteFilesCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\DeleteFolderCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\DownloadFileCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\ErrorCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\FileUploadCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\GetFilesCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\GetFoldersCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\InitCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\LoadCookiesCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\MoveFilesCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\QuickUploadCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\RenameFileCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\RenameFolderCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\ThumbnailCommandHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\CommandHandlers\XmlCommandHandlerBase.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\Config.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\Connector.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\ConnectorException.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\Errors.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\FixFlashCookies.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\FolderHandler.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\ImageTools.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\Lang.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\OctreeQuantizer.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\Quantizer.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\RegexLib.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\RestartModule.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\Util.cs" />
-    <Compile Include="utility\ckfinder\_source\Connector\XmlUtil.cs" />
-    <Compile Include="utility\ckfinder\_source\FileBrowser.cs" />
-    <Compile Include="utility\ckfinder\_source\FileBrowserDesigner.cs" />
-    <Compile Include="utility\ckfinder\_source\Resources\Plugins\FileEditor\Properties\AssemblyInfo.cs" />
-    <Compile Include="utility\ckfinder\_source\Resources\Plugins\FileEditor\SaveFile.cs" />
-    <Compile Include="utility\ckfinder\_source\Resources\Plugins\ImageResize\ImageResize.cs" />
-    <Compile Include="utility\ckfinder\_source\Resources\Plugins\ImageResize\Properties\AssemblyInfo.cs" />
-    <Compile Include="utility\ckfinder\_source\Resources\Plugins\Watermark\Properties\AssemblyInfo.cs" />
-    <Compile Include="utility\ckfinder\_source\Resources\Plugins\Watermark\Watermark.cs" />
-    <Compile Include="utility\ckfinder\_source\Settings\AccessControl.cs" />
-    <Compile Include="utility\ckfinder\_source\Settings\AccessControlManager.cs" />
-    <Compile Include="utility\ckfinder\_source\Settings\ConfigFile.cs" />
-    <Compile Include="utility\ckfinder\_source\Settings\Images.cs" />
-    <Compile Include="utility\ckfinder\_source\Settings\ResourceType.cs" />
-    <Compile Include="utility\ckfinder\_source\Settings\ResourceTypeManager.cs" />
-    <Compile Include="utility\ckfinder\_source\Settings\Thumbnails.cs" />
-    <Compile Include="utility\ckfinder\_source\TriStateBool.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1321,8 +1259,6 @@
     <Content Include="Views\Shared\Controls\BrandList.cshtml" />
     <Content Include="Views\Shared\Controls\LastViewProduct.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Controls\Menu.cshtml" />
@@ -1374,7 +1310,8 @@
     <Content Include="utility\ckeditor\skins\moono\readme.md" />
     <Content Include="utility\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="utility\ckfinder\userfiles\.htaccess" />
-    <Content Include="utility\ckfinder\_source\CKFinderKey.snk" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
