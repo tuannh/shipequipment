@@ -1224,6 +1224,8 @@
     <Compile Include="Areas\Admin\Controllers\UserGuideController.cs" />
     <Compile Include="Areas\Admin\Controllers\VideoController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
+    <Compile Include="Areas\Common\Controllers\UserController.cs" />
+    <Compile Include="Areas\Common\Models\UserModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1321,9 +1323,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Settings\" />
-    <Folder Include="Areas\Common\Controllers\" />
-    <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Common\Views\Shared\" />
+    <Folder Include="Areas\Common\Views\User\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
