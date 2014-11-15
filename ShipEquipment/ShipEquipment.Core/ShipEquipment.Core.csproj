@@ -129,6 +129,7 @@
     <Compile Include="Logs\LogProvider.cs" />
     <Compile Include="Logs\LogXmlLayout.cs" />
     <Compile Include="Models\PagingModel.cs" />
+    <Compile Include="Providers\EncryptProvider.cs" />
     <Compile Include="SiteContext.cs" />
     <Compile Include="Configurations\SiteConfiguration.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
