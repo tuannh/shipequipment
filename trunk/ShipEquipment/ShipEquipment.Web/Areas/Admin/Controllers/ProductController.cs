@@ -52,7 +52,31 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);
+                var photos = product.Photos;
+                product.Photos = new List<ProductPhoto>();
                 db.SaveChanges();
+
+                if (photos != null)
+                {
+                    foreach(var photo in photos)
+                    {
+                        var tmpThumbPath = Globals.MapPath( TmpThumbFolder + photo.FileName);
+                        var tmpPath =  Globals.MapPath( TmpFolder + photo.FileName);
+
+                        photo.FileName = string.Format("{0}-Photo{1}", product.Id, Globals.GenerateAlias(Guid.NewGuid().ToString()));
+
+                        var path = Folder + photo.FileName;
+                        var thumPath = ThumbFolder + photo.FileName;
+
+                        if (System.IO.File.Exists(tmpPath))
+                            System.IO.File.Move(tmpPath, path);
+
+                        if (System.IO.File.Exists(tmpThumbPath))
+                            System.IO.File.Move(tmpThumbPath, tmpPath);
+                    }
+
+                    db.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
             }

@@ -146,7 +146,7 @@
             </div>
         </div>
 
-        <div class="frm-photo" title="Photo list" style="display: none;">
+        <div class="frm-photo" title="Photo list">
             <table class="photo-list" style="width: 100%;">
                 <tr>
                     <td>Title</td>
@@ -255,6 +255,9 @@
             $("#file").val('');
         }
 
+        $('form').submit(function () {
+            $(this).append($('.photo-list'));
+        })
 
     })
 </script>
@@ -262,9 +265,9 @@
 <script type="text/html" id="template">
     <tr>
         <td>
-            <input name="Photos[#index#].Title" value="#title#" type="hidden" />
-            <input name="Photos[#index#].FileName" value="#filename#" type="hidden" />
-            <input name="Photos[#index#].DisplayOrder" value="#displayorder#" type="hidden" />
+            <input id="Photos[#index#].Title" name="Photos[#index#].Title" value="#title#" type="hidden" />
+            <input id="Photos[#index#].FileName" name="Photos[#index#].FileName" value="#filename#" type="hidden" />
+            <input id="Photos[#index#].DisplayOrder" name="Photos[#index#].DisplayOrder" value="#displayorder#" type="hidden" />
             #title#
         </td>
         <td>
