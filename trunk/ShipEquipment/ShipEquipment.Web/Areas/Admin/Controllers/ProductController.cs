@@ -12,24 +12,58 @@ using ShipEquipment.Core;
 using System.IO;
 using ShipEquipment.Core.Utility;
 using System.Drawing;
+using ShipEquipment.Core.Models;
+using ShipEquipment.Core.Controllers;
 
 namespace ShipEquipment.Web.Areas.Admin.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : AdminController
     {
-        public const string Folder = "~/Userfiles/Upload/images/Modules/Product/";
-        public const string ThumbFolder = "~/Userfiles/Upload/_thumbs/images/Modules/Product/";
 
-        public const string TmpFolder = "~/Userfiles/_temp/UserfilesModules/Product/";
+        public const string Folder = "~/Userfiles/Modules/Products/";
+        public const string ThumbFolder = "~/Userfiles/Modules/Products/Thumb/";
+
+        public const string TmpFolder = "~/Userfiles/_temp/Modules/Product/";
         public const string TmpThumbFolder = "~/Userfiles/_temp/Modules/Product/thumb/";
 
         private ShipEquipmentContext db = new ShipEquipmentContext();
 
         // GET: Admin/Product
-        public ActionResult Index()
+        public ActionResult Index(string kw)
         {
-            var products = db.Products.Include(p => p.Brand).Include(p => p.Category);
-            return View(products.ToList());
+            List<Product> lst = null;
+
+            if (!string.IsNullOrEmpty(kw))
+            {
+                var keyword = kw.ToLower();
+                lst = db.Products.ToList();
+                lst = lst.Where(a => a.Name.ToLower().Contains(keyword) || (a.Description ?? "").ToLower().Contains(keyword))
+                         .OrderBy(a => a.DislayOrder)
+                         .ThenBy(a => a.Name)
+                         .ToList();
+
+                if (lst.Count > 0)
+                    ViewBag.SearchReseult = string.Format("<b>{0}</b> kết quả được tìm thấy", lst.Count);
+                else
+                    ViewBag.SearchReseult = string.Format("Không tìm thấy kết quả với từ khóa <b>{0}</b>", kw);
+            }
+            else
+            {
+                lst = db.Products.ToList();
+            }
+
+            var pagingModel = new PagingModel();
+            pagingModel.ItemsPerPage = PageSize;
+            pagingModel.CurrentPage = PageIndex;
+            pagingModel.TotalItems = lst.Count();
+            pagingModel.RequestUrl = ControllerContext.RequestContext.HttpContext.Request.RawUrl;
+
+            lst = lst.Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
+
+            ViewBag.PagingModel = pagingModel;
+            ViewBag.Keyword = kw;
+
+            return View(lst);
         }
 
         // GET: Admin/Product/Create
@@ -53,26 +87,28 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             {
                 db.Products.Add(product);
                 var photos = product.Photos;
-                product.Photos = new List<ProductPhoto>();
                 db.SaveChanges();
 
                 if (photos != null)
                 {
-                    foreach(var photo in photos)
+                    MakeFolder();
+
+                    foreach (var photo in photos)
                     {
-                        var tmpThumbPath = Globals.MapPath( TmpThumbFolder + photo.FileName);
-                        var tmpPath =  Globals.MapPath( TmpFolder + photo.FileName);
+                        var tmpThumbPath = Globals.MapPath(TmpThumbFolder + photo.FileName);
+                        var tmpPath = Globals.MapPath(TmpFolder + photo.FileName);
+                        var ext = Path.GetExtension(photo.FileName);
 
-                        photo.FileName = string.Format("{0}-Photo{1}", product.Id, Globals.GenerateAlias(Guid.NewGuid().ToString()));
+                        photo.FileName = string.Format("{0}-Photo{1}{2}", product.Id, DateTime.Now.Ticks, ext);
 
-                        var path = Folder + photo.FileName;
-                        var thumPath = ThumbFolder + photo.FileName;
+                        var path = Globals.MapPath(Folder + photo.FileName);
+                        var thumPath = Globals.MapPath(ThumbFolder + photo.FileName);
 
                         if (System.IO.File.Exists(tmpPath))
                             System.IO.File.Move(tmpPath, path);
 
                         if (System.IO.File.Exists(tmpThumbPath))
-                            System.IO.File.Move(tmpThumbPath, tmpPath);
+                            System.IO.File.Move(tmpThumbPath, thumPath);
                     }
 
                     db.SaveChanges();
@@ -83,11 +119,23 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
             ViewBag.BrandId = new SelectList(db.Brands, "Id", "Alias", product.BrandId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Alias", product.CategoryId);
+
             return View(product);
         }
 
+        private static void MakeFolder()
+        {
+            var folder = Globals.MapPath(Folder);
+            var thumbFolder = Globals.MapPath(ThumbFolder);
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+
+            if (!Directory.Exists(thumbFolder))
+                Directory.CreateDirectory(thumbFolder);
+        }
+
         [HttpPost]
-        public ActionResult UploadFile(string title, int displayOrder)
+        public ActionResult UploadFile()
         {
             if (Request.Files.Count > 0)
             {
@@ -101,7 +149,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 if (!Directory.Exists(thumbFolderPath))
                     Directory.CreateDirectory(thumbFolderPath);
 
-                var filename = string.Format("tmp-{0}-{1}", Globals.GenerateAlias(Guid.NewGuid().ToString()), Path.GetFileName(file.FileName));
+                var title = Path.GetFileName(file.FileName);
+                var filename = string.Format("tmp-{0}-{1}", DateTime.Now.Ticks, Path.GetFileName(file.FileName));
                 var path = string.Format("{0}{1}", folderPath, filename);
                 var thumbpath = string.Format("{0}{1}", thumbFolderPath, filename);
 
@@ -117,7 +166,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 try { System.IO.File.Delete(tmppath); }
                 catch { }
 
-                var obj = new { Error = 0, Message = "", title = title, displayorder = displayOrder, filename = filename };
+                var obj = new { Error = 0, Message = "", title = title, displayorder = 1000, filename = filename };
 
                 return Json(obj);
             }
@@ -151,14 +200,64 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Alias,Code,ShortDescription,Description,Active,Price,SalePrice,MadeIn,DislayOrder,CategoryId,BrandId,Type")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,Name,Alias,Code,ShortDescription,Description,Active,Price,SalePrice,MadeIn,DislayOrder,CategoryId,BrandId,Type,Photos")] Product product)
         {
             if (ModelState.IsValid)
             {
+                var photos = product.Photos;
+                var delPhotos = new List<int>();
+
+                if (photos != null)
+                {
+                    MakeFolder();
+
+                    foreach (var photo in photos)
+                    {
+                        if (photo.Id > 0)
+                            db.Entry(photo).State = EntityState.Modified;
+                        else if (photo.Id == 0)
+                            db.Entry(photo).State = EntityState.Added;
+                        else if (photo.Id < 0)
+                        {
+                            photo.Id = Math.Abs(photo.Id);
+                            delPhotos.Add(photo.Id);
+                        }
+
+                        if (!photo.FileName.StartsWith("tmp"))
+                            continue;
+
+                        photo.ProductId = product.Id;
+
+                        var tmpThumbPath = Globals.MapPath(TmpThumbFolder + photo.FileName);
+                        var tmpPath = Globals.MapPath(TmpFolder + photo.FileName);
+                        var ext = Path.GetExtension(photo.FileName);
+
+                        photo.FileName = string.Format("{0}-Photo{1}{2}", product.Id, DateTime.Now.Ticks, ext);
+
+                        var path = Globals.MapPath(Folder + photo.FileName);
+                        var thumPath = Globals.MapPath(ThumbFolder + photo.FileName);
+
+                        if (System.IO.File.Exists(tmpPath))
+                            System.IO.File.Move(tmpPath, path);
+
+                        if (System.IO.File.Exists(tmpThumbPath))
+                            System.IO.File.Move(tmpThumbPath, thumPath);
+                    }
+                }
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
+
+                // delete photo
+                foreach (var id in delPhotos)
+                {
+                    var photo = db.ProductPhotos.Find(id);
+                    db.ProductPhotos.Remove(photo);
+                }
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
+
             ViewBag.BrandId = new SelectList(db.Brands, "Id", "Alias", product.BrandId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Alias", product.CategoryId);
             return View(product);
@@ -171,12 +270,16 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+
+            var product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+
+            db.Products.Remove(product);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // POST: Admin/Product/Delete/5

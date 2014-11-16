@@ -24,7 +24,7 @@ namespace ShipEquipment.Biz.Domain
         [StringLength(150, ErrorMessage = "Tên sản phẩm không được quá 150 kí tự")]
         public string Name { get; set; }
 
-        [Display(Name = "Alias(tên hiển thị trên trình duyệt)")]
+        [Display(Name = "Alias")]
         [Required(ErrorMessage = "Alias không thể rỗng")]
         [StringLength(150, ErrorMessage = "Alias không được quá 150 kí tự")]
         public string Alias { get; set; }
@@ -44,7 +44,7 @@ namespace ShipEquipment.Biz.Domain
         [Display(Name = "Hiển thị")]
         public bool Active { get; set; }
 
-        [Display(Name = "Giá sản phẩm")]
+        [Display(Name = "Giá")]
         [Range(0, float.MaxValue, ErrorMessage = "Hãy nhập giá sản phẩm")]
         [RegularExpression(@"^[0-9]{1,9}$", ErrorMessage = "Giá là một số dương")]
         public float Price { get; set; }

@@ -146,36 +146,21 @@
             </div>
         </div>
 
-        <div class="frm-photo" title="Photo list">
-            <table class="photo-list" style="width: 100%;">
-                <tr>
-                    <td>Title</td>
-                    <td style="width: 300px;"> Photo</td>
-                    <td style="width: 80px;">Thứ tự hiển thị</td>
-                    <td class="colLeft"></td>
-                </tr>
+        <div class="frm-photo" title="Photo list" style="display: none;">
+            <table class="photo-list tb_table" style="width: 100%; display: none;">
+                <tbody>
+                    <tr class="tb_content">
+                        <th>Title</th>
+                        <th style="width: 300px;"> Photo</th>
+                        <th style="width: 130px;">Thứ tự hiển thị</th>
+                        <th class="col-command"></th>
+                    </tr>
+                </tbody>
             </table>
-            <b>Thêm photo</b>
             <table class="form-upload">
                 <tr>
                     <td>
-                        Tiêu đề
-                    </td>
-                    <td>
-                        <input name="title" id="title" type="text" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Thứ tự hiển thị
-                    </td>
-                    <td>
-                        <input name="photoOrder" id="photoOrder" type="number" value="1000" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Photo
+                        Upload photo
                     </td>
                     <td>
                         <input type="file" name="file" id="file" />
@@ -185,6 +170,7 @@
                     <td></td>
                     <td>
                         <input type="button" class="btn-add-photo" value="Upload" />
+                        <input type="button" class="btn-done" value="Xong" style="display: none;" />
                     </td>
                 </tr>
             </table>
@@ -209,15 +195,17 @@
         $('.myeditor').clawEditor('standard');
 
         $('.view-photo').click(function () {
-            $('.frm-photo').dialog({ minWidth: 800, minHeight: 400 });
+            $('.frm-photo').dialog({ minWidth: $(window).width(), minHeight: $(window).height() });
+        })
+
+        $('.btn-done').click(function () {
+            $('.frm-photo').dialog('close');
         })
 
         $('.btn-add-photo').click(function () {
 
             var formData = new FormData();
             formData.append("file", $("#file")[0].files[0]);
-            formData.append("title", $('#title').val());
-            formData.append("displayOrder", $('#photoOrder').val());
             resetUpload();
 
             $.ajax({
@@ -237,7 +225,9 @@
                     html = html.replace(/#filename#/g, data.filename);
                     html = html.replace(/#src#/g, data.src);
 
-                    $('.photo-list').append(html);
+                    $('.photo-list tbody').append(html).show();
+                    $('.photo-list').show();
+                    $('.btn-done').show();
 
                     $('.del-photo').unbind('click').click(function () {
                         $(this).closest('tr').remove();
@@ -263,21 +253,20 @@
 </script>
 
 <script type="text/html" id="template">
-    <tr>
+    <tr class="tb_content">
         <td>
-            <input id="Photos[#index#].Title" name="Photos[#index#].Title" value="#title#" type="hidden" />
+            <input id="Photos[#index#].Title" name="Photos[#index#].Title" value="#title#" type="text" style="width: 95%;" />
             <input id="Photos[#index#].FileName" name="Photos[#index#].FileName" value="#filename#" type="hidden" />
             <input id="Photos[#index#].DisplayOrder" name="Photos[#index#].DisplayOrder" value="#displayorder#" type="hidden" />
-            #title#
         </td>
         <td>
-            <img src="#src#" alt="#src#" />
+            <img src="#src#" alt="#title#" />
         </td>
         <td>
             <input type="number" style="width: 80px;" value="#displayorder#" />
         </td>
         <td>
-            <a href="javascrpt:void(0);" class="del-photo">Xóa</a>
+            <a href="javascript:void(0);" class="del-photo">Xóa</a>
         </td>
     </tr>
 </script>
