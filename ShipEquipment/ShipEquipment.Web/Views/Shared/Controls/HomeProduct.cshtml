@@ -1,0 +1,176 @@
+﻿@model  Dictionary<ProductType, List<Product>>
+@using ShipEquipment.Core.Enumerations
+
+@{
+    var lstNew = Model[ProductType.New] ?? new List<Product>();
+    var lstConsignment = Model[ProductType.Consignment] ?? new List<Product>();
+    var lstSecondHand = Model[ProductType.SecondHand] ?? new List<Product>();
+    var lstBestSale = Model[ProductType.BestSale] ?? new List<Product>();
+
+    var urls = ShipEquipment.Core.SiteUrls.Instance;
+}
+
+<div id="horizontalTab1" class="tab-panel">
+    <ul class="resp-tabs-list">
+
+        <li>sản phẩm mới</li>
+
+        <li>sản phẩm ký gởi</li>
+        <li>sản phẩm 2ND</li>
+        <li>sản phẩm bán nhiều nhất</li>
+    </ul>
+    <div class="resp-tabs-container">
+        <div class="contenttab">
+            <div class="innerTab">
+                @if (lstNew.Count > 0)
+                {
+                    <ul>
+                        @foreach (var product in lstNew)
+                        {
+                            var photo = product.GetPhoto();
+                            <li>
+                                <div class="contentSale">
+                                    <div class="imgSale">
+                                        <a href="@urls.GetProduct(product)">
+                                            @if (photo != null)
+                                            {
+                                                <img src="~/Userfiles/Modules/Products/Thumb/@photo.FileName" alt="@photo.Title" />
+                                            }
+                                            else
+                                            {
+                                                @product.Name
+                                            }
+                                        </a>
+                                    </div>
+                                    <div class="textSale">
+                                        <p>@product.Name</p>
+                                        <p class="priceSale1">@product.GetPrice()</p>
+                                    </div>
+                                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div>Không có sản phẩm mới</div>
+                }
+            </div>
+        </div>
+        <div class="contenttab">
+            <div class="innerTab">
+                @if (lstConsignment.Count > 0)
+                {
+                    <ul>
+                        @foreach (var product in lstNew)
+                        {
+                            var photo = product.GetPhoto();
+                            <li>
+                                <div class="contentSale">
+                                    <div class="imgSale">
+                                        <a href="@urls.GetProduct(product)">
+                                            @if (photo != null)
+                                            {
+                                                <img src="~/Userfiles/Modules/Products/Thumb/@photo.FileName" alt="@photo.Title" />
+                                            }
+                                            else
+                                            {
+                                                @product.Name
+                                            }
+                                        </a>
+                                    </div>
+                                    <div class="textSale">
+                                        <p>@product.Name</p>
+                                        <p class="priceSale1">@product.GetPrice()</p>
+                                    </div>
+                                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div>Không có sản phẩm lý gởi</div>
+                }
+            </div>
+        </div>
+        <div class="contenttab">
+            <div class="innerTab">
+                @if (lstSecondHand.Count > 0)
+                {
+                    <ul>
+                        @foreach (var product in lstNew)
+                        {
+                            var photo = product.GetPhoto();
+                            <li>
+                                <div class="contentSale">
+                                    <div class="imgSale">
+                                        <a href="@urls.GetProduct(product)">
+                                            @if (photo != null)
+                                            {
+                                                <img src="~/Userfiles/Modules/Products/Thumb/@photo.FileName" alt="@photo.Title" />
+                                            }
+                                            else
+                                            {
+                                                @product.Name
+                                            }
+                                        </a>
+                                    </div>
+                                    <div class="textSale">
+                                        <p>@product.Name</p>
+                                        <p class="priceSale1">@product.GetPrice()</p>
+                                    </div>
+                                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div>Không có sản phẩm second hand</div>
+                }
+            </div>
+        </div>
+        <div class="contenttab">
+            <div class="innerTab">
+                @if (lstBestSale.Count > 0)
+                {
+                    <ul>
+                        @foreach (var product in lstNew)
+                        {
+                            var photo = product.GetPhoto();
+                            <li>
+                                <div class="contentSale">
+                                    <div class="imgSale">
+                                        <a href="@urls.GetProduct(product)">
+                                            @if (photo != null)
+                                            {
+                                                <img src="~/Userfiles/Modules/Products/Thumb/@photo.FileName" alt="@photo.Title" />
+                                            }
+                                            else
+                                            {
+                                                @product.Name
+                                            }
+                                        </a>
+                                    </div>
+                                    <div class="textSale">
+                                        <p>@product.Name</p>
+                                        <p class="priceSale1">@product.GetPrice()</p>
+                                    </div>
+                                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div>Không có sản phẩm bán chạy nhất</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Routing;
 using System.Web;
 using System.Web.Mvc;
+using ShipEquipment.Biz.Domain;
 
 namespace ShipEquipment.Core
 {
@@ -200,6 +201,15 @@ namespace ShipEquipment.Core
         {
             return GetUrl("Page_ComponentDesign", "Page", "Index", new { frontendpage = pageAlias });
         }
+        #endregion
+
+        #region product
+
+        public string GetProduct(Product product)
+        {
+            return string.Format("/san-pham/chi-tiet/{0}", product.Alias);
+        }
+
         #endregion
     }
 }

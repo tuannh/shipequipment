@@ -80,5 +80,20 @@ namespace ShipEquipment.Biz.Domain
         public virtual Category Category { get; set; }
 
         public virtual ICollection<ProductPhoto> Photos { get; set; }
+
+        public virtual ProductPhoto GetPhoto()
+        {
+            return Photos.FirstOrDefault();
+        }
+
+        public virtual string GetPrice()
+        {
+            return string.Format("{0:N0} VND", Price);
+        }
+
+        public virtual string GetSalePrice()
+        {
+            return string.Format("{0:N0} VND", SalePrice);
+        }
     }
 }
