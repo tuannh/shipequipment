@@ -31,7 +31,7 @@ namespace ShipEquipment.Core
 
         public string LoginUrl(string returnUrl = "")
         {
-            string url = "/common/login";
+            string url = "/common/user/login";
             Route route = RouteTable.Routes["Common_Login"] as Route;
 
             if (route != null)

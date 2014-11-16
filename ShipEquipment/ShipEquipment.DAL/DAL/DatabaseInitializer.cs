@@ -13,6 +13,7 @@ namespace ShipEquipment.Biz.DAL
         protected override void Seed(ShipEquipmentContext context)
         {
             InitNewsCategory(context);
+            InitAdminUser(context);
         }
 
         private void InitNewsCategory(ShipEquipmentContext context)
@@ -27,9 +28,38 @@ namespace ShipEquipment.Biz.DAL
             };
 
             cateList.ForEach(cate => context.NewsCategories.Add(cate));
-            
+
             context.SaveChanges();
 
+        }
+
+        private void InitAdminUser(ShipEquipmentContext context)
+        {
+            var admin = new User()
+            {
+                Username = "admin",
+                Password = "VhL+dONCCxu68w0qZiuRJuBJx5k=",
+                PasswordSalt = "/+jj1XHAkCKH8MGbXSmETg==",
+                Email = "nht257@yahoo.com",
+                IsAdmin = true,
+                CreatedDate = DateTime.Now,
+                Active = true
+            };
+            context.Users.Add(admin);
+
+            var webmaster = new User()
+            {
+                Username = "webmaster",
+                Password = "UR+o5v1LPhotXzvrCakeUAvpAzQ=",
+                PasswordSalt = "BbXwoC3mCjjwBFPWmDhNug==",
+                Email = "redhearthcm@gmail.com",
+                IsAdmin = true,
+                CreatedDate = DateTime.Now,
+                Active = true
+            };
+            context.Users.Add(webmaster);
+
+            context.SaveChanges();
         }
     }
 }

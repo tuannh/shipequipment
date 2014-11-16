@@ -147,6 +147,19 @@
     <Content Include="Images\admin\nav.png" />
     <Content Include="Images\admin\node.gif" />
     <Content Include="Images\admin\true.gif" />
+    <Content Include="Images\jquery\jquery.ui\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-icons_222222_256x240.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-icons_454545_256x240.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-icons_888888_256x240.png" />
+    <Content Include="Images\jquery\jquery.ui\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Images\thx\arrow-icon.png" />
     <Content Include="Images\thx\arrowCategory.png" />
     <Content Include="Images\thx\arrowCategoryHover.png" />
@@ -1211,7 +1224,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BannerController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
@@ -1223,7 +1235,6 @@
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserGuideController.cs" />
     <Compile Include="Areas\Admin\Controllers\VideoController.cs" />
-    <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Common\Controllers\UserController.cs" />
     <Compile Include="Areas\Common\Models\UserModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1314,6 +1325,9 @@
     <Content Include="utility\ckfinder\userfiles\.htaccess" />
     <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Common\Views\Shared\Layouts\Default.cshtml" />
+    <Content Include="Areas\Common\Views\User\Login.cshtml" />
+    <Content Include="Areas\Common\Views\User\ForgotPw.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1323,8 +1337,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Settings\" />
-    <Folder Include="Areas\Common\Views\Shared\" />
-    <Folder Include="Areas\Common\Views\User\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
