@@ -76,7 +76,7 @@ table.tb_table tbody th, table.tb_table tbody td {
     vertical-align: top;
     width: 16px;}
 	
-.inner_new .btnAdd, .inner_new .btnDelete, .inner_new  .btnCancel{background:url(/images/admin/bg-btn-chonmua.png) no-repeat left top; height:29px; width:81px; display:inline-block; line-height:29px; text-transform:uppercase; z-index:800; color:#fff;-moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s; text-decoration:none; border: none;}
+.inner_new .btnAdd, .inner_new .btnDelete, .inner_new  .btnCancel{background:url(/images/admin/bg-btn-chonmua.png) no-repeat left top; height:29px; width:88px; display:inline-block; line-height:29px; text-transform:uppercase; z-index:800; color:#fff;-moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s; text-decoration:none; border: none;}
 .inner_new .btnAdd:hover, .inner_new .btnCancel:hover{background:url(/images/admin/bg-btn-chonmua-hover.png) no-repeat left top; text-decoration:none}
 
 .headerL { margin-top: 10px; float: left; }
@@ -91,3 +91,16 @@ table.tb_table tbody th, table.tb_table tbody td {
 
 
 .col-md-10 {float: left;}
+
+/* login */
+.txt-small {
+    width: 260px !important;
+    height: 20px !important;
+    border: solid 1px #bebcbb !important;
+}
+
+.form-login .inner_new p label{
+margin-right: 10px;
+width: 96px;
+display: inline-block;
+}

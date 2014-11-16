@@ -25,6 +25,7 @@ using System.Net;
 using ShipEquipment.Core.Extensions;
 using System.Web.Mvc;
 using ShipEquipment.Biz.Domain;
+using ShipEquipment.Biz.DAL;
 
 namespace ShipEquipment.Core
 {
@@ -163,7 +164,24 @@ namespace ShipEquipment.Core
         {
             get
             {
-                return null;//  new User() { Username = "Anonymous", FullName = "Anonymous", DisplayName = "Anonymous" };
+                User user = null;
+                var userInfo = Context.User.Identity.Name;
+
+                if (!string.IsNullOrEmpty(userInfo))
+                {
+                    var strId = userInfo.Split('-')[0];
+                    var id = 0;
+                    int.TryParse(strId, out id);
+
+                    using(var db = new ShipEquipmentContext())
+                    {
+                        user = db.Users.Find(id);
+                    }
+                }
+
+                user = user ?? new User() { Username = "Anonymous" };
+
+                return user;
             }
         }
 

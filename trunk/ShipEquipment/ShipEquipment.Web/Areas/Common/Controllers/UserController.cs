@@ -15,6 +15,18 @@ namespace ShipEquipment.Web.Areas.Common.Controllers
     {
         private ShipEquipmentContext db = new ShipEquipmentContext();
 
+        public string Index()
+        {
+            RedirectToAction("Login");
+
+            return "";
+        }
+
+        public ActionResult Login()
+        {
+            return View(new UserModel());
+        }
+
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -30,9 +42,11 @@ namespace ShipEquipment.Web.Areas.Common.Controllers
 
                     if (user.Active && user.Password == password)
                     {
-                        FormsAuthentication.SetAuthCookie(user.Username, model.RememberMe);
+                        var userInfo = string.Format("{0}-{1}", user.Id, user.Username);
+                        FormsAuthentication.SetAuthCookie(userInfo, model.RememberMe);
 
-                        var returnUrl = SiteContext.Current.QueryString["returnurl"] ?? "";
+                        var key = SiteContext.Current.ReturnUrlQueryKey;
+                        var returnUrl = SiteContext.Current.QueryString[key] ?? "";
 
                         if (string.IsNullOrEmpty(returnUrl))
                             return Redirect(SiteUrls.Instance.DefaultAdminUrl());
@@ -51,7 +65,7 @@ namespace ShipEquipment.Web.Areas.Common.Controllers
             return View(model);
         }
 
-         [HttpGet]
+        [HttpGet]
         public ActionResult Logout()
         {
             var returnUrl = string.Empty;
@@ -66,6 +80,32 @@ namespace ShipEquipment.Web.Areas.Common.Controllers
             var url = SiteUrls.Instance.LoginUrl(returnUrl);
 
             return Redirect(Globals.ResolveUrl(url));
+        }
+
+        public ActionResult ForgotPw()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPw(string email)
+        {
+            if (!string.IsNullOrEmpty(email))
+            {
+
+            }
+            return View(email);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
