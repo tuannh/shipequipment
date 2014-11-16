@@ -1328,6 +1328,7 @@
     <Content Include="Areas\Common\Views\Shared\Layouts\Default.cshtml" />
     <Content Include="Areas\Common\Views\User\Login.cshtml" />
     <Content Include="Areas\Common\Views\User\ForgotPw.cshtml" />
+    <Content Include="Views\Shared\Controls\HomeProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

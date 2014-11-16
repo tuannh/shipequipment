@@ -14,6 +14,7 @@ using System.Web;
 using ShipEquipment.Core.BaseObjects;
 using ShipEquipment.Biz.DAL;
 using ShipEquipment.Biz.Domain;
+using ShipEquipment.Core.Enumerations;
 
 namespace ShipEquipment.Core.Extensions
 {
@@ -552,6 +553,30 @@ namespace ShipEquipment.Core.Extensions
             return new MvcHtmlString(result);
         }
 
+        public static MvcHtmlString HomeProduct(this SiteControl control, string viewName = "HomeProduct.cshtml")
+        {
+            var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
+            var db = new ShipEquipmentContext();
+
+            var products = db.Products.Where(a => a.Active).ToList();
+
+
+            var lstNew = products.Where(a => a.Type == (int)ProductType.New).ToList();
+            var lstConsignment = products.Where(a => a.Type == (int)ProductType.Consignment).ToList();
+            var lstSecondHand = products.Where(a => a.Type == (int)ProductType.SecondHand).ToList();
+            var lstBestSale = products.Where(a => a.Type == (int)ProductType.BestSale).ToList();
+
+            var obj = new Dictionary<ProductType, List<Product>>();
+            obj.Add(ProductType.New, lstNew);
+            obj.Add(ProductType.Consignment, lstConsignment);
+            obj.Add(ProductType.SecondHand, lstSecondHand);
+            obj.Add(ProductType.BestSale, lstBestSale);
+
+            var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, obj);
+
+            db.Dispose();
+            return new MvcHtmlString(result);
+        }
 
         #region render view
 
