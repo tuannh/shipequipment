@@ -16,6 +16,7 @@ namespace ShipEquipment.Biz.DAL
         public ShipEquipmentContext()
             : base("ShipEquipmentDb")
         {
+
         }
 
         public DbSet<Brand> Brands { get; set; }
