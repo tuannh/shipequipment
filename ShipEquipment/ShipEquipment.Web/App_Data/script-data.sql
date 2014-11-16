@@ -215,3 +215,12 @@ SET IDENTITY_INSERT dbo.NewsArticles OFF
 -- `dbo.ProductPhotoes`
 
 -- `dbo.Users`
+
+SET IDENTITY_INSERT [dbo].[Categories] ON 
+
+INSERT [dbo].[Categories] ([Id], [Alias], [Name], [Description], [Active], [ParentId], [DisplayOrder]) VALUES (1, N'category-1', N'Category 1', NULL, 1, NULL, 1000)
+INSERT [dbo].[Categories] ([Id], [Alias], [Name], [Description], [Active], [ParentId], [DisplayOrder]) VALUES (2, N'category-2', N'Category 2', NULL, 1, NULL, 1000)
+INSERT [dbo].[Categories] ([Id], [Alias], [Name], [Description], [Active], [ParentId], [DisplayOrder]) VALUES (3, N'category-3', N'Category 3', NULL, 1, NULL, 1000)
+INSERT [dbo].[Categories] ([Id], [Alias], [Name], [Description], [Active], [ParentId], [DisplayOrder]) VALUES (4, N'category-4', N'Category 4', NULL, 1, NULL, 1000)
+
+SET IDENTITY_INSERT [dbo].[Categories] OFF

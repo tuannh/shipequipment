@@ -46,7 +46,7 @@ table.tb_table tbody th, table.tb_table tbody td {
 .tb_table .tb_head td { color: #FFFFFF; font-weight: bold; text-align: center; }
 .tb_table .tb_head td input{margin-right:15px}
 .tb_table .tb_content { background: none repeat scroll 0 0 #FFFFFF; }
-.tb_table .tb_content:hover { background:#fe7e03; cursor:pointer }
+.tb_table .tb_content:hover { background: #FFD8B3; cursor:pointer }
 .tb_table .tb_content td {height: 28px; padding-left: 2px; padding-right: 2px; text-align: center; }
 .tb_table .tb_content:nth-child(2n+1) > td {
     background: #fafbfc;
@@ -56,7 +56,7 @@ table.tb_table tbody th, table.tb_table tbody td {
     padding-left: 2px;
     padding-right: 2px;
     text-align: center;}
-.tb_table .tb_content:nth-child(2n+1):hover> td{background:#fe7e03 !important; cursor:pointer }
+.tb_table .tb_content:nth-child(2n+1):hover> td{background: #FFD8B3 !important; cursor:pointer }
 
 .paging {width: 100%; text-align: right; margin-top: 15px;}
 .paging a { padding: 0 2px; text-decoration: none;}
