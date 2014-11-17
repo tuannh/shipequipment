@@ -77,6 +77,8 @@ INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, Meta
 INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (7, N'FAQs', N'FAQs', N'faqs', 0, 1, NULL, NULL, N'~/Views/Layouts/Faqs.cshtml')
 INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (8, N'Liên hệ', N'Liên hệ', N'lien-he', 0, 1, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
 INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (9, N'Sản phẩm đặc biệt & Khuyến mãi', N'Sản phẩm đặc biệt & Khuyến mãi', N'khuyen-mai', 0, 1, NULL, NULL, N'~/Views/Layouts/Promotion.cshtml')
+INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (10, N'Chi tiết sản phẩm', N'Chi tiêt sản phẩm', N'chi-tiet-san-pham', 0, 1, NULL, NULL, N'~/Views/Layouts/Product-Detail.cshtml')
+
 SET IDENTITY_INSERT dbo.Pages OFF
 
 

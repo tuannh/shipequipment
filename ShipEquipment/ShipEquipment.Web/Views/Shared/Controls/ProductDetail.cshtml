@@ -1,8 +1,36 @@
 ﻿@model ShipEquipment.Biz.Domain.Product
 
-@if (Model != null)
-{
-    <h1>@Model.Name</h1>
-    <div>@Model.Description</div>
-    <h3>@Model.Price</h3>
-}
+<p class="link"><a href="/san-pham/">Sản Phẩm</a><span>&gt;&gt;</span><a href="#" class="active">Chi tiết sản phẩm</a></p>
+<div class="inner-frm6">
+    <div class="detail">
+        @if (Model != null)
+        {
+            <h3>@Model.Name</h3>
+            <div class="img_detail">
+                <a href="#">
+
+                    @if (Model.GetPhoto() != null)
+                    {
+                        <img src="~/Userfiles/Modules/Products/Thumb/@Model.GetPhoto().FileName" a alt="@Model.Name" />
+                    }
+                    else
+                    {
+                        @Model.Name
+                    }
+                </a>
+
+            </div>
+            <div class="text-detail">
+                <h3>Chi tiết sản phẩm</h3>
+                <p>
+                    <b> - Tên sản phẩm:</b> @Model.Name<br />
+                    <b> - Giá:</b> @Model.GetPrice()<br />
+                    <b> -  Nhãn hiệu:</b> @Model.Brand.Name<br />
+                    <b> -  Made in:</b> @Model.MadeIn<br />
+                </p>
+                @Model.Description
+                <a href="#" class="btn_chonmua">CHỌN MUA</a>
+            </div>
+        }
+    </div>
+</div>

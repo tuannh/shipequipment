@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="BaseObjects\SiteControl.cs" />
     <Compile Include="Cache\SiteCache.cs" />
+    <Compile Include="Constant\ModuleFolders.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FrontController.cs" />

@@ -1,10 +1,33 @@
 ﻿@model IEnumerable<ShipEquipment.Biz.Domain.Product>
+@using ShipEquipment.Core.Constant
 
-<ul>
-    @foreach (var product in Model)
-    {
-        <li>
-            <a href="#">@product.Name</a>
-        </li>
-    }
-</ul>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <ul>
+        @foreach (var product in Model)
+        {
+            <li>
+                <div class="content_products">
+                    <div class="img_content">
+                        <a href="/chi-tiet-sp/@product.Alias">
+                            @if (product.GetPhoto() != null)
+                            {
+                                <img src="~/Userfiles/Modules/Products/Thumb/@product.GetPhoto().FileName" alt="@product.Name" />
+                            }
+                            else
+                            {
+                                @product.Name
+                            }
+                        </a>
+                    </div>
+                    <div class="text_infor">
+                        <p>@product.ShortDescription</p>
+                        <p class="price">@product.GetPrice()</p>
+                    </div>
+                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
+                </div>
+            </li>
+        }
+    </ul>
+}
