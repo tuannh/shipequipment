@@ -29,14 +29,7 @@
             <div class="content">
                 <div class="colLeft">
                     <div class="frm3">
-                        @if (ViewBag.IsNewsList)
-                        {
-                            @Html.Controls().NewsList()
-                        }
-                        else
-                        {
-                            @Html.Controls().NewsDetail()
-                        }
+                        @Html.Controls().ProductDetail()
                     </div>
                 </div>
                 <aside class="colRight">

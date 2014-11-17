@@ -399,3 +399,10 @@ footer .design_by .face-book{ position:absolute; right:0; top:0px}
    
 }
 .data-table tr.rowTotal td{ text-align:right; font-size:16px; font-weight:bold; background:#f9f9f9; font-style:italic}
+.info-detail{ padding:20px 10% 40px; overflow:hidden}
+.info-detail p{ margin-bottom:15px; float:left; width:100%}
+.info-detail p label{ width:30%; float:left; text-align:right; margin-right:10px;height:30px; line-height:30px}
+.info-detail p input{ width:62%; float:left; height:22px; line-height:22px}
+.info-detail p select{ width:63%; float:left; height:30px; line-height:30px}
+.info-detail p a.btnDatHang{ float:right; display:block;background:#fd7100; height:29px; border:none; padding:0 20px; color:#fff; cursor:pointer; line-height:29px; text-decoration:none; margin-right:5.5%}
+.info-detail p a.btnDatHang:hover{background:#000; text-decoration:none}

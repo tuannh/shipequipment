@@ -254,6 +254,7 @@
     <Content Include="Scripts\jquery\jquery-ui.js" />
     <Content Include="Scripts\jquery\jquery.tmpl.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pages\product.js" />
     <Content Include="Scripts\pages\news.js" />
     <Content Include="Scripts\pages\index.js" />
     <Content Include="Scripts\product.js" />
@@ -1329,6 +1330,8 @@
     <Content Include="Areas\Common\Views\User\Login.cshtml" />
     <Content Include="Areas\Common\Views\User\ForgotPw.cshtml" />
     <Content Include="Views\Shared\Controls\HomeProduct.cshtml" />
+    <Content Include="Views\Layouts\Product.cshtml" />
+    <Content Include="Views\Layouts\Product-Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

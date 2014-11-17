@@ -1,6 +1,18 @@
-﻿<div class="frm">
+﻿@using ShipEquipment.Core
+
+@{
+    var pageAlias = "";
+    if (SiteContext.Current.RouteData.Values["FrontEndPage"] != null)
+    {
+        pageAlias = SiteContext.Current.RouteData.Values["FrontEndPage"].ToString();
+    }
+
+    var cssClass = string.Compare(pageAlias, "san-pham", true) == 0 ? "mheight" : "";
+}
+
+<div class="frm">
     <h2><img src="/images/thx/icon-shop-card.png" alt="" />giỏ hàng</h2>
-    <div class="inner-shop-card">
+    <div class="inner-shop-card @cssClass">
         <p>Hiện có <span>0</span> sản phẩm</p>
         <p class="total">Tổng cộng <span>0</span> vnđ</p>
     </div>
