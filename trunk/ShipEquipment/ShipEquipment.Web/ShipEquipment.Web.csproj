@@ -1278,7 +1278,6 @@
     <Content Include="Views\Shared\Controls\Slider.cshtml" />
     <Content Include="Views\Shared\Controls\web.config" />
     <Content Include="Views\Shared\Controls\MenuNavigator.cshtml" />
-    <Content Include="Views\Layouts\News.cshtml" />
     <Content Include="Views\Layouts\Content.cshtml" />
     <Content Include="Views\Shared\Controls\CategoryList.cshtml" />
     <Content Include="Views\Shared\Controls\ProductList.cshtml" />
@@ -1316,9 +1315,7 @@
     <Content Include="Views\Shared\Partial\MiniShopcart.cshtml" />
     <Content Include="Views\Shared\Controls\NewsList.cshtml" />
     <Content Include="Views\Shared\Controls\NewsDetail.cshtml" />
-    <Content Include="Views\Layouts\Faqs.cshtml" />
     <Content Include="Views\Shared\Controls\FaqList.cshtml" />
-    <Content Include="Views\Layouts\UserGuide.cshtml" />
     <Content Include="Views\Shared\Controls\UserGuide.cshtml" />
     <Content Include="Views\Shared\Controls\UserGuideDetail.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Create.cshtml" />
@@ -1345,7 +1342,7 @@
     <Content Include="Areas\Common\Views\User\ForgotPw.cshtml" />
     <Content Include="Views\Shared\Controls\HomeProduct.cshtml" />
     <Content Include="Views\Layouts\Product.cshtml" />
-    <Content Include="Views\Layouts\Product-Detail.cshtml" />
+    <Content Include="Views\Home\PageContent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

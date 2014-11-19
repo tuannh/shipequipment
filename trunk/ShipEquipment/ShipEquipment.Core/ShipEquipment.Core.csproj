@@ -119,6 +119,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FrontController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Enumerations\PageType.cs" />
     <Compile Include="Enumerations\ProductType.cs" />
     <Compile Include="Exception\SiteException.cs" />
     <Compile Include="Exception\SiteExceptionType.cs" />

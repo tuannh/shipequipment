@@ -1,4 +1,5 @@
-﻿using ShipEquipment.Core;
+﻿using ShipEquipment.Biz.DAL;
+using ShipEquipment.Core;
 using ShipEquipment.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -25,31 +26,24 @@ namespace ShipEquipment.Web.Controllers
             {
                 lst = new List<MyCart>();
                 session["Cart"] = lst;
-
-                var cart = new MyCart()
-                {
-                    ProductId = productId,
-                    Quanity = 1
-                };
-
-                msg = cart.Quanity.ToString();
-
-                lst.Add(cart);
             }
-            else
+
+            var cart = lst.FirstOrDefault(a => a.ProductId == productId);
+            if (cart == null)
             {
-                var cart = lst.FirstOrDefault(a => a.ProductId == productId);
-                if (cart == null)
+                var db = new ShipEquipmentContext();
+                var id = int.Parse(productId);
+
+                var product = db.Products.Find(id);
+                if (product != null)
                 {
-                    cart = new MyCart() { ProductId = productId };
+                    cart = new MyCart(product);
                     lst.Add(cart);
                 }
-
-                cart.Quanity++;
-                msg = cart.Quanity.ToString();
             }
 
-            total = lst.Count;
+            cart.Quatity++;
+            total = lst.Sum(a => a.Quatity);
 
             return Json(new { error = 0, message = msg, total = total }); ;
         }
