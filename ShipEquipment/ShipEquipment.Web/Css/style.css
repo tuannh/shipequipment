@@ -406,3 +406,7 @@ footer .design_by .face-book{ position:absolute; right:0; top:0px}
 .info-detail p select{ width:63%; float:left; height:30px; line-height:30px}
 .info-detail p a.btnDatHang{ float:right; display:block;background:#fd7100; height:29px; border:none; padding:0 20px; color:#fff; cursor:pointer; line-height:29px; text-decoration:none; margin-right:5.5%}
 .info-detail p a.btnDatHang:hover{background:#000; text-decoration:none}
+
+.right-cart-table {width: 100%; text-align: left; border-bottom: 1px dashed #aaaaaa; margin-bottom: 10px; padding-bottom: 10px;}
+.right-cart-header {font-weight: bold; border-bottom: 1px dashed #aaaaaa;}
+.right-cart-num {text-align: right;}

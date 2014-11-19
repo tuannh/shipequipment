@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using ShipEquipment.Core.Enumerations
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>ViewBag.Title</title>
+    <title>@ViewBag.Title</title>
     @Html.CssBundle("~/css/news")
     @Html.JsBundle("~/js/default")
 </head>
@@ -29,8 +30,7 @@
             <div class="content">
                 <div class="colLeft">
                     <div class="frm3">
-                        @{ var pageAlias = ViewBag.PageAlias as string; }
-                        @Html.Controls().Content(pageAlias)
+                        @RenderBody()
                     </div>
                 </div>
                 <aside class="colRight">
@@ -51,7 +51,7 @@
         </div>
 
     </div>
-    @RenderBody()
+
     @Html.JsBundle("~/js/page/news")
 </body>
 </html>

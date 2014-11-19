@@ -6,7 +6,7 @@
 
 	Copyright © 2009 Ruizata Project. All Rights Reserved.
 
-	Creation Date:2014-11-09 10:46:06
+	Creation Date:2014-11-20 12:24:36
 	Database:`ShipEquipment` 
 */
 
@@ -32,8 +32,25 @@ SET IDENTITY_INSERT dbo.Brands OFF
 
 
 -- `dbo.Categories`
+SET IDENTITY_INSERT dbo.Categories ON
+
+ALTER TABLE dbo.Categories NOCHECK CONSTRAINT ALL
+
+INSERT dbo.Categories (Id, [Alias], Name, Description, Active, ParentId, DisplayOrder) VALUES (1, N'category-1', N'Category 1', NULL, 1, NULL, 1000)
+INSERT dbo.Categories (Id, [Alias], Name, Description, Active, ParentId, DisplayOrder) VALUES (2, N'category-2', N'Category 2', NULL, 1, NULL, 1000)
+INSERT dbo.Categories (Id, [Alias], Name, Description, Active, ParentId, DisplayOrder) VALUES (3, N'category-3', N'Category 3', NULL, 1, NULL, 1000)
+INSERT dbo.Categories (Id, [Alias], Name, Description, Active, ParentId, DisplayOrder) VALUES (4, N'category-4', N'Category 4', NULL, 1, NULL, 1000)
+ALTER TABLE dbo.Categories CHECK CONSTRAINT ALL
+
+SET IDENTITY_INSERT dbo.Categories OFF
+
 
 -- `dbo.Contents`
+SET IDENTITY_INSERT dbo.Contents ON
+
+INSERT dbo.Contents (Id, Name, [Alias], [Value], PageAlias) VALUES (1, N'Liên hệ', N'Liên hệ', N'liên hệ theo số phone', N'lien-he')
+SET IDENTITY_INSERT dbo.Contents OFF
+
 
 -- `dbo.FAQs`
 SET IDENTITY_INSERT dbo.FAQs ON
@@ -70,15 +87,16 @@ SET IDENTITY_INSERT dbo.Pages ON
 
 INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (1, N'Trang chủ', N'Trang chủ', N'index', 1, 1, NULL, NULL, N'~/Views/Layouts/Index.cshtml')
 INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (2, N'Sản phẩm', N'Sản phẩm', N'san-pham', 0, 1, NULL, NULL, N'~/Views/Layouts/Product.cshtml')
-INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (3, N'Tin tức', N'Tin tức', N'tin/tin-tuc', 0, 1, NULL, NULL, N'~/Views/Layouts/News.cshtml')
+INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (3, N'Tin tức', N'Tin tức', N'tin/tin-tuc', 0, 1, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
 INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (4, N'Câu thi', N'Câu thi', N'cau-thi', 0, 0, NULL, NULL, NULL)
-INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (5, N'Hình ảnh & clip', N'Hình ảnh & clip', N'hinh-anh-clip', 0, 1, NULL, NULL, N'~/Views/Layouts/Photo.cshtml')
-INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (6, N'Hướng dẫn', N'Hướng dẫn', N'huong-dan', 0, 1, NULL, NULL, N'~/Views/Layouts/UserGuide.cshtml')
-INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (7, N'FAQs', N'FAQs', N'faqs', 0, 1, NULL, NULL, N'~/Views/Layouts/Faqs.cshtml')
+INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (5, N'Hình ảnh & clip', N'Hình ảnh & clip', N'hinh-anh-clip', 0, 1, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
+INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (6, N'Hướng dẫn', N'Hướng dẫn', N'huong-dan', 0, 1, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
+INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (7, N'FAQs', N'FAQs', N'faqs', 0, 1, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
 INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (8, N'Liên hệ', N'Liên hệ', N'lien-he', 0, 1, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
-INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (9, N'Sản phẩm đặc biệt & Khuyến mãi', N'Sản phẩm đặc biệt & Khuyến mãi', N'khuyen-mai', 0, 1, NULL, NULL, N'~/Views/Layouts/Promotion.cshtml')
-INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (10, N'Chi tiết sản phẩm', N'Chi tiêt sản phẩm', N'chi-tiet-san-pham', 0, 1, NULL, NULL, N'~/Views/Layouts/Product-Detail.cshtml')
-
+INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (9, N'Sản phẩm đặc biệt & Khuyến mãi', N'Sản phẩm đặc biệt & Khuyến mãi', N'khuyen-mai', 0, 1, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
+INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (10, N'Chi tiết sản phẩm', N'Chi tiêt sản phẩm', N'chi-tiet-san-pham', 0, 0, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
+INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (11, N'Giỏ hàng', N'Giỏ hàng', N'gio-hang', 0, 0, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
+INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (12, N'Chi tiết hưỡng dân', N'Chi tiết hướng dẫn', N'chi-tiet-huong-dan', 0, 0, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
 SET IDENTITY_INSERT dbo.Pages OFF
 
 
@@ -87,60 +105,60 @@ SET IDENTITY_INSERT dbo.Pages OFF
 -- `dbo.UserGuides`
 SET IDENTITY_INSERT dbo.UserGuides ON
 
-INSERT dbo.UserGuides (Id, [Alias], Name, Summary, Content, Active, DisplayOrder, Photo) VALUES (1, N'huong-dan-mua-hang', N'Hướng Dẫn Mua Hàng', 'CÁC BƯỚC ĐẶT MUA HÀNG QUA INTERNET
-CÁC BƯỚC ĐẶT MUA HÀNG QUA online', '<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><strong><u><span style="font-size: 14px;">1.&nbsp;C&Aacute;C BƯỚC ĐẶT MUA H&Agrave;NG QUA INTERNET</span></u></strong></span></span></p>
+INSERT dbo.UserGuides (Id, [Alias], Name, Summary, Content, Active, DisplayOrder, Photo) VALUES (1, N'huong-dan-mua-hang', N'Hướng Dẫn Mua Hàng', 'CÁC BU?C Ð?T MUA HÀNG QUA INTERNET
+CÁC BU?C Ð?T MUA HÀNG QUA online', '<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><strong><u><span style="font-size: 14px;">1.&nbsp;C&Aacute;C BU?C Ð?T MUA H&Agrave;NG QUA INTERNET</span></u></strong></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="background-color: rgb(255, 255, 255);"><span style="color: rgb(255, 0, 0);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Lưu &yacute;</span></span></span></span></strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">: Để đặt mua h&agrave;ng qua Internet, bạn phải đăng k&yacute; th&agrave;nh vi&ecirc;n của Website Đồ C&acirc;u Quỳnh Chi.</span></span></span></p>
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="background-color: rgb(255, 255, 255);"><span style="color: rgb(255, 0, 0);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Luu &yacute;</span></span></span></span></strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">: Ð? d?t mua h&agrave;ng qua Internet, b?n ph?i dang k&yacute; th&agrave;nh vi&ecirc;n c?a Website Ð? C&acirc;u Qu?nh Chi.</span></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Bước 1</span></span></span></strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">: Chọn sản phẩm bạn quan t&acirc;m để xem c&aacute;c th&ocirc;ng tin về sản phẩm.</span></span></span></p>
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Bu?c 1</span></span></span></strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">: Ch?n s?n ph?m b?n quan t&acirc;m d? xem c&aacute;c th&ocirc;ng tin v? s?n ph?m.</span></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Bước 2</span></span></span></strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">: Khi muốn mua sản phẩm n&agrave;o nhấn chuột v&agrave;o n&uacute;t &ldquo;Mua h&agrave;ng&rdquo;, hệ thống sẽ đưa sản phẩm bạn chọn v&agrave;o giỏ h&agrave;ng. Bạn c&oacute; thể tăng số lượng cho sản phẩm vừa chọn hoặc tiếp tục chọn th&ecirc;m sản phẩm kh&aacute;c.</span></span></span></p>
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Bu?c 2</span></span></span></strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">: Khi mu?n mua s?n ph?m n&agrave;o nh?n chu?t v&agrave;o n&uacute;t &ldquo;Mua h&agrave;ng&rdquo;, h? th?ng s? dua s?n ph?m b?n ch?n v&agrave;o gi? h&agrave;ng. B?n c&oacute; th? tang s? lu?ng cho s?n ph?m v?a ch?n ho?c ti?p t?c ch?n th&ecirc;m s?n ph?m kh&aacute;c.</span></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Bước 3</span></span></span></strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">: Khi đ&atilde; chọn đủ h&agrave;ng, vui l&ograve;ng điền c&aacute;c th&ocirc;ng tin của bạn để ch&uacute;ng t&ocirc;i tiện li&ecirc;n hệ.</span><br />
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Bu?c 3</span></span></span></strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">: Khi d&atilde; ch?n d? h&agrave;ng, vui l&ograve;ng di?n c&aacute;c th&ocirc;ng tin c?a b?n d? ch&uacute;ng t&ocirc;i ti?n li&ecirc;n h?.</span><br />
 <br />
-<strong><span style="color: rgb(255, 0, 0);"><span style="font-size: 14px;">Lưu &yacute;</span></span></strong><span style="color: rgb(255, 0, 0);"><span style="font-size: 14px;">:&nbsp;<em>Một số mặt h&agrave;ng c&oacute; nhiều độ d&agrave;i, k&iacute;ch cỡ, hay m&agrave;u sắc&nbsp;kh&aacute;c nhau, bạn vui l&ograve;ng ghi r&otilde; chi tiết của sản phẩm v&agrave;o mục &ldquo;Th&ocirc;ng tin chi tiết về sản phẩm cần mua&rdquo;</em>.</span></span></span></span></p>
+<strong><span style="color: rgb(255, 0, 0);"><span style="font-size: 14px;">Luu &yacute;</span></span></strong><span style="color: rgb(255, 0, 0);"><span style="font-size: 14px;">:&nbsp;<em>M?t s? m?t h&agrave;ng c&oacute; nhi?u d? d&agrave;i, k&iacute;ch c?, hay m&agrave;u s?c&nbsp;kh&aacute;c nhau, b?n vui l&ograve;ng ghi r&otilde; chi ti?t c?a s?n ph?m v&agrave;o m?c &ldquo;Th&ocirc;ng tin chi ti?t v? s?n ph?m c?n mua&rdquo;</em>.</span></span></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Bước 4</span></span></span></strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">: Nhấn n&uacute;t &ldquo;Thanh To&aacute;n&rdquo; để gửi đơn h&agrave;ng. Ch&uacute;ng t&ocirc;i sẽ trả lời qua email hoặc trực tiếp qua điện thoại ngay sau khi nhận được th&ocirc;ng tin của bạn để x&aacute;c nhận đơn đặt h&agrave;ng.</span></span></span></p>
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Bu?c 4</span></span></span></strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">: Nh?n n&uacute;t &ldquo;Thanh To&aacute;n&rdquo; d? g?i don h&agrave;ng. Ch&uacute;ng t&ocirc;i s? tr? l?i qua email ho?c tr?c ti?p qua di?n tho?i ngay sau khi nh?n du?c th&ocirc;ng tin c?a b?n d? x&aacute;c nh?n don d?t h&agrave;ng.</span></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Thời gian kiểm tra v&agrave; x&aacute;c nhận đơn h&agrave;ng v&agrave;o c&aacute;c buổi s&aacute;ng trong tuần ( tất cả c&aacute;c đơn h&agrave;ng gửi đến v&agrave;o buổi chiều sẽ được kiểm tra v&agrave; x&aacute;c nhận v&agrave;o s&aacute;ng ng&agrave;y h&ocirc;m sau ).</span><br />
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Th?i gian ki?m tra v&agrave; x&aacute;c nh?n don h&agrave;ng v&agrave;o c&aacute;c bu?i s&aacute;ng trong tu?n ( t?t c? c&aacute;c don h&agrave;ng g?i d?n v&agrave;o bu?i chi?u s? du?c ki?m tra v&agrave; x&aacute;c nh?n v&agrave;o s&aacute;ng ng&agrave;y h&ocirc;m sau ).</span><br />
 <br />
 <br />
-<strong><u><span style="font-size: 14px;">2.&nbsp;C&Aacute;CH THỨC GIAO H&Agrave;NG</span></u></strong></span></span></p>
+<strong><u><span style="font-size: 14px;">2.&nbsp;C&Aacute;CH TH?C GIAO H&Agrave;NG</span></u></strong></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Gi&aacute; tiền của sản phẩm l&agrave; gi&aacute; giao h&agrave;ng tại cửa h&agrave;ng Đồ C&acirc;u Quỳnh Chi.</span></span></span></p>
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Gi&aacute; ti?n c?a s?n ph?m l&agrave; gi&aacute; giao h&agrave;ng t?i c?a h&agrave;ng Ð? C&acirc;u Qu?nh Chi.</span></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Ch&uacute;ng t&ocirc;i giao h&agrave;ng miễn ph&iacute; vận chuyển với điều kiện sau:<br />
-Đơn h&agrave;ng trị gi&aacute; tr&ecirc;n 300,000VNĐ v&agrave; khoảng c&aacute;ch giao h&agrave;ng dưới 5km t&iacute;nh từ trung t&acirc;m th&agrave;nh phố H&agrave; Nội.</span></span></span></p>
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Ch&uacute;ng t&ocirc;i giao h&agrave;ng mi?n ph&iacute; v?n chuy?n v?i di?u ki?n sau:<br />
+Ðon h&agrave;ng tr? gi&aacute; tr&ecirc;n 300,000VNÐ v&agrave; kho?ng c&aacute;ch giao h&agrave;ng du?i 5km t&iacute;nh t? trung t&acirc;m th&agrave;nh ph? H&agrave; N?i.</span></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Ngo&agrave;i điều kiện tr&ecirc;n, kh&aacute;ch h&agrave;ng thanh to&aacute;n th&ecirc;m chi ph&iacute; vận chuyển.</span></span></span></p>
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Ngo&agrave;i di?u ki?n tr&ecirc;n, kh&aacute;ch h&agrave;ng thanh to&aacute;n th&ecirc;m chi ph&iacute; v?n chuy?n.</span></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(255, 0, 0);"><span style="font-family: Verdana; font-size: 14px;">H&agrave;ng mua rồi kh&ocirc;ng ho&agrave;n trả lại được.</span></span></p>
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(255, 0, 0);"><span style="font-family: Verdana; font-size: 14px;">H&agrave;ng mua r?i kh&ocirc;ng ho&agrave;n tr? l?i du?c.</span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><strong><u><span style="font-size: 14px;">3.&nbsp;&nbsp; PHƯƠNG THỨC THANH TO&Aacute;N &ndash; ĐỊA CHỈ NG&Acirc;N H&Agrave;NG</span></u></strong></span></span></p>
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><strong><u><span style="font-size: 14px;">3.&nbsp;&nbsp; PHUONG TH?C THANH TO&Aacute;N &ndash; Ð?A CH? NG&Acirc;N H&Agrave;NG</span></u></strong></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">A.&nbsp;Thanh to&aacute;n trực tiếp: Với khoảng c&aacute;ch giao h&agrave;ng dưới 5km t&iacute;nh từ Cửa H&agrave;ng Đồ C&acirc;u Quỳnh Chi, qu&yacute; kh&aacute;ch c&oacute; thể thanh to&aacute;n trực tiếp khi nhận h&agrave;ng.<br />
-B.&nbsp;Thanh to&aacute;n qua t&agrave;i khoản ng&acirc;n h&agrave;ng: Qu&yacute; kh&aacute;ch c&oacute; thể &nbsp;thanh to&aacute;n qua t&agrave;i khoản ng&acirc;n h&agrave;ng của Đồ C&acirc;u Quỳnh Chi dưới đ&acirc;y.<br />
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">A.&nbsp;Thanh to&aacute;n tr?c ti?p: V?i kho?ng c&aacute;ch giao h&agrave;ng du?i 5km t&iacute;nh t? C?a H&agrave;ng Ð? C&acirc;u Qu?nh Chi, qu&yacute; kh&aacute;ch c&oacute; th? thanh to&aacute;n tr?c ti?p khi nh?n h&agrave;ng.<br />
+B.&nbsp;Thanh to&aacute;n qua t&agrave;i kho?n ng&acirc;n h&agrave;ng: Qu&yacute; kh&aacute;ch c&oacute; th? &nbsp;thanh to&aacute;n qua t&agrave;i kho?n ng&acirc;n h&agrave;ng c?a Ð? C&acirc;u Qu?nh Chi du?i d&acirc;y.<br />
 <br />
-<span style="color: rgb(255, 0, 0);"><strong>. Ng&acirc;n H&agrave;ng N&ocirc;ng Nghiệp v&agrave; Ph&aacute;t Triển N&ocirc;ng Th&ocirc;n Ho&agrave;n Kiếm ( Agribank Ho&agrave;n Kiếm )<br />
-. Chủ t&agrave;i khoản: Cung B&igrave;nh Minh<br />
-. Số t&agrave;i khoản: 1502205129895</strong></span></span></span></span></p>', 1, 1000, N'1-attention_shutterstock_600x553.jpg')
-INSERT dbo.UserGuides (Id, [Alias], Name, Summary, Content, Active, DisplayOrder, Photo) VALUES (2, N'noi-quy-can-thu', N'Nội quy CẦN THỦ', 'Chuyên mục “Góc Cần Thủ” do thành viên sử dụng tài khoản tại Đồ Câu Quỳnh Chi đăng tải, nhằm chia sẻ thông tin, kiến thức, những câu chuyện, cảm xúc, quan điểm riêng của “Cần thủ”. ĐCQC không chịu bất cứ trách nhiệm về bản quyền và nghĩa vụ pháp lý của các nội dung này.', '<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: center; background-color: rgb(222, 194, 131);"><span style="color: rgb(255, 0, 0);"><span style="font-size: 16px;"><strong><span style="font-family: Verdana;">NỘI QUY THAM GIA CHUY&Ecirc;N MỤC G&Oacute;C CẦN THỦ</span></strong></span></span></p>
+<span style="color: rgb(255, 0, 0);"><strong>. Ng&acirc;n H&agrave;ng N&ocirc;ng Nghi?p v&agrave; Ph&aacute;t Tri?n N&ocirc;ng Th&ocirc;n Ho&agrave;n Ki?m ( Agribank Ho&agrave;n Ki?m )<br />
+. Ch? t&agrave;i kho?n: Cung B&igrave;nh Minh<br />
+. S? t&agrave;i kho?n: 1502205129895</strong></span></span></span></span></p>', 1, 1000, N'1-attention_shutterstock_600x553.jpg')
+INSERT dbo.UserGuides (Id, [Alias], Name, Summary, Content, Active, DisplayOrder, Photo) VALUES (2, N'noi-quy-can-thu', N'Nội quy CẦN THỦ', 'Chuyên m?c “Góc C?n Th?” do thành viên s? d?ng tài kho?n t?i Ð? Câu Qu?nh Chi dang t?i, nh?m chia s? thông tin, ki?n th?c, nh?ng câu chuy?n, c?m xúc, quan di?m riêng c?a “C?n th?”. ÐCQC không ch?u b?t c? trách nhi?m v? b?n quy?n và nghia v? pháp lý c?a các n?i dung này.', '<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: center; background-color: rgb(222, 194, 131);"><span style="color: rgb(255, 0, 0);"><span style="font-size: 16px;"><strong><span style="font-family: Verdana;">N?I QUY THAM GIA CHUY&Ecirc;N M?C G&Oacute;C C?N TH?</span></strong></span></span></p>
 
-<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Chuy&ecirc;n mục &ldquo;<span style="color: rgb(51, 102, 255);">G&oacute;c Cần Thủ</span>&rdquo; do th&agrave;nh vi&ecirc;n sử dụng t&agrave;i khoản tại Đồ C&acirc;u Quỳnh Chi đăng tải, nhằm chia sẻ th&ocirc;ng tin, kiến thức, những c&acirc;u chuyện, cảm x&uacute;c, quan điểm ri&ecirc;ng của &ldquo;Cần thủ&rdquo;. Đồ C&acirc;u Quỳnh Chi kh&ocirc;ng chịu bất cứ tr&aacute;ch nhiệm về bản quyền v&agrave; nghĩa vụ ph&aacute;p l&yacute; của c&aacute;c nội dung&nbsp;n&agrave;y.<br />
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; color: rgb(0, 0, 0); text-align: justify; background-color: rgb(222, 194, 131);"><strong><span style="color: rgb(51, 153, 102);"><span style="font-family: Verdana;"><span style="font-size: 14px;">Chuy&ecirc;n m?c &ldquo;<span style="color: rgb(51, 102, 255);">G&oacute;c C?n Th?</span>&rdquo; do th&agrave;nh vi&ecirc;n s? d?ng t&agrave;i kho?n t?i Ð? C&acirc;u Qu?nh Chi dang t?i, nh?m chia s? th&ocirc;ng tin, ki?n th?c, nh?ng c&acirc;u chuy?n, c?m x&uacute;c, quan di?m ri&ecirc;ng c?a &ldquo;C?n th?&rdquo;. Ð? C&acirc;u Qu?nh Chi kh&ocirc;ng ch?u b?t c? tr&aacute;ch nhi?m v? b?n quy?n v&agrave; nghia v? ph&aacute;p l&yacute; c?a c&aacute;c n?i dung&nbsp;n&agrave;y.<br />
 <br />
-Tất cả c&aacute;c nội dung tham gia chuy&ecirc;n mục y&ecirc;u cầu:<br />
+T?t c? c&aacute;c n?i dung tham gia chuy&ecirc;n m?c y&ecirc;u c?u:<br />
 <br />
-<span style="color: rgb(255, 0, 0);">1.&nbsp;Kh&ocirc;ng vi phạm ph&aacute;p luật nước CHXHCN Việt Nam.<br />
-2.&nbsp;Kh&ocirc;ng li&ecirc;n quan đến ch&iacute;nh trị, t&ocirc;n gi&aacute;o.<br />
-3.&nbsp;Kh&ocirc;ng tr&aacute;i với thuần phong, mỹ tục Việt Nam.<br />
-4.&nbsp;Kh&ocirc;ng đả k&iacute;ch, lăng mạ người kh&aacute;c.<br />
-5.&nbsp;Kh&ocirc;ng quấy rối, g&acirc;y phiền nhiễu, hoặc đe dọa đến sự an to&agrave;n v&agrave; t&agrave;i sản của người kh&aacute;c.<br />
-6.&nbsp;Kh&ocirc;ng vu khống, n&oacute;i sai sự thật, l&agrave;m mất danh dự, hoặc mạo nhận một ai đ&oacute;.<br />
-7.&nbsp;Kh&ocirc;ng đăng c&aacute;c quảng c&aacute;o kinh doanh thương mại.<br />
-8.&nbsp;T&ocirc;n trọng những người c&ugrave;ng tham gia.<br />
-9.&nbsp;Tất cả c&aacute;c đoạn ng&ocirc;n ngữ m&aacute;y t&iacute;nh v&agrave; đường link đều bắt buộc kiểm duyệt.</span><br />
+<span style="color: rgb(255, 0, 0);">1.&nbsp;Kh&ocirc;ng vi ph?m ph&aacute;p lu?t nu?c CHXHCN Vi?t Nam.<br />
+2.&nbsp;Kh&ocirc;ng li&ecirc;n quan d?n ch&iacute;nh tr?, t&ocirc;n gi&aacute;o.<br />
+3.&nbsp;Kh&ocirc;ng tr&aacute;i v?i thu?n phong, m? t?c Vi?t Nam.<br />
+4.&nbsp;Kh&ocirc;ng d? k&iacute;ch, lang m? ngu?i kh&aacute;c.<br />
+5.&nbsp;Kh&ocirc;ng qu?y r?i, g&acirc;y phi?n nhi?u, ho?c de d?a d?n s? an to&agrave;n v&agrave; t&agrave;i s?n c?a ngu?i kh&aacute;c.<br />
+6.&nbsp;Kh&ocirc;ng vu kh?ng, n&oacute;i sai s? th?t, l&agrave;m m?t danh d?, ho?c m?o nh?n m?t ai d&oacute;.<br />
+7.&nbsp;Kh&ocirc;ng dang c&aacute;c qu?ng c&aacute;o kinh doanh thuong m?i.<br />
+8.&nbsp;T&ocirc;n tr?ng nh?ng ngu?i c&ugrave;ng tham gia.<br />
+9.&nbsp;T?t c? c&aacute;c do?n ng&ocirc;n ng? m&aacute;y t&iacute;nh v&agrave; du?ng link d?u b?t bu?c ki?m duy?t.</span><br />
 <br />
-Đồ C&acirc;u Quỳnh Chi c&oacute; quyền từ chối hoặc x&oacute;a bỏ bất cứ nội dung n&agrave;o kh&ocirc;ng ph&ugrave; hợp với c&aacute;c quy định n&oacute;i tr&ecirc;n, đồng thời c&oacute; thể đ&igrave;nh chỉ hay kh&oacute;a ho&agrave;n to&agrave;n t&agrave;i khoản của nội dung đ&oacute; nếu ph&aacute;t hiện vi phạm.</span></span></span></strong></p>', 1, 1000, N'2-new2.jpg')
+Ð? C&acirc;u Qu?nh Chi c&oacute; quy?n t? ch?i ho?c x&oacute;a b? b?t c? n?i dung n&agrave;o kh&ocirc;ng ph&ugrave; h?p v?i c&aacute;c quy d?nh n&oacute;i tr&ecirc;n, d?ng th?i c&oacute; th? d&igrave;nh ch? hay kh&oacute;a ho&agrave;n to&agrave;n t&agrave;i kho?n c?a n?i dung d&oacute; n?u ph&aacute;t hi?n vi ph?m.</span></span></span></strong></p>', 1, 1000, N'2-new2.jpg')
 SET IDENTITY_INSERT dbo.UserGuides OFF
 
 
@@ -213,16 +231,26 @@ SET IDENTITY_INSERT dbo.NewsArticles OFF
 
 
 -- `dbo.Products`
+SET IDENTITY_INSERT dbo.Products ON
+
+INSERT dbo.Products (Id, Name, [Alias], Code, ShortDescription, Description, Active, Price, SalePrice, MadeIn, DislayOrder, CategoryId, BrandId, Type) VALUES (1, N'Sản phẩm 1', N'san-pham-1', N'SP1', N'Sản phẩm 1 mô tả', N'Sản phẩm 1 m&ocirc; tả Sản phẩm 1 m&ocirc; tảSản phẩm 1 m&ocirc; tảSản phẩm 1 m&ocirc; tảSản phẩm 1 m&ocirc; tảSản phẩm 1 m&ocirc; tảSản phẩm 1 m&ocirc; tảSản phẩm 1 m&ocirc; tảSản phẩm 1 m&ocirc; tả', 1, 100000, 0, N'Made in VN', 1000, 1, 1, 1)
+INSERT dbo.Products (Id, Name, [Alias], Code, ShortDescription, Description, Active, Price, SalePrice, MadeIn, DislayOrder, CategoryId, BrandId, Type) VALUES (2, N'Sản phẩm 2', N'san-pham-2', N'SP2', N'Mô tả sản phẩm 2', N'M&ocirc; tả sản phẩm 2 M&ocirc; tả sản phẩm 2 M&ocirc; tả sản phẩm 2 M&ocirc; tả sản phẩm 2 M&ocirc; tả sản phẩm 2 M&ocirc; tả sản phẩm 2 M&ocirc; tả sản phẩm 2 M&ocirc; tả sản phẩm 2 M&ocirc; tả sản phẩm 2 M&ocirc; tả sản phẩm 2 M&ocirc; tả sản phẩm 2 M&ocirc; tả sản phẩm 2', 1, 500000, 0, N'Made in Japan', 1000, 1, 1, 1)
+INSERT dbo.Products (Id, Name, [Alias], Code, ShortDescription, Description, Active, Price, SalePrice, MadeIn, DislayOrder, CategoryId, BrandId, Type) VALUES (3, N'Sản phẩm 3', N'san-pham-3', N'SP3', N'Mô tả sản phẩm 3', N'M&ocirc; tả đầy đủ M&ocirc; tả đầy đủ M&ocirc; tả đầy đủ M&ocirc; tả đầy đủ M&ocirc; tả đầy đủ M&ocirc; tả đầy đủ', 1, 1e+006, 0, N'Made in USA', 1000, 2, 2, 1)
+INSERT dbo.Products (Id, Name, [Alias], Code, ShortDescription, Description, Active, Price, SalePrice, MadeIn, DislayOrder, CategoryId, BrandId, Type) VALUES (4, N'Sản phẩm 4', N'san-pham-4', N'SP4', N' Mô tả ngắn', N'<label class="control-label col-md-2" for="ShortDescription">M&ocirc; tả ngắn</label> <label class="control-label col-md-2" for="ShortDescription">M&ocirc; tả ngắn</label> <label class="control-label col-md-2" for="ShortDescription">M&ocirc; tả ngắn</label> <label class="control-label col-md-2" for="ShortDescription">M&ocirc; tả ngắn</label> <label class="control-label col-md-2" for="ShortDescription">M&ocirc; tả ngắn</label> <label class="control-label col-md-2" for="ShortDescription">M&ocirc; tả ngắn</label> <label class="control-label col-md-2" for="ShortDescription">M&ocirc; tả ngắn</label>', 1, 600000, 0, NULL, 1000, 3, 3, 1)
+SET IDENTITY_INSERT dbo.Products OFF
+
 
 -- `dbo.ProductPhotoes`
+SET IDENTITY_INSERT dbo.ProductPhotoes ON
 
--- `dbo.Users`
+INSERT dbo.ProductPhotoes (Id, Title, FileName, DisplayOrder, ProductId) VALUES (1, N'IMG_1444.JPG', N'1-Photo635518618635297227.JPG', 1000, 1)
+INSERT dbo.ProductPhotoes (Id, Title, FileName, DisplayOrder, ProductId) VALUES (2, N'IMG_1475.JPG', N'1-Photo635518618635447793.JPG', 1000, 1)
+INSERT dbo.ProductPhotoes (Id, Title, FileName, DisplayOrder, ProductId) VALUES (3, N'IMG_1484.JPG', N'2-Photo635518619297232096.JPG', 1000, 2)
+INSERT dbo.ProductPhotoes (Id, Title, FileName, DisplayOrder, ProductId) VALUES (4, N'IMG_1475.JPG', N'2-Photo635518619297362067.JPG', 1000, 2)
+INSERT dbo.ProductPhotoes (Id, Title, FileName, DisplayOrder, ProductId) VALUES (5, N'IMG_1471.JPG', N'2-Photo635518619297672692.JPG', 1000, 2)
+INSERT dbo.ProductPhotoes (Id, Title, FileName, DisplayOrder, ProductId) VALUES (6, N'IMG_1448.JPG', N'3-Photo635518620191472452.JPG', 1000, 3)
+INSERT dbo.ProductPhotoes (Id, Title, FileName, DisplayOrder, ProductId) VALUES (7, N'IMG_1471.JPG', N'3-Photo635518620191642613.JPG', 1000, 3)
+INSERT dbo.ProductPhotoes (Id, Title, FileName, DisplayOrder, ProductId) VALUES (8, N'IMG_1483.JPG', N'4-Photo635518620716484163.JPG', 1000, 4)
+INSERT dbo.ProductPhotoes (Id, Title, FileName, DisplayOrder, ProductId) VALUES (9, N'IMG_1448.JPG', N'4-Photo635518620716694352.JPG', 1000, 4)
+SET IDENTITY_INSERT dbo.ProductPhotoes OFF
 
-SET IDENTITY_INSERT [dbo].[Categories] ON 
-
-INSERT [dbo].[Categories] ([Id], [Alias], [Name], [Description], [Active], [ParentId], [DisplayOrder]) VALUES (1, N'category-1', N'Category 1', NULL, 1, NULL, 1000)
-INSERT [dbo].[Categories] ([Id], [Alias], [Name], [Description], [Active], [ParentId], [DisplayOrder]) VALUES (2, N'category-2', N'Category 2', NULL, 1, NULL, 1000)
-INSERT [dbo].[Categories] ([Id], [Alias], [Name], [Description], [Active], [ParentId], [DisplayOrder]) VALUES (3, N'category-3', N'Category 3', NULL, 1, NULL, 1000)
-INSERT [dbo].[Categories] ([Id], [Alias], [Name], [Description], [Active], [ParentId], [DisplayOrder]) VALUES (4, N'category-4', N'Category 4', NULL, 1, NULL, 1000)
-
-SET IDENTITY_INSERT [dbo].[Categories] OFF
