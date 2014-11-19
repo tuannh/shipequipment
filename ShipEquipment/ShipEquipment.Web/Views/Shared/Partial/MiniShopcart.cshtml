@@ -1,5 +1,12 @@
-﻿<div class="top-right">
+﻿@{
+    var cart = ShipEquipment.Core.SiteContext.Current.Context.Session["Cart"] as List<ShipEquipment.Web.Models.MyCart>;
+    cart = cart ?? new List<ShipEquipment.Web.Models.MyCart>();
+}
+
+<div class="top-right">
     <p class="signIn"><a href="#">Đăng nhập</a></p>
     <!--Mini Shopping Cart Start-->
-    <div id="cart"> <a> <span id="cart-total">Giỏ hàng</span></a> </div>
+    <div id="cart"> <a> <span id="cart-total">Giỏ hàng (@cart.Count())</span></a> </div>
 </div>
+
+<a class="cart-remove" data-id="1">Remove</a>

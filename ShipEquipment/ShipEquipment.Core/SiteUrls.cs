@@ -207,7 +207,7 @@ namespace ShipEquipment.Core
 
         public string GetProduct(Product product)
         {
-            return string.Format("/san-pham/chi-tiet/{0}", product.Alias);
+            return string.Format("/chi-tiet-sp/{0}", product.Alias);
         }
 
         #endregion

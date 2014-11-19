@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -20,17 +21,16 @@ namespace ShipEquipment.Web
 
             RouteTableRegister.RegisterRoutes(routes);
 
-          //  routes.MapRoute(
-          //    name: "FrontEnd_DefaultPage",
-          //    url: "{frontendpage}",
-          //    defaults: new { controller = "Home", action = "Index", frontendpage = "index", id = UrlParameter.Optional }
-          //);
+            GlobalConfiguration.Configure(config =>
+               {
+                   config.MapHttpAttributeRoutes();
 
-            //routes.MapRoute(
-            //    name: "Default",
-            //    url: "{controller}/{action}/{id}",
-            //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            //);
+                   config.Routes.MapHttpRoute(
+                       name: "DefaultApi",
+                       routeTemplate: "api/{controller}/{action}/{id}",
+                       defaults: new { id = RouteParameter.Optional }
+                   );
+               });
         }
     }
 }
