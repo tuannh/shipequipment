@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.SessionState;
 using WebApp;
 
 namespace ShipEquipment.Web
@@ -35,6 +36,22 @@ namespace ShipEquipment.Web
             ViewEngines.Engines.Clear();
             var razorEngine = new RazorViewEngine() { FileExtensions = new string[] { "cshtml" } };
             ViewEngines.Engines.Add(razorEngine);
+        }
+
+
+        protected void Application_PostAuthorizeRequest()
+        {
+            if (IsWebApiRequest())
+            {
+                HttpContext.Current.SetSessionStateBehavior(SessionStateBehavior.Required);
+            }
+        }
+
+        public static string _WebApiExecutionPath = "/api/";
+
+        private static bool IsWebApiRequest()
+        {
+            return HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.Contains(_WebApiExecutionPath);
         }
     }
 }
