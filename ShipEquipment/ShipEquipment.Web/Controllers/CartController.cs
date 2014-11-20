@@ -61,14 +61,50 @@ namespace ShipEquipment.Web.Controllers
                 var cart = lst.FirstOrDefault(a => a.ProductId == productId);
                 if (cart != null)
                 {
+                    var rowId = string.Format("#tr{0}", cart.ProductId);
                     lst.Remove(cart);
-                    return Json(new { error = 0, message = msg, total = lst.Count() }); ;
+
+                    return Json(new { error = 0, message = msg, rowid = rowId });
                 }
             }
 
-            msg = "Sản phẩm không tồn tại trong giỏ hàng";
-            return Json(new { error = 0, message = msg, total = 0 }); ;
+            return Json(new { error = 1, message = "Sản phẩm không tồn tại trong giỏ hàng", rowid = "" }); ;
         }
+
+        [HttpPost]
+        [ActionName("update")]
+        public IHttpActionResult Update()
+        {
+            var id = SiteContext.Current.Context.Request.Form["id"] ?? "0";
+            var strQuatity = SiteContext.Current.Context.Request.Form["quatity"] ?? "0";
+
+            var quatity = 0;
+            int.TryParse(strQuatity, out quatity);
+
+
+            var session = SiteContext.Current.Context.Session;
+            var lst = session["Cart"] as List<MyCart>;
+            var msg = "";
+            var rowid = "";
+
+            if (lst != null)
+            {
+                var item = lst.FirstOrDefault(a => a.ProductId == id);
+                if (item != null)
+                {
+                    item.Quatity = quatity;
+
+                    var total = item.Price * quatity;
+                    var sum = lst.Sum(a => a.Price * a.Quatity);
+                    var qty = lst.Sum(a => a.Quatity);
+
+                    return Json(new { error = 0, message = "success", rowid = string.Format("#tr{0}", id), total = total.ToString("N0"), sum = sum.ToString("N0"), quatity = qty.ToString("N0") });
+                }
+            }
+
+            return Json(new { error = 0, message = "Sản phẩn không tồn tại trong giỏ hàng" });
+        }
+
 
     }
 }

@@ -14,6 +14,7 @@ namespace ShipEquipment.Core.Enumerations
         UserGuide,
         UserGuideDetail,
         Content,
+        Product,
         ProductDetail,
         FAQs,
         Contact,

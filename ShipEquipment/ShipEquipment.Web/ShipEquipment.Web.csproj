@@ -1234,7 +1234,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\BannerController.cs" />
@@ -1343,6 +1342,7 @@
     <Content Include="Views\Shared\Controls\HomeProduct.cshtml" />
     <Content Include="Views\Layouts\Product.cshtml" />
     <Content Include="Views\Home\PageContent.cshtml" />
+    <Content Include="Views\Shared\Partial\MainCart .cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

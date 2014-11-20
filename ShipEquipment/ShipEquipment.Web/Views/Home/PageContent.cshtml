@@ -49,6 +49,7 @@
     }
     else if (string.Compare(pageAlias, "san-pham", true) == 0)
     {
+        ViewBag.PageType = PageType.Product;
         Layout = "~/Views/Layouts/Product.cshtml";
     }
 
@@ -85,5 +86,20 @@ else if (pageType == PageType.Contact)
 }
 else if (pageType == PageType.Shopcart)
 {
-   @("Thông tin giỏ hàng")
+    Html.RenderPartial("~/Views/Shared/Partial/MainCart .cshtml");
+}
+
+@section Styles{
+    @if (pageType == PageType.Shopcart)
+    {
+        @Html.CssBundle("~/css/shopcart")
+    }
+    else if (pageType == PageType.Product)
+    {
+        @Html.CssBundle("~/css/product")
+    }
+    else
+    {
+        @Html.CssBundle("~/css/content")
+    }
 }

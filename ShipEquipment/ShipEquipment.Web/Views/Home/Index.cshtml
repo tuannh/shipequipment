@@ -1,28 +1,11 @@
 ﻿@model ShipEquipment.Biz.Domain.Page
 @{
-    ViewBag.Title = "TuanHangXanh";
-    ViewBag.IsUserGuideList = true;
-    ViewBag.IsNewsList= true;
-    
+    ViewBag.Title = "TuanHangXanh";    
     var pageAlias = ViewBag.PageAlias;
     
     if (Model != null)
     {
         ViewBag.Title = Model.Title;
         Layout = Model.Layout ?? "~/Views/Layouts/Index.cshtml";
-    }
-    else if (string.Compare(pageAlias, "tin-tuc", true) == 0)
-    {
-        Layout = "~/Views/Layouts/News.cshtml";
-    }
-    else if (string.Compare(pageAlias, "chi-tiet-tin", true) == 0)
-    {
-        ViewBag.IsNewsList = false;
-        Layout = "~/Views/Layouts/News.cshtml";
-    }
-    else if (string.Compare(pageAlias, "chi-tiet-huong-dan", true) == 0)
-    {
-        Layout = "~/Views/Layouts/UserGuide.cshtml";
-        ViewBag.IsUserGuideList = false;
     }
 }
