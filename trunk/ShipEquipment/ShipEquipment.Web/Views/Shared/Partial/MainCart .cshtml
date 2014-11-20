@@ -1,0 +1,94 @@
+﻿@using ShipEquipment.Core
+
+@{
+    var pageAlias = "";
+    if (SiteContext.Current.RouteData.Values["FrontEndPage"] != null)
+    {
+        pageAlias = SiteContext.Current.RouteData.Values["FrontEndPage"].ToString();
+    }
+
+    var cssClass = string.Compare(pageAlias, "san-pham", true) == 0 ? "mheight" : "";
+
+    var cart = ShipEquipment.Core.SiteContext.Current.Context.Session["Cart"] as List<ShipEquipment.Web.Models.MyCart>;
+    cart = cart ?? new List<ShipEquipment.Web.Models.MyCart>();
+
+    var total = cart.Sum(a => a.Sum);
+    var count = cart.Sum(a => a.Quatity);
+
+    var index = 1;
+    var itemCount = cart.Count();
+}
+<p class="link"><a href="#">Sản Phẩm</a><span>&gt;&gt;</span><a href="#" class="active">Giỏ hàng</a></p>
+<div class="inner-frm6">
+    <div class="order-detail">
+        <form method="post">
+            <fieldset>
+                <table class="data-table cart-table" id="shopping-cart-table">
+                    <thead>
+                        <tr class="first last">
+                            <th>Tên sản phẩm</th>
+                            <th>&nbsp;</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <td colspan="50">
+                                <button class="button" title="Thanh toán" type="submit">Thanh toán</button>
+                                <button class="button cart-continue" title="Tiếp tục mua" data-href="/san-pham/" type="button">Tiếp tục mua</button>
+                                <button class="button" style="display: none;" title="Update Shopping Cart" type="submit">Cập nhật giỏ hàng</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in cart)
+                        {
+                            <tr id="tr@(item.ProductId)" class="@(index == itemCount ? "last " : "") @(index%2==1? "odd" : "even")">
+                                <td>
+                                    <p>
+                                        <a href="/chi-tiet-sp/@item.Alias">
+                                            @item.Name
+                                        </a>
+                                    </p>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0);">
+                                        <img src="~/Userfiles/Modules/Products/Thumb/@item.Photo" alt="@item.Name" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="cart-price">
+                                        <span class="price">
+                                            @item.Price.ToString("N0")
+                                        </span>
+                                    </span>
+                                </td>
+                                <td style="text-align:center;">
+                                    <input maxlength="3" class="input-text qty cart-update" data-id="@item.ProductId" data-quatity="@item.Quatity" title="Số lượng" value="@item.Quatity" size="4">
+                                </td>
+                                <td>
+                                    <span class="cart-price">
+                                        <span class="price calc">@((item.Quatity * item.Price).ToString("N0"))</span>
+                                    </span>
+                                </td>
+                                <td class="last">
+                                    <a data-id="@item.ProductId" class="btn_chonmua cart-remove" href="javascript:void(0);" title="Xóa sản phẩm">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+
+                        <tr class="rowTotal">
+                            <td colspan="4">Tổng số lượng: <span id="qty">@count</span></td>
+                            <td colspan="3"><p class="total">Tổng tiền: <span id="total">@total.ToString("N0")</span> VND</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </form>
+    </div>
+    <!--end news-->
+
+</div>

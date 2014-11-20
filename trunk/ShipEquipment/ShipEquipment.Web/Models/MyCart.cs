@@ -13,6 +13,8 @@ namespace ShipEquipment.Web.Models
             ProductId = pro.Id.ToString();
             Name = pro.Name;
             Code = pro.Code;
+            Photo = pro.GetPhoto() != null ? pro.GetPhoto().FileName : "";
+            Alias = pro.Alias;
             Price = pro.SalePrice > 0 ? pro.SalePrice : pro.Price;
         }
 
@@ -21,6 +23,10 @@ namespace ShipEquipment.Web.Models
         public string Name { get; set; }
 
         public string Code { get; set; }
+
+        public string Photo { get; set; }
+
+        public string Alias { get; set; }
 
         public double Price { get; set; }
 
