@@ -12,15 +12,13 @@
 
 <div id="horizontalTab1" class="tab-panel">
     <ul class="resp-tabs-list">
-
         <li>sản phẩm mới</li>
-
         <li>sản phẩm ký gởi</li>
         <li>sản phẩm 2ND</li>
         <li>sản phẩm bán nhiều nhất</li>
     </ul>
     <div class="resp-tabs-container">
-        <div class="contenttab">
+        <div class="contenttab2">
             <div class="innerTab">
                 @if (lstNew.Count > 0)
                 {
@@ -44,17 +42,10 @@
                                     </div>
                                     <div class="textSale">
                                         <p>@product.Name</p>
-                                        @if (@product.SalePrice > 0)
-                                        {
-                                            <p class="priceSale1">
-                                                <span class="oldPrice">@product.Price.ToString("N0") VND</span>
-                                                <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
-                                            </p>
-                                        }
-                                        else
-                                        {
-                                            <p class="price">@product.GetPrice()</p>
-                                        }
+                                        <p class="priceSale1">
+                                            <span class="oldPrice">@product.Price.ToString("N0") VND</span>
+                                            <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
+                                        </p>
                                     </div>
                                     <a href="javascript:void(0);" data-id="@product.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
                                 </div>
@@ -68,7 +59,7 @@
                 }
             </div>
         </div>
-        <div class="contenttab">
+        <div class="contenttab2">
             <div class="innerTab">
                 @if (lstConsignment.Count > 0)
                 {
@@ -92,19 +83,12 @@
                                     </div>
                                     <div class="textSale">
                                         <p>@product.Name</p>
-                                        @if (@product.SalePrice > 0)
-                                        {
-                                            <p class="priceSale1">
-                                                <span class="oldPrice">@product.Price.ToString("N0") VND</span>
-                                                <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
-                                            </p>
-                                        }
-                                        else
-                                        {
-                                            <p class="price">@product.GetPrice()</p>
-                                        }
+                                        <p class="priceSale1">
+                                            <span class="oldPrice">@product.Price.ToString("N0") VND</span>
+                                            <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
+                                        </p>
                                     </div>
-                                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
+                                    <a href="javascript:void(0);" data-id="@product.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
                                 </div>
                             </li>
                         }
@@ -116,7 +100,7 @@
                 }
             </div>
         </div>
-        <div class="contenttab">
+        <div class="contenttab2">
             <div class="innerTab">
                 @if (lstSecondHand.Count > 0)
                 {
@@ -140,19 +124,12 @@
                                     </div>
                                     <div class="textSale">
                                         <p>@product.Name</p>
-                                        @if (@product.SalePrice > 0)
-                                        {
-                                            <p class="priceSale1">
-                                                <span class="oldPrice">@product.Price.ToString("N0") VND</span>
-                                                <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
-                                            </p>
-                                        }
-                                        else
-                                        {
-                                            <p class="price">@product.GetPrice()</p>
-                                        }
+                                        <p class="priceSale1">
+                                            <span class="oldPrice">@product.Price.ToString("N0") VND</span>
+                                            <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
+                                        </p>
                                     </div>
-                                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
+                                    <a href="javascript:void(0);" data-id="@product.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
                                 </div>
                             </li>
                         }
@@ -164,7 +141,7 @@
                 }
             </div>
         </div>
-        <div class="contenttab">
+        <div class="contenttab2">
             <div class="innerTab">
                 @if (lstBestSale.Count > 0)
                 {
@@ -188,19 +165,12 @@
                                     </div>
                                     <div class="textSale">
                                         <p>@product.Name</p>
-                                        @if (@product.SalePrice > 0)
-                                        {
-                                            <p class="priceSale1">
-                                                <span class="oldPrice">@product.Price.ToString("N0") VND</span>
-                                                <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
-                                            </p>
-                                        }
-                                        else
-                                        {
-                                            <p class="price">@product.GetPrice()</p>
-                                        }
+                                        <p class="priceSale1">
+                                            <span class="oldPrice">@product.Price.ToString("N0") VND</span>
+                                            <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
+                                        </p>
                                     </div>
-                                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
+                                    <a href="javascript:void(0);" data-id="@product.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
                                 </div>
                             </li>
                         }

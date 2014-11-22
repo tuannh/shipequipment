@@ -6,7 +6,7 @@
 
 	Copyright © 2009 Ruizata Project. All Rights Reserved.
 
-	Creation Date:2014-11-20 12:24:36
+	Creation Date:2014-11-21 10:42:59
 	Database:`ShipEquipment` 
 */
 
@@ -97,6 +97,7 @@ INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, Meta
 INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (10, N'Chi tiết sản phẩm', N'Chi tiêt sản phẩm', N'chi-tiet-san-pham', 0, 0, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
 INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (11, N'Giỏ hàng', N'Giỏ hàng', N'gio-hang', 0, 0, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
 INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (12, N'Chi tiết hưỡng dân', N'Chi tiết hướng dẫn', N'chi-tiet-huong-dan', 0, 0, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
+INSERT dbo.Pages (Id, Title, Name, [Alias], IsDefault, Active, MetaKeyword, MetaDescription, Layout) VALUES (13, N'Đặt hàng', N'Đặt hàng', N'dat-hang', 0, 0, NULL, NULL, N'~/Views/Layouts/Content.cshtml')
 SET IDENTITY_INSERT dbo.Pages OFF
 
 

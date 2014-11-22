@@ -50,8 +50,6 @@ h3.resp-accordion:first-child { border-top: 1px solid #DDD !important; margin-bo
 .imgSale{ float: left; width:100%; text-align: center }
 .imgSale img { opacity: 1; width: 100% }
 .imgSale img:hover { opacity: 0.7 }
-.priceSale { line-height: 22px; font-size: 22px; font-weight:bold; color: #221208 !important; float:right }
-.priceSale1 { line-height: 18px; font-size:18px; font-weight:bold; color: #5a5a5a !important; float:right }
 .textSale { margin: 0; position: relative; width: 100%; float:left}
 .textSale h4 { font-size: 13px; color: #221208; font-weight: normal; text-transform: uppercase; margin-bottom: 5px }
 .textSale h4  a{color:#221208}

@@ -1,5 +1,5 @@
 ﻿@using ShipEquipment.Core
-
+@using ShipEquipment.Web.Models
 @{
     var pageAlias = "";
     if (SiteContext.Current.RouteData.Values["FrontEndPage"] != null)
@@ -9,7 +9,7 @@
 
     var cssClass = string.Compare(pageAlias, "san-pham", true) == 0 ? "mheight" : "";
 
-    var cart = ShipEquipment.Core.SiteContext.Current.Context.Session["Cart"] as List<ShipEquipment.Web.Models.MyCart>;
+    var cart = ShipEquipment.Core.SiteContext.Current.Context.Session[MyCart.ShopCart] as List<ShipEquipment.Web.Models.MyCart>;
     cart = cart ?? new List<ShipEquipment.Web.Models.MyCart>();
 
     var total = cart.Sum(a => a.Sum);
@@ -37,8 +37,8 @@
                     <tfoot>
                         <tr>
                             <td colspan="50">
-                                <button class="button" title="Thanh toán" type="submit">Thanh toán</button>
-                                <button class="button cart-continue" title="Tiếp tục mua" data-href="/san-pham/" type="button">Tiếp tục mua</button>
+                                <button class="button cart-link" title="Đặt hàng" type="button" data-href="/dat-hang/">Đặt hàng</button>
+                                <button class="button cart-link" title="Tiếp tục mua" data-href="/san-pham/" type="button">Tiếp tục mua</button>
                                 <button class="button" style="display: none;" title="Update Shopping Cart" type="submit">Cập nhật giỏ hàng</button>
                             </td>
                         </tr>
@@ -55,9 +55,9 @@
                                     </p>
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0);">
+                                    @*<a href="javascript:void(0);">
                                         <img src="~/Userfiles/Modules/Products/Thumb/@item.Photo" alt="@item.Name" />
-                                    </a>
+                                    </a>*@
                                 </td>
                                 <td>
                                     <span class="cart-price">

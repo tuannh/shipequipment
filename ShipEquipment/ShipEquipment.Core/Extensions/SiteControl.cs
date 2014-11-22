@@ -15,6 +15,7 @@ using ShipEquipment.Core.BaseObjects;
 using ShipEquipment.Biz.DAL;
 using ShipEquipment.Biz.Domain;
 using ShipEquipment.Core.Enumerations;
+using System.Web.UI.WebControls;
 
 namespace ShipEquipment.Core.Extensions
 {
@@ -272,7 +273,11 @@ namespace ShipEquipment.Core.Extensions
             var db = new ShipEquipmentContext();
 
             var pages = db.Pages.Where(p => p.Active).ToList();
-            control.HtmlHelper.ViewContext.ViewBag.NewsCategory = db.NewsCategories.ToList();
+            var viewBag = control.HtmlHelper.ViewContext.ViewBag;
+
+            viewBag.NewsCategory = db.NewsCategories.ToList();
+            viewBag.ProductCategory = db.Categories.Where(a => a.Active && !a.ParentId.HasValue).ToList();
+
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, pages);
 
             db.Dispose();
@@ -296,47 +301,74 @@ namespace ShipEquipment.Core.Extensions
             return new MvcHtmlString(result);
         }
 
-        public static MvcHtmlString ProductList(this SiteControl control, bool isSaleList, string viewName = "ProductList.cshtml")
+        public static MvcHtmlString ProductList(this SiteControl control, string viewName = "ProductList.cshtml")
         {
+            var ctx = SiteContext.Current;
             var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
             var db = new ShipEquipmentContext();
+            var ps = ctx.QueryString["ps"] ?? "8";
+            var sortField = ctx.QueryString["sort"] ?? "price";
+            var sortDirect = ctx.QueryString["order"] ?? "desc";
+            var kw = SiteContext.Current.QueryString["kw"] ?? "";
+
+            var dirct = string.Compare(sortDirect, "desc", true) == 0 ? SortDirection.Descending : SortDirection.Ascending;
+            var pagesize = 8;
+            var pageindex = 1;
+            int.TryParse(ps, out pagesize);
+
 
             var lst = new List<Product>();
 
             #region get product list
 
-            if (isSaleList)
-            {
-                lst = db.Products.Where(p => p.Active && p.SalePrice > 0)
-                                     .OrderBy(p => p.DislayOrder)
-                                     .ThenBy(p => "Name")
-                                     .ToList();
-            }
-            else
-            {
-                lst = db.Products.Where(p => p.Active)
-                                     .OrderBy(p => p.DislayOrder)
-                                     .ThenBy(p => p.Name)
-                                     .ToList();
-            }
+            lst = db.Products.Where(p => p.Active)
+                                 .OrderBy(p => p.DislayOrder)
+                                 .ThenBy(p => p.Name)
+                                 .ToList();
 
             #endregion
 
-            #region check and filter category
 
-            var cateAlias = "";
+            #region check and filter category/brand
+
             var routeData = SiteContext.Current.RouteData;
-            if (routeData != null && routeData.Values != null && routeData.Values["categoryalias"] != null)
-                cateAlias = routeData.Values["categoryalias"].ToString();
+            var cateAlias = routeData.Values["categoryalias"] != null ? routeData.Values["categoryalias"].ToString() : "";
+            var brandAlias = routeData.Values["brandAlias"] != null ? routeData.Values["brandAlias"].ToString() : "";
 
             if (!string.IsNullOrEmpty(cateAlias))
             {
                 lst = lst.Where(p => p.Category != null && string.Compare(p.Category.Alias, cateAlias, true) == 0)
                          .ToList();
             }
+            else if (!string.IsNullOrEmpty(brandAlias))
+            {
 
+                lst = lst.Where(p => p.Brand != null && string.Compare(p.Brand.Alias, brandAlias, true) == 0)
+                         .ToList();
+            }
 
             #endregion
+
+
+            if (!string.IsNullOrEmpty(kw))
+            {
+                lst = lst.Where(a => a.Name.Contains(kw) || a.Code.Contains(kw) || a.MadeIn.Contains(kw)).ToList();
+            }
+
+            var total = 0;
+            if (lst != null)
+            {
+                total = lst.Count();
+                lst = lst.OrderBy(sortField, dirct).Skip((pageindex - 1) * pagesize).Take(pagesize).ToList();
+            }
+
+            var pagingModel = new PagingModel();
+            pagingModel.ItemsPerPage = pagesize;
+            pagingModel.CurrentPage = pageindex;
+            pagingModel.TotalItems = total;
+            pagingModel.RequestUrl = ctx.RawUrl;
+
+            control.HtmlHelper.ViewContext.ViewBag.PagingModel = pagingModel;
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
 
@@ -560,6 +592,30 @@ namespace ShipEquipment.Core.Extensions
 
             var products = db.Products.Where(a => a.Active).ToList();
 
+
+            var lstNew = products.Where(a => a.Type == (int)ProductType.New).ToList();
+            var lstConsignment = products.Where(a => a.Type == (int)ProductType.Consignment).ToList();
+            var lstSecondHand = products.Where(a => a.Type == (int)ProductType.SecondHand).ToList();
+            var lstBestSale = products.Where(a => a.Type == (int)ProductType.BestSale).ToList();
+
+            var obj = new Dictionary<ProductType, List<Product>>();
+            obj.Add(ProductType.New, lstNew);
+            obj.Add(ProductType.Consignment, lstConsignment);
+            obj.Add(ProductType.SecondHand, lstSecondHand);
+            obj.Add(ProductType.BestSale, lstBestSale);
+
+            var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, obj);
+
+            db.Dispose();
+            return new MvcHtmlString(result);
+        }
+
+        public static MvcHtmlString PromotionList(this SiteControl control, string viewName = "PromotionList.cshtml")
+        {
+            var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
+            var db = new ShipEquipmentContext();
+
+            var products = db.Products.Where(a => a.Active && a.SalePrice > 0).ToList();
 
             var lstNew = products.Where(a => a.Type == (int)ProductType.New).ToList();
             var lstConsignment = products.Where(a => a.Type == (int)ProductType.Consignment).ToList();

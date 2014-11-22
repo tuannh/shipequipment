@@ -88,7 +88,10 @@
                 @if (item.Photos != null)
                 {
                     var photo = item.Photos.FirstOrDefault();
-                    <img style="max-width: 150px" src="~/Userfiles/Modules/Products/Thumb/@photo.FileName" title="@photo.Title" />
+                    if (photo != null)
+                    {
+                        <img style="max-width: 150px" src="~/Userfiles/Modules/Products/Thumb/@photo.FileName" title="@photo.Title" />
+                    }
                 }
             </td>
             <td>

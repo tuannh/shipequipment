@@ -244,9 +244,16 @@ namespace ShipEquipment.Core
             if (string.IsNullOrEmpty(querystring))
                 return url;
 
-            string[] arrQs = querystring.Split('=');
-            if (arrQs.Length == 2)
-                return AppendQueryStringValue(url, arrQs[0], arrQs[1]);
+            var arrQuery = querystring.Split('&');
+            if (arrQuery.Length > 0)
+            {
+                foreach (var query in arrQuery)
+                {
+                    var arrKeyValue = query.Split('=');
+                    if (arrKeyValue.Length == 2)
+                        url = AppendQueryStringValue(url, arrKeyValue[0], arrKeyValue[1]);
+                }
+            }
 
             return url;
         }

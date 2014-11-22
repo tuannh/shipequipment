@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 
 namespace ShipEquipment.Core.Enumerations
 {
-    public enum  PageType : int
+    public enum PageType : int
     {
         None = 0,
-        News,
-        NewsDetail,
-        UserGuide,
-        UserGuideDetail,
-        Content,
+        Home,
         Product,
-        ProductDetail,
+        News,
+        Fishing,
+        Video,
+        UserGuide,
         FAQs,
         Contact,
         Promotion,
-        Shopcart
+        ProductDetail,
+        Shopcart,
+        UserGuideDetail,
+        Order,
+        NewsDetail
     }
 }

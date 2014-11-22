@@ -18,14 +18,13 @@ namespace ShipEquipment.Web.Controllers
         public IHttpActionResult Add([FromBody]string productId)
         {
             var session = SiteContext.Current.Context.Session;
-            var lst = session["Cart"] as List<MyCart>;
+            var lst = session[MyCart.ShopCart] as List<MyCart>;
             var msg = "";
-            var total = 0;
 
             if (lst == null)
             {
                 lst = new List<MyCart>();
-                session["Cart"] = lst;
+                session[MyCart.ShopCart] = lst;
             }
 
             var cart = lst.FirstOrDefault(a => a.ProductId == productId);
@@ -43,9 +42,10 @@ namespace ShipEquipment.Web.Controllers
             }
 
             cart.Quatity++;
-            total = lst.Sum(a => a.Quatity);
+            var total = lst.Sum(a => a.Quatity * a.Price);
+            var count = lst.Sum(a => a.Quatity);
 
-            return Json(new { error = 0, message = msg, total = total }); ;
+            return Json(new { error = 0, message = msg, count = count.ToString("N0"), total = total.ToString("N0") }); ;
         }
 
         [HttpPost]
@@ -53,22 +53,26 @@ namespace ShipEquipment.Web.Controllers
         public IHttpActionResult Remove([FromBody]string productId)
         {
             var session = SiteContext.Current.Context.Session;
-            var lst = session["Cart"] as List<MyCart>;
-            var msg = "Xóa sản phảm ra khỏi giỏ hàng thành công";
+            var lst = session[MyCart.ShopCart] as List<MyCart>;
+            var rowId = string.Format("#tr{0}", productId);
+            var total = 0.0;
+            var count = 0;
 
             if (lst != null)
             {
                 var cart = lst.FirstOrDefault(a => a.ProductId == productId);
                 if (cart != null)
                 {
-                    var rowId = string.Format("#tr{0}", cart.ProductId);
                     lst.Remove(cart);
 
-                    return Json(new { error = 0, message = msg, rowid = rowId });
+                    total = lst.Sum(a => a.Quatity * a.Price);
+                    count = lst.Sum(a => a.Quatity);
+
+                    return Json(new { error = 0, message = "", rowid = rowId, count = count.ToString("N0"), total = total.ToString("N0") });
                 }
             }
 
-            return Json(new { error = 1, message = "Sản phẩm không tồn tại trong giỏ hàng", rowid = "" }); ;
+            return Json(new { error = 1, message = "Sản phẩm không tồn tại trong giỏ hàng", rowid = rowId, count = count.ToString("N0"), total = total.ToString("N0") });
         }
 
         [HttpPost]
@@ -81,11 +85,13 @@ namespace ShipEquipment.Web.Controllers
             var quatity = 0;
             int.TryParse(strQuatity, out quatity);
 
-
             var session = SiteContext.Current.Context.Session;
-            var lst = session["Cart"] as List<MyCart>;
-            var msg = "";
-            var rowid = "";
+            var lst = session[MyCart.ShopCart] as List<MyCart>;
+
+
+            var sum = 0.0;
+            var total = 0.0;
+            var count = 0;
 
             if (lst != null)
             {
@@ -93,18 +99,15 @@ namespace ShipEquipment.Web.Controllers
                 if (item != null)
                 {
                     item.Quatity = quatity;
+                    sum = item.Price * quatity;
+                    total = lst.Sum(a => a.Price * a.Quatity);
+                    count = lst.Sum(a => a.Quatity);
 
-                    var total = item.Price * quatity;
-                    var sum = lst.Sum(a => a.Price * a.Quatity);
-                    var qty = lst.Sum(a => a.Quatity);
-
-                    return Json(new { error = 0, message = "success", rowid = string.Format("#tr{0}", id), total = total.ToString("N0"), sum = sum.ToString("N0"), quatity = qty.ToString("N0") });
+                    return Json(new { error = 0, message = "", rowid = string.Format("#tr{0}", id), total = total.ToString("N0"), sum = sum.ToString("N0"), count = count.ToString("N0") });
                 }
             }
 
-            return Json(new { error = 0, message = "Sản phẩn không tồn tại trong giỏ hàng" });
+            return Json(new { error = 1, message = "Sản phẩn không tồn tại trong giỏ hàng", rowid = string.Format("#tr{0}", id), total = total.ToString("N0"), sum = sum.ToString("N0"), count = count.ToString("N0") });
         }
-
-
     }
 }

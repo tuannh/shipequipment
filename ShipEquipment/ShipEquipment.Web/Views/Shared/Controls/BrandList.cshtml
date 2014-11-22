@@ -1,13 +1,57 @@
 ﻿@model IEnumerable<ShipEquipment.Biz.Domain.Brand>
+@using ShipEquipment.Core;
+@{
+    var ctx = SiteContext.Current;
 
-@if (Model != null)
-{
+    var ascPrice = Globals.AppendQueryString(ctx.RawUrl, "sort=Price&order=desc");
+    var descPrice = Globals.AppendQueryString(ctx.RawUrl, "sort=Price&order=asc");
+
+    var paging = new int[] { 8, 12, 16, 20 };
+    var ps = ctx.QueryString["ps"] ?? "8";
+
+}
+
+
+<p class="link"><a href="/">Trang chủ</a><span>&gt;&gt;</span><a href="/san-pham/">Sản phẩm</a><span>&gt;&gt;</span><a href="#">Lưỡi câu</a><span>&gt;&gt;</span><a href="#">Lưỡi đùm</a><span>&gt;&gt;</span><a href="#" class="active">Lưỡi lục chì trên</a></p>
+
+<div class="label">
+    <h4>Thương hiệu</h4>
     <ul>
-        @foreach (var banner in Model)
+        <li><a href="#" class="active">All</a></li>
+        @if (Model != null)
         {
-            <li>
-                <a href="/nhan-hieu/@brand.Alias">@brand.Name</a>
-            </li>
+            foreach (var brand in Model)
+            {
+                <li>
+                    <a href="/nhan-hieu/@brand.Alias">@brand.Name</a>
+                </li>
+            }
         }
     </ul>
-}
+</div>
+<div class="sort">
+    <div class="sort_left">
+        <label>Sắp xếp theo</label>
+        <select id="orderby">
+            <option value="@ascPrice">Giá tăng</option>
+            <option value="@descPrice">Giá giảm</option>
+        </select>
+    </div>
+    <div class="count_page">
+        <p>
+            Số sản phẩm mỗi trang :
+            @foreach (var i in paging)
+            {
+                var url = Globals.AppendQueryString(ctx.RawUrl, string.Format("ps={0}", i));
+                url = i.ToString() == ps ? "javascript:void(0);" : url;
+                var active = i.ToString() == ps ? "active" : "";
+                <a href="@url" class="@active">@i</a>
+            }
+        </p>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#orderby').change(function () { location.href = $(this).val(); })
+    })
+</script>
