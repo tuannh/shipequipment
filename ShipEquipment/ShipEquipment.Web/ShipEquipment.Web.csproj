@@ -1347,6 +1347,7 @@
     <Content Include="Views\Home\Order.cshtml" />
     <Content Include="Views\Shared\Controls\PromotionList.cshtml" />
     <Content Include="Views\Layouts\Promotion.cshtml" />
+    <Content Include="Views\Shared\Controls\LastViewProduct-Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

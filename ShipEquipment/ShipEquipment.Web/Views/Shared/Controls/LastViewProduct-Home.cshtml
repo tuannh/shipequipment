@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.Product>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <div id="owl">
+        @foreach (var product in Model)
+        {
+            <div class="item">
+                <div class="content_products_new">
+                    <div class="text_new">
+                        <h4><a href="/chi-tiet-sp/@product.Alias">@product.Name</a></h4>
+                        <p>@product.MadeIn</p>
+                    </div>
+                    <div class="img_new">
+                        <a href="/chi-tiet-sp/@product.Alias">
+                            @if (product.GetPhoto() != null)
+                            {
+                                <img src="/Userfiles/Modules/Products/Thumb/@product.GetPhoto().FileName" alt="@product.GetPhoto().Title" />
+                            }
+                            else
+                            {
+                                @product.Name
+                            }
+                        </a>
+                    </div>
+                    <a href="javascript:void(0)" data-id="@product.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
+                </div>
+            </div>
+        }
+    </div>
+}
+

@@ -3,78 +3,46 @@
 <div class="inner-frm3">
     <h2><img src="/images/thx/arrow-icon.png" alt="" />SẢN PHẨM XEM GẦN NHẤT</h2>
     <div class="productsView">
-        <div id="owl1">
-            <div class="item">
-                <div class="content_products">
-                    <div class="img_content"><a href="#"> <img src="/images/thx/product1.jpg" alt="" /></a></div>
-                    <div class="text_infor">
-                        <p>Lorem ipsum dolor sit amet, consee adipiscing elit</p>
-                        <p class="price">800,000 vnđ</p>
+        @if (Model != null)
+        {
+            <div id="owl1">
+                @foreach (var product in Model)
+                {
+                    <div class="item">
+                        <div class="content_products">
+                            <div class="img_content">
+                                <a href="/chi-tiet-sp/@product.Alias">
+                                    @if (product.GetPhoto() != null)
+                                    {
+                                        <img src="/Userfiles/Modules/Products/Thumb/@product.GetPhoto().FileName" alt="@product.GetPhoto().Title" />
+                                    }
+                                    else
+                                    {
+                                        @product.Name
+                                    }
+                                </a>
+                            </div>
+                            <div class="text_infor">
+                                <p>@product.Name</p>
+                                @**@
+                                @if (product.SalePrice > 0)
+                                {
+                                    <p class="priceSale1">
+                                        <span class="oldPrice">@product.Price.ToString("N0") VND</span>
+                                        <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="price">@product.Price.ToString("N0") VND</p>
+                                }
+                            </div>
+                            <a href="javascript:void(0)" data-id="@product.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
+                        </div>
                     </div>
-                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
-                </div>
+                }
             </div>
-            <div class="item">
-                <div class="content_products">
-                    <div class="img_content"><a href="#"> <img src="/images/thx/product2.jpg" alt="" /></a></div>
-                    <div class="text_infor">
-                        <p>Lorem ipsum dolor sit amet, consee adipiscing elit</p>
-                        <p class="price">800,000 vnđ</p>
-                    </div>
-                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content_products">
-                    <div class="img_content"><a href="#"> <img src="/images/thx/product3.jpg" alt="" /></a></div>
-                    <div class="text_infor">
-                        <p>Lorem ipsum dolor sit amet, consee adipiscing elit</p>
-                        <p class="price">800,000 vnđ</p>
-                    </div>
-                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content_products">
-                    <div class="img_content"><a href="#"> <img src="/images/thx/product4.jpg" alt="" /></a></div>
-                    <div class="text_infor">
-                        <p>Lorem ipsum dolor sit amet, consee adipiscing elit</p>
-                        <p class="price">800,000 vnđ</p>
-                    </div>
-                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content_products">
-                    <div class="img_content"><a href="#"> <img src="/images/thx/product6.jpg" alt="" /></a></div>
-                    <div class="text_infor">
-                        <p>Lorem ipsum dolor sit amet, consee adipiscing elit</p>
-                        <p class="price">800,000 vnđ</p>
-                    </div>
-                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content_products">
-                    <div class="img_content"><a href="#"> <img src="/images/thx/product4.jpg" alt="" /></a></div>
-                    <div class="text_infor">
-                        <p>Lorem ipsum dolor sit amet, consee adipiscing elit</p>
-                        <p class="price">800,000 vnđ</p>
-                    </div>
-                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content_products">
-                    <div class="img_content"><a href="#"> <img src="/images/thx/product2.jpg" alt="" /></a></div>
-                    <div class="text_infor">
-                        <p>Lorem ipsum dolor sit amet, consee adipiscing elit</p>
-                        <p class="price">800,000 vnđ</p>
-                    </div>
-                    <a href="#" class="btn_chonmua">CHỌN MUA</a>
-                </div>
-            </div>
-        </div>
+        }
     </div>
     <div class="clear"></div>
 </div>  

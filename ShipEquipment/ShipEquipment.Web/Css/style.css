@@ -433,7 +433,7 @@ footer .design_by .face-book{ position:absolute; right:0; top:0px}
 	text-align: right;
 	margin-bottom:30px
 }
-.page {
+.pagination a{
 	background: #969495;
 	border: 1px solid #e8e8e8;
 	color: #fff;
@@ -447,10 +447,10 @@ footer .design_by .face-book{ position:absolute; right:0; top:0px}
 	height: 25px;
 	line-height: 25px
 }
-.page:last-child,
-.page:first-child { padding: 0 15px }
-.page:hover,
-.page.active {
+.pagination a:last-child,
+.pagination a:first-child { padding: 0 15px }
+.pagination a:hover,
+.pagination a.selected {
 	background: none repeat scroll 0 0 #fd7100;
 	color: #f0f0f0;
 }

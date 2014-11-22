@@ -12,7 +12,7 @@
     <div class="partner">
         @foreach (var brand in brands)
         {
-            <a title="@brand.Name" href="/nha-cung-cap/@brand.Alias/">
+            <a title="@brand.Name" href="/nhan-hieu/@brand.Alias/">
                 @if (!string.IsNullOrEmpty(brand.Photo))
                 {
                     <img src="/Userfiles/Upload/images/Modules/Brand/@brand.Photo" alt="@brand.Name"  />
