@@ -3,58 +3,20 @@
 
 @{
     Layout = "~/Views/Layouts/Content.cshtml";
-    ViewBag.Title = "TuanHangXanh";
 
-    ViewBag.IsUserGuideList = true;
-    ViewBag.IsNewsList = true;
-
+    var pageType = ViewBag.PageType;
     var pageAlias = ViewBag.PageAlias;
 
-    if (Model != null)
-    {
-        ViewBag.Title = Model.Title;
-    }
+    ViewBag.Title = Model != null ? Model.Title : "TuanHangXanh";
 
-    if (string.Compare(pageAlias, "tin-tuc", true) == 0)
-    {
-        ViewBag.PageType = PageType.News;
-    }
-    else if (string.Compare(pageAlias, "chi-tiet-tin", true) == 0)
-    {
-        ViewBag.PageType = PageType.NewsDetail;
-    }
-    else if (string.Compare(pageAlias, "huong-dan", true) == 0)
-    {
-        ViewBag.PageType = PageType.UserGuide;
-    }
-    else if (string.Compare(pageAlias, "chi-tiet-huong-dan", true) == 0)
-    {
-        ViewBag.PageType = PageType.UserGuideDetail;
-    }
-    else if (string.Compare(pageAlias, "chi-tiet-san-pham", true) == 0)
-    {
-        ViewBag.PageType = PageType.ProductDetail;
-    }
-    else if (string.Compare(pageAlias, "faqs", true) == 0)
-    {
-        ViewBag.PageType = PageType.FAQs;
-    }
-    else if (string.Compare(pageAlias, "lien-he", true) == 0)
-    {
-        ViewBag.PageType = PageType.Contact;
-    }
-    else if (string.Compare(pageAlias, "gio-hang", true) == 0)
-    {
-        ViewBag.PageType = PageType.Shopcart;
-    }
-    else if (string.Compare(pageAlias, "san-pham", true) == 0)
+    if (pageType == PageType.Product)
     {
         ViewBag.PageType = PageType.Product;
         Layout = "~/Views/Layouts/Product.cshtml";
     }
-
-    var pageType = ViewBag.PageType;
 }
+
+
 
 @if (pageType == PageType.News)
 {
@@ -88,6 +50,18 @@ else if (pageType == PageType.Shopcart)
 {
     Html.RenderPartial("~/Views/Shared/Partial/MainCart .cshtml");
 }
+else if (pageType == PageType.Order)
+{
+    Html.RenderPartial("~/Views/Home/Order.cshtml", ViewData["Order"] as Order, ViewData);
+    @section FooterScripts    {
+        @Html.JsBundle("~/js/jqueryval")
+    }
+}
+else if (pageType == PageType.Promotion)
+{
+    Layout = "~/Views/Layouts/Promotion.cshtml";
+    @Html.Controls().PromotionList()
+}
 
 @section Styles{
     @if (pageType == PageType.Shopcart)
@@ -97,6 +71,10 @@ else if (pageType == PageType.Shopcart)
     else if (pageType == PageType.Product)
     {
         @Html.CssBundle("~/css/product")
+    }
+    else if (pageType == PageType.Promotion)
+    {
+        @Html.CssBundle("~/css/promotion")
     }
     else
     {

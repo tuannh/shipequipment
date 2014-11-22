@@ -8,6 +8,8 @@ namespace ShipEquipment.Web.Models
 {
     public class MyCart
     {
+        public const string ShopCart = "ShopCart";
+
         public MyCart(Product pro)
         {
             ProductId = pro.Id.ToString();
@@ -28,7 +30,7 @@ namespace ShipEquipment.Web.Models
 
         public string Alias { get; set; }
 
-        public double Price { get; set; }
+        public float Price { get; set; }
 
         public int Quatity { get; set; }
 

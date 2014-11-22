@@ -405,13 +405,59 @@ footer .design_by .face-book{ position:absolute; right:0; top:0px}
 .info-detail p label{ width:30%; float:left; text-align:right; margin-right:10px;height:30px; line-height:30px}
 .info-detail p input{ width:62%; float:left; height:22px; line-height:22px}
 .info-detail p select{ width:63%; float:left; height:30px; line-height:30px}
-.info-detail p a.btnDatHang{ float:right; display:block;background:#fd7100; height:29px; border:none; padding:0 20px; color:#fff; cursor:pointer; line-height:29px; text-decoration:none; margin-right:5.5%}
-.info-detail p a.btnDatHang:hover{background:#000; text-decoration:none}
+.info-detail p .btnDatHang{ background:#fd7100; 
+    border: medium none;
+    color: #fff;
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+    height: 29px;
+    text-decoration: none;
+    width: 100px;
+    margin-right:5.5%}
+/*.info-detail p .btnDatHang:hover{background:#000; text-decoration:none}*/
 
 .right-cart-table {width: 100%; text-align: left; border-bottom: 1px dashed #aaaaaa; margin-bottom: 10px; padding-bottom: 10px;}
 .right-cart-header {font-weight: bold; border-bottom: 1px dashed #aaaaaa;}
 .right-cart-num {text-align: right;}
 
-.input-text.qty {text-align: right;}
+.input-text.qty {text-align: center;}
 
 .cart-table td.last {text-align: center;}
+
+.field-validation-error {color: red;  display: inline-block;}
+
+
+/* .pagination */ 
+.pagination {
+	text-align: right;
+	margin-bottom:30px
+}
+.page {
+	background: #969495;
+	border: 1px solid #e8e8e8;
+	color: #fff;
+	display: inline-block;
+	font-size: 0.875em;
+	margin-right: 4px;
+	padding: 0px 5px;
+	text-decoration: none;
+	min-width: 25px;
+	text-align: center;
+	height: 25px;
+	line-height: 25px
+}
+.page:last-child,
+.page:first-child { padding: 0 15px }
+.page:hover,
+.page.active {
+	background: none repeat scroll 0 0 #fd7100;
+	color: #f0f0f0;
+}
+
+
+/* sale price */
+.priceSale { line-height: 22px; font-size: 22px; font-weight:bold; color: #221208 !important; float:right }
+.priceSale1 { line-height: 16px; font-size:18px; font-weight:normal; color: #5e5e5e!important; float:right}
+.priceSale1 .oldPrice{text-decoration:line-through; padding-right:7px; font-size: 14px; font-weight: bold;}
+.priceSale1 .salePrice{line-height: 22px; font-size: 22px; font-weight:bold; color: #d85625  !important; text-decoration:none}

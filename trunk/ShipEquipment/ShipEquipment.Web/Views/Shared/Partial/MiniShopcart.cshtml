@@ -1,10 +1,13 @@
-﻿@{
-    var cart = ShipEquipment.Core.SiteContext.Current.Context.Session["Cart"] as List<ShipEquipment.Web.Models.MyCart>;
+﻿@using ShipEquipment.Web.Models
+@{
+    var cart = ShipEquipment.Core.SiteContext.Current.Context.Session[MyCart.ShopCart] as List<ShipEquipment.Web.Models.MyCart>;
     cart = cart ?? new List<ShipEquipment.Web.Models.MyCart>();
+
+    var sum = cart.Sum(a => a.Quatity);
 }
 
 <div class="top-right">
     <p class="signIn" style="display: none;"><a href="#">Đăng nhập</a></p>
     <!--Mini Shopping Cart Start-->
-    <div id="cart"> <a href="/gio-hang/"> <span id="cart-total">Giỏ hàng (@cart.Count())</span></a> </div>
+    <div id="cart"> <a href="/gio-hang/"> <span id="cart-total">Giỏ hàng (@sum)</span></a> </div>
 </div>

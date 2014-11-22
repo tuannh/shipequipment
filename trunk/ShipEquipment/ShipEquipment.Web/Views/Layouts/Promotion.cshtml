@@ -6,7 +6,9 @@
     <title>@ViewBag.Title</title>
 
     @RenderSection("Styles", false)
+
     @Html.JsBundle("~/js/default")
+    @RenderSection("HeaderScripts", false)
 </head>
 <body>
     <div id="body">
@@ -28,30 +30,18 @@
                 <div class="clear"></div>
             </header>
             <div class="content">
-                <div class="filter">
-                   @Html.Controls().BrandList()
-                </div>
-
-                <aside class="colRight">
-                    @{ Html.RenderPartial("~/Views/Shared/Partial/Shopcart.cshtml"); }
-                </aside>
-                <div class="clear"></div>
-                <div class="productsList">
-                    @Html.Controls().ProductList()
-                </div>
-
+                @RenderBody()
                 <div class="frm2">
                     @Html.Controls().LastViewProduct(true)
                 </div>
+                <div class="clear"></div>
+                <footer>
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/Footer.cshtml"); }
+                </footer>
             </div>
-            <div class="clear"></div>
-            <footer>
-                @{ Html.RenderPartial("~/Views/Shared/Partial/Footer.cshtml"); }
-            </footer>
+            <!--end main-->
         </div>
-        <!--end main-->
     </div>
-    @RenderBody()
-    @Html.JsBundle("~/js/page/product")
+    @Html.JsBundle("~/js/page/promotion")
 </body>
 </html>

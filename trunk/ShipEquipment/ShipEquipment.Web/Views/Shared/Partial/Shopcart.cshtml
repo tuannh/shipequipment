@@ -1,4 +1,5 @@
 ﻿@using ShipEquipment.Core
+@using ShipEquipment.Web.Models 
 
 @{
     var pageAlias = "";
@@ -9,43 +10,44 @@
 
     var cssClass = string.Compare(pageAlias, "san-pham", true) == 0 ? "mheight" : "";
 
-    var cart = ShipEquipment.Core.SiteContext.Current.Context.Session["Cart"] as List<ShipEquipment.Web.Models.MyCart>;
+    var cart = ShipEquipment.Core.SiteContext.Current.Context.Session[MyCart.ShopCart] as List<ShipEquipment.Web.Models.MyCart>;
     cart = cart ?? new List<ShipEquipment.Web.Models.MyCart>();
 
     var total = cart.Sum(a => a.Sum);
-
 }
 
-<div class="frm">
-    <h2><img src="/images/thx/icon-shop-card.png" alt="" />giỏ hàng</h2>
-    <div class="inner-shop-card @cssClass">
-        <p>Hiện có <span>@cart.Count()</span> sản phẩm</p>
+@if (string.Compare(pageAlias, "gio-hang") != 0)
+{
+    <div class="frm">
+        <h2><img src="/images/thx/icon-shop-card.png" alt="" />giỏ hàng</h2>
+        <div class="inner-shop-card @cssClass">
+            <p>Hiện có <span id="cart-count-right">@cart.Count()</span> sản phẩm</p>
 
-        @if (cart.Count() > 0)
-        {
-            <table class="right-cart-table">
-                <tr class="right-cart-header">
-                    <td>Sản phẩm</td>
-                    <td>SL</td>
-                    <td>Giá</td>
-                </tr>
-                @foreach (var pro in cart)
+            @*@if (cart.Count() > 0)
                 {
-                    <tr>
-                        <td colspan="3">
-                            @pro.Name
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td class="right-cart-num">@pro.Quatity </td>
-                        <td class="right-cart-num">@pro.Price.ToString("N0")</td>
-                    </tr>
-                }
-            </table>
-        }
-        <p class="total">Tổng cộng <span>@total.ToString("N0")</span> VND</p>
-        <p>Đơn vị: @(1000.ToString("N0")) VND</p>
+                    <table class="right-cart-table">
+                        <tr class="right-cart-header">
+                            <td>Sản phẩm</td>
+                            <td>SL</td>
+                            <td>Giá</td>
+                        </tr>
+                        @foreach (var pro in cart)
+                        {
+                            <tr>
+                                <td colspan="3">
+                                    @pro.Name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="right-cart-num">@pro.Quatity </td>
+                                <td class="right-cart-num">@pro.Price.ToString("N0")</td>
+                            </tr>
+                        }
+                    </table>
+                }*@
+            <p class="total">Tổng cộng: <span id="cart-total-right">@total.ToString("N0")</span> VND</p>
+            @*<p>Đơn vị: @(1000.ToString("N0")) VND</p>*@
+        </div>
     </div>
-</div>
-
+}

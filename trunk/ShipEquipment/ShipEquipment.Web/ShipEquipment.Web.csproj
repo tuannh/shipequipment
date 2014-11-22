@@ -275,6 +275,7 @@
     <Content Include="Scripts\jquery\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery\jquery.validate.js" />
     <Content Include="Scripts\jquery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\promotion.js" />
     <Content Include="Scripts\shopcart.js" />
     <Content Include="Scripts\thx\browserdetect.min.js" />
     <Content Include="Scripts\thx\easyResponsiveTabs.js" />
@@ -1343,6 +1344,9 @@
     <Content Include="Views\Layouts\Product.cshtml" />
     <Content Include="Views\Home\PageContent.cshtml" />
     <Content Include="Views\Shared\Partial\MainCart .cshtml" />
+    <Content Include="Views\Home\Order.cshtml" />
+    <Content Include="Views\Shared\Controls\PromotionList.cshtml" />
+    <Content Include="Views\Layouts\Promotion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

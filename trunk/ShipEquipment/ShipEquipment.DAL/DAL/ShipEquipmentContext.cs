@@ -45,11 +45,17 @@ namespace ShipEquipment.Biz.DAL
 
         public DbSet<Page> Pages { get; set; }
 
+        public DbSet<Province> Provinces { get; set; }
+
         public void Initialize()
         {
             Database.SetInitializer<ShipEquipmentContext>(new DatabaseInitializer());
 
             this.Database.Initialize(true);
         }
+
+        public System.Data.Entity.DbSet<ShipEquipment.Biz.Domain.Order> Orders { get; set; }
+
+        public System.Data.Entity.DbSet<ShipEquipment.Biz.Domain.District> Districts { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ShipEquipment.Biz.Domain.Page>
+@using ShipEquipment.Core.Enumerations
 
 @{
     var pageAlias = "index";
@@ -10,6 +11,8 @@
     var index = 1;
 
     var newsCategory = ViewBag.NewsCategory as IEnumerable<ShipEquipment.Biz.Domain.NewsCategory>;
+    var productCategory = ViewBag.ProductCategory as IEnumerable<ShipEquipment.Biz.Domain.Category>;
+
     var cateAlias = Html.ViewContext.RouteData.Values["newscategoryalias"] as string;
 }
 
@@ -33,6 +36,18 @@
                             var activeCate = string.Compare(cateAlias, cate.Alias, true) == 0 ? "active" : "";
                             <li class="nav-submenu-item">
                                 <a class="@activeCate" href="/tin/@cate.Alias">@cate.Name</a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else if (string.Compare(page.UniqueKey, PageType.Product.ToString(), true) == 0 && productCategory != null)
+                {
+                    <ul class="nav-submenu">
+                        @foreach (var cate in productCategory)
+                        {
+                            var activeCate = string.Compare(cateAlias, cate.Alias, true) == 0 ? "active" : "";
+                            <li class="nav-submenu-item">
+                                <a class="@activeCate" href="/san-pham/@cate.Alias">@cate.Name</a>
                             </li>
                         }
                     </ul>
