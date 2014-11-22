@@ -307,7 +307,8 @@ namespace ShipEquipment.Core.Extensions
             var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
             var db = new ShipEquipmentContext();
             var ps = ctx.QueryString["ps"] ?? "8";
-            var sortField = ctx.QueryString["sort"] ?? "price";
+            var pi = ctx.QueryString["p"] ?? "1";
+            var sortField = ctx.QueryString["sort"] ?? "Price";
             var sortDirect = ctx.QueryString["order"] ?? "desc";
             var kw = SiteContext.Current.QueryString["kw"] ?? "";
 
@@ -315,7 +316,7 @@ namespace ShipEquipment.Core.Extensions
             var pagesize = 8;
             var pageindex = 1;
             int.TryParse(ps, out pagesize);
-
+            int.TryParse(pi, out pageindex);
 
             var lst = new List<Product>();
 
@@ -376,24 +377,19 @@ namespace ShipEquipment.Core.Extensions
             return new MvcHtmlString(result);
         }
 
-        public static MvcHtmlString LastViewProduct(this SiteControl control, bool isSaleList, string viewName = "LastViewProduct.cshtml")
+        public static MvcHtmlString LastViewProduct(this SiteControl control, string viewName = "LastViewProduct.cshtml")
         {
             var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
             var lst = new List<Product>();
             var db = new ShipEquipmentContext();
 
-            var lastView = HttpContext.Current.Request.Cookies["lastview"];
-            if (lastView != null)
+            var cookie = Globals.GetCookie("LastIds") ?? "";
+
+            var arrIds = cookie.Replace("&", "").Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+            if (arrIds.Length > 0)
             {
-                var value = lastView.Value ?? "";
-                var arrIds = value.Trim().Replace("&", "").Split(';');
-                if (arrIds.Length > 0)
-                {
-                    var lstIds = arrIds.Select(a => int.Parse(a)).ToList();
-
-
-                    lst = db.Products.Where(p => lstIds.Contains(p.Id)).ToList();
-                }
+                var lstIds = arrIds.Select(a => int.Parse(a)).ToList();
+                lst = db.Products.Where(p => lstIds.Contains(p.Id)).ToList();
             }
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
@@ -407,17 +403,21 @@ namespace ShipEquipment.Core.Extensions
             var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
             var db = new ShipEquipmentContext();
 
-            #region check and filter category
-
-            var alias = "";
             var routeData = SiteContext.Current.RouteData;
-            if (routeData != null && routeData.Values != null && routeData.Values["productalias"] != null)
-                alias = routeData.Values["productalias"].ToString();
+            var alias = routeData.Values["productalias"] != null ? routeData.Values["productalias"].ToString() : "";
 
             var product = db.Products
                             .FirstOrDefault(p => p.Active && string.Compare(p.Alias, alias, true) == 0);
 
-            #endregion
+            if (product != null)
+            {
+                var cookie = Globals.GetCookie("LastIds") ?? "";
+                var curId = string.Format("&{0}|", product.Id);
+                cookie = cookie.Replace(curId, "");
+                cookie += curId;
+
+                Globals.SetCookie("LastIds", cookie);
+            }
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, product);
 
