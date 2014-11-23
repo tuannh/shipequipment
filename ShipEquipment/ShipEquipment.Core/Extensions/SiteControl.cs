@@ -353,7 +353,14 @@ namespace ShipEquipment.Core.Extensions
 
             if (!string.IsNullOrEmpty(kw))
             {
-                lst = lst.Where(a => a.Name.Contains(kw) || a.Code.Contains(kw) || a.MadeIn.Contains(kw)).ToList();
+                kw = kw.ToLower();
+                lst = lst.Where(a => (a.Name ?? "").ToLower().Contains(kw) ||
+                                     (a.Code ?? "").ToLower().Contains(kw) ||
+                                     (a.MadeIn ?? "").ToLower().Contains(kw) ||
+                                     (a.ShortDescription ?? "").ToLower().Contains(kw) ||
+                                     (a.Description ?? "").ToLower().Contains(kw)).ToList();
+
+                control.HtmlHelper.ViewContext.ViewBag.Message = string.Format("<span class='num-found'>{0}</span> sản phẩm được tìm thấy", lst.Count());
             }
 
             var total = 0;
@@ -386,6 +393,12 @@ namespace ShipEquipment.Core.Extensions
             var cookie = Globals.GetCookie("LastIds") ?? "";
 
             var arrIds = cookie.Replace("&", "").Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+            if (arrIds.Length > 8)
+            {
+                var tmpIds = arrIds.Take(8).Select(a => string.Format("&{0}|", a)).ToArray();
+                cookie = string.Join("", tmpIds);
+                Globals.SetCookie("LastIds", cookie);
+            }
             if (arrIds.Length > 0)
             {
                 var lstIds = arrIds.Select(a => int.Parse(a)).ToList();
@@ -413,8 +426,8 @@ namespace ShipEquipment.Core.Extensions
             {
                 var cookie = Globals.GetCookie("LastIds") ?? "";
                 var curId = string.Format("&{0}|", product.Id);
-                cookie = cookie.Replace(curId, "");
-                cookie += curId;
+                cookie = cookie.Replace(curId, ""); // remove old value
+                cookie = curId + cookie;
 
                 Globals.SetCookie("LastIds", cookie);
             }

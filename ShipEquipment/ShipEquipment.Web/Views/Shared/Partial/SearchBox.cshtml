@@ -1,6 +1,10 @@
-﻿<div id="search">
+﻿@{
+    var kw = ShipEquipment.Core.SiteContext.Current.QueryString["kw"] ?? "";
+}
+
+<div id="search">
     <form action="/san-pham" method="get">
-        <input type="text" id="kw" name="kw" class="text placeholder-fix" value="" placeholder="Tên SP, Mã SP,..." />
+        <input type="text" id="kw" name="kw" class="text placeholder-fix" value="@kw" placeholder="Tên sp, mã sp, nơi sx..." />
         <input type="submit" class="button" value="Tìm" />
     </form>
 

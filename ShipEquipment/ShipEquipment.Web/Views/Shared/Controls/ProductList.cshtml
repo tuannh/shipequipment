@@ -6,47 +6,50 @@
     pagingModel.ShowSummaryInfo = false;
 }
 
-@if (Model != null && Model.Count() > 0)
-{
-    <ul>
-        @foreach (var product in Model)
-        {
-            <li>
-                <div class="content_products">
-                    <div class="img_content">
-                        <a href="/chi-tiet-sp/@product.Alias">
-                            @if (product.GetPhoto() != null)
-                            {
-                                <img src="~/Userfiles/Modules/Products/Thumb/@product.GetPhoto().FileName" alt="@product.Name" />
-                            }
-                            else
-                            {
-                                @product.Name
-                            }
-                        </a>
-                    </div>
-                    <div class="text_infor">
-                        <p>@product.ShortDescription</p>
-                        @if (@product.SalePrice > 0)
+<div class="search-result">@Html.Raw(ViewBag.Message)</div>
+<div class="productsList">
+    @if (Model != null && Model.Count() > 0)
+    {
+        <ul>
+            @foreach (var product in Model)
+            {
+                <li>
+                    <div class="content_products">
+                        <div class="img_content">
+                            <a href="/chi-tiet-sp/@product.Alias">
+                                @if (product.GetPhoto() != null)
+                                {
+                            <img src="~/Userfiles/Modules/Products/Thumb/@product.GetPhoto().FileName" alt="@product.Name" />
+                                }
+                                else
+                                {
+                            @product.Name
+                                }
+                            </a>
+                        </div>
+                        <div class="text_infor">
+                            <p>@product.Name</p>
+                            @if (@product.SalePrice > 0)
                         {
-                            <p class="priceSale1">
-                                <span class="oldPrice">@product.Price.ToString("N0") VND</span>
-                                <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
-                            </p>
+                        <p class="priceSale1">
+                            <span class="oldPrice">@product.Price.ToString("N0") VND</span>
+                            <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
+                        </p>
                         }
                         else
                         {
-                            <p class="price">@product.GetPrice()</p>
+                        <p class="price">@product.GetPrice()</p>
                         }
+                        </div>
+                        <a href="javascript:void(0)" data-id="@product.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
                     </div>
-                    <a href="javascript:void(0)" data-id="@product.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
-                </div>
-            </li>
-        }
-    </ul>
+                </li>
+            }
+        </ul>
 
-    <div class="clear"></div>
-    <div class="pagination">
-        @Html.Controls().Pager(pagingModel)
-    </div>
-}
+        <div class="clear"></div>
+        <div class="pagination">
+            @Html.Controls().Pager(pagingModel)
+        </div>
+    }
+</div>

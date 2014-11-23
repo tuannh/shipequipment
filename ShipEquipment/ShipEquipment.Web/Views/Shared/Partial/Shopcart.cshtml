@@ -14,6 +14,7 @@
     cart = cart ?? new List<ShipEquipment.Web.Models.MyCart>();
 
     var total = cart.Sum(a => a.Sum);
+    var count = cart.Sum(a => a.Quatity);
 }
 
 @if (string.Compare(pageAlias, "gio-hang") != 0)
@@ -21,7 +22,7 @@
     <div class="frm">
         <h2><img src="/images/thx/icon-shop-card.png" alt="" />giỏ hàng</h2>
         <div class="inner-shop-card @cssClass">
-            <p>Hiện có <span id="cart-count-right">@cart.Count()</span> sản phẩm</p>
+            <p>Hiện có <span id="cart-count-right">@count</span> sản phẩm</p>
 
             @*@if (cart.Count() > 0)
                 {

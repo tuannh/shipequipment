@@ -350,7 +350,7 @@ footer .design_by .face-book{ position:absolute; right:0; top:0px}
 .news-detail h3 {color: #ff4700; font-size: 14px; margin-bottom: 10px; text-transform:uppercase; background:none; padding:8px 0 }
 
 
-.text-detail a.btn_chonmua{position:absolute; bottom:7%; right:20px; background:url(/images/thx/bg-btn-chonmua.png) no-repeat left top; height:29px; width:101px; padding-left:10px; display:block; line-height:29px; text-transform:uppercase; z-index:800; color:#fff;-moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s}
+.text-detail a.btn_chonmua{float:right; bottom:7%; right:20px; background:url(/images/thx/bg-btn-chonmua.png) no-repeat left top; height:29px; width:101px; padding-left:10px; display:block; line-height:29px; text-transform:uppercase; z-index:800; color:#fff;-moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s}
 .text-detail a.btn_chonmua:hover{background:url(/images/thx/lbg-btn-chonmua-hover.png) no-repeat left top; text-decoration:none}
 .data-table {
     width: 100%;
@@ -461,3 +461,45 @@ footer .design_by .face-book{ position:absolute; right:0; top:0px}
 .priceSale1 { line-height: 16px; font-size:18px; font-weight:normal; color: #5e5e5e!important; float:right}
 .priceSale1 .oldPrice{text-decoration:line-through; padding-right:7px; font-size: 14px; font-weight: bold;}
 .priceSale1 .salePrice{line-height: 22px; font-size: 22px; font-weight:bold; color: #d85625  !important; text-decoration:none}
+
+
+.detail-old-price{line-height: 22px; font-size: 22px; font-weight:bold; color: #221208 !important;}
+.detail-old-price {text-decoration:line-through; padding-right:7px; font-size: 14px; font-weight: bold;}
+.detail-sale-price {
+    line-height: 22px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #d85625 !important;
+    text-decoration: none;
+}
+
+
+#lightGallery {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#lightGallery li {
+    cursor: pointer;
+    float: left;
+    padding-right: 5px;
+}
+
+#mask-loading {
+    background-color: #27231F;
+    display: none;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999999;
+}
+#mask-loading div {
+    background: url("/Images/loading.gif") no-repeat scroll center center;
+    height: 100%;
+    width: 100%;
+}
