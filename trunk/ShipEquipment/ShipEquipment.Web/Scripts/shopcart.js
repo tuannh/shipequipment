@@ -1,16 +1,21 @@
 ﻿var cart = {
 
     add: function (productId) {
+        this.showLoading();
         var data = { '': productId };
         $.post("/api/cart/add", data, this.addCartComplete);
     },
 
     update: function (productId, qty) {
+        this.showLoading();
+
         var data = { id: productId, quatity: qty };
         $.post("/api/cart/update", data, this.updateCartComplete);
     },
 
     remove: function (productId) {
+        this.showLoading();
+
         var data = { '': productId };
         $.post("/api/cart/remove", data, this.removeCartComplete);
     },
@@ -24,7 +29,7 @@
             $('#cart-total-right').text(data.total);
             $('#cart-count-right').text(data.count);
 
-            alert('Thêm sản phẩm vào giỏ hàng thành công.')
+            cart.hideLoading();
         }
         else
             alert(data.message);
@@ -45,6 +50,8 @@
             // update rightcart
             $('#cart-total-right').text(data.total);
             $('#cart-count-right').text(data.count);
+
+            cart.hideLoading();
         }
         else
             alert(data.message);
@@ -70,13 +77,35 @@
 
             if (data.count == 0)
                 $('.btn-order').hide();
+
+            cart.hideLoading();
         }
         else
             alert(data.message);
+    },
+
+    showLoading: function () {
+        $('#mask-loading').show();
+    },
+
+    hideLoading: function () {
+        setTimeout(function () {
+            $('#mask-loading').hide();
+        }, 200);
     }
+
 };
 
 $(document).ready(function () {
+
+    // check top cart link has item
+    $('.top-right #cart a').click(function () {
+        var cart = $(this).find('#cart-total').text().trim();
+        if ('Giỏ hàng (0)' == cart)
+            return false;
+
+        return true;
+    })
 
     $('.cart-add').click(function () {
         var id = $(this).attr('data-id');

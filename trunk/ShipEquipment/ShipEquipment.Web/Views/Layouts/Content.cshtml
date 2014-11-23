@@ -7,7 +7,7 @@
     <title>@ViewBag.Title</title>
    
     @RenderSection("Styles", false)
-
+    @Html.CssBundle("~/css/lightGallery", "~/css/jquery/lightGallery.css")
     @Html.JsBundle("~/js/default")
     @RenderSection("HeaderScripts", false)
 </head>
@@ -55,7 +55,10 @@
 
     </div>
 
-    @Html.JsBundle("~/js/page/news")
+    @Html.JsBundle("~/js/page/content")
     @RenderSection("FooterScripts", false)
+    <div id="mask-loading">
+        <div></div>
+    </div>
 </body>
 </html>

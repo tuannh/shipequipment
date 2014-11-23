@@ -129,9 +129,12 @@
     <Content Include="Css\easy-responsive-tabs.css" />
     <Content Include="Css\easy-responsive-tabs1.css" />
     <Content Include="Css\jquery\jquery-ui.css" />
+    <Content Include="Css\jquery\lightGallery.css" />
     <Content Include="Css\resize.css" />
     <Content Include="Css\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\Slide-icons.dev.svg" />
+    <Content Include="fonts\Slide-icons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Config\log4net.config" />
@@ -173,6 +176,7 @@
     <Content Include="Images\jquery\jquery.ui\ui-icons_454545_256x240.png" />
     <Content Include="Images\jquery\jquery.ui\ui-icons_888888_256x240.png" />
     <Content Include="Images\jquery\jquery.ui\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Images\loading.gif" />
     <Content Include="Images\thx\arrow-icon.png" />
     <Content Include="Images\thx\arrowCategory.png" />
     <Content Include="Images\thx\arrowCategoryHover.png" />
@@ -264,9 +268,10 @@
     <Content Include="Scripts\common\modernizr-2.7.1.js" />
     <Content Include="Scripts\jquery\jquery-ui.js" />
     <Content Include="Scripts\jquery\jquery.tmpl.js" />
+    <Content Include="Scripts\jquery\lightGallery.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\product.js" />
-    <Content Include="Scripts\pages\news.js" />
+    <Content Include="Scripts\pages\content.js" />
     <Content Include="Scripts\pages\index.js" />
     <Content Include="Scripts\product.js" />
     <Content Include="Scripts\common\utilities.js" />
@@ -1348,6 +1353,9 @@
     <Content Include="Views\Shared\Controls\PromotionList.cshtml" />
     <Content Include="Views\Layouts\Promotion.cshtml" />
     <Content Include="Views\Shared\Controls\LastViewProduct-Home.cshtml" />
+    <Content Include="fonts\Slide-icons.eot" />
+    <Content Include="fonts\Slide-icons.ttf" />
+    <Content Include="fonts\Slide-icons.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

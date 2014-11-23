@@ -11,24 +11,48 @@
 
                     @if (Model.GetPhoto() != null)
                     {
-                        <img src="~/Userfiles/Modules/Products/Thumb/@Model.GetPhoto().FileName" a alt="@Model.Name" />
+                        <img src="~/Userfiles/Modules/Products/@Model.GetPhoto().FileName" alt="@Model.Name" />
                     }
                     else
                     {
                         @Model.Name
                     }
                 </a>
-
+                @if (Model.Photos != null && Model.Photos.Count() > 0)
+                {
+                    <ul id="lightGallery">
+                        @foreach (var photo in Model.Photos)
+                        {
+                        <li data-src="/Userfiles/Modules/Products/@photo.FileName">
+                            <img src="~/Userfiles/Modules/Products/Thumb/@photo.FileName" alt="@photo.Title" />
+                        </li>
+                        }
+                    </ul>
+                }
             </div>
             <div class="text-detail">
                 <h3>Chi tiết sản phẩm</h3>
-                <p>
+                <div>
                     <b> - Tên sản phẩm:</b> @Model.Name<br />
-                    <b> - Giá:</b> @Model.GetPrice()<br />
+                    <b> - Mã sản phẩm:</b> @Model.Code<br />
+
+                    @if (Model.SalePrice > 0)
+                    {
+                        <b> - Giá:</b>                        <span class="detail-old-price">@Model.GetPrice() VND</span><br />
+                        <b> - Giá khuyễn mãi:</b><span class="detail-sale-price"> @Model.SalePrice.ToString("N0") VND </span><br />
+                    }
+                    else
+                    {
+                        <b> - Giá:</b>                        <span class="detail-price"> @Model.GetPrice() VND</span><br />
+                    }
                     <b> -  Nhãn hiệu:</b> @Model.Brand.Name<br />
-                    <b> -  Made in:</b> @Model.MadeIn<br />
-                </p>
-                @Model.Description
+                    <b> -  Nơi sản xuất:</b> @Model.MadeIn<br />
+                </div>
+                <br />
+                <div>
+                    @Html.Raw(Model.Description)
+                </div>
+                <div class="clear"></div>
                 <a href="javascript:void(0)" data-id="@Model.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
             </div>
         }

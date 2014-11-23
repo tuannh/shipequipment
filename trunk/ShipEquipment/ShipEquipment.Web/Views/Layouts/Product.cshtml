@@ -36,9 +36,8 @@
                     @{ Html.RenderPartial("~/Views/Shared/Partial/Shopcart.cshtml"); }
                 </aside>
                 <div class="clear"></div>
-                <div class="productsList">
+                
                     @Html.Controls().ProductList()
-                </div>
 
                 <div class="frm2">
                     @Html.Controls().LastViewProduct()
@@ -53,5 +52,8 @@
     </div>
     @RenderBody()
     @Html.JsBundle("~/js/page/product")
+    <div id="mask-loading">
+        <div></div>
+    </div>
 </body>
 </html>
