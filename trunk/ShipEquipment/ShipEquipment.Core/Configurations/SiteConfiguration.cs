@@ -141,6 +141,11 @@ namespace ShipEquipment.Core.Configurations
                 ThumbHeight = 182,
                 Background = "#FFF"
             };
+
+            IsSendEmailToAdmin = true;
+            IsSendEmailToUser = true;
+            DefaultSender = "no-reply@tuanhangxanh.com";
+            AdminEmail = "nht257@yahoo.com";
         }
 
         #endregion
@@ -200,8 +205,20 @@ namespace ShipEquipment.Core.Configurations
         [DataMember(Order = 11)]
         public ImageResize News { get; set; }
 
-        [DataMember(Order = 11)]
+        [DataMember(Order = 12)]
         public ImageResize UserGuide { get; set; }
+
+        [DataMember(Order = 13)]
+        public bool IsSendEmailToAdmin { get; set; }
+
+        [DataMember(Order = 14)]
+        public bool IsSendEmailToUser { get; set; }
+
+        [DataMember(Order = 15)]
+        public string DefaultSender { get; set; }
+
+        [DataMember(Order = 16)]
+        public string AdminEmail { get; set; }
 
         #endregion
     }

@@ -1,21 +1,9 @@
 ﻿<div class="video-clip">
     <h2><img src="/images/thx/arrow-icon.png" alt="" />VIDEO CLIP</h2>
-    <div class="video">
-        <a href="#"><img src="/images/thx/clip1.jpg" alt="" /></a>
-        <p>Lorem ipsum dolor sit amet, consee adipiscing elit, Lorem ipsum dolor sit amet, consee adipiscing elit</p>
-    </div>
-    <div class="video">
-        <a href="#"><img src="/images/thx/clip2.jpg" alt="" /></a>
-        <p>Lorem ipsum dolor sit amet, consee adipiscing elit, Lorem ipsum dolor sit amet, consee adipiscing elit</p>
-    </div>
+    @Html.Controls().VideoList(2, "VideoTop.cshtml")
+   
 </div>
 <div class="news">
     <h2><img src="/images/thx/arrow-icon.png" alt="" />TIN TỨC</h2>
-    <ul>
-        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-    </ul>
+    @Html.Controls().NewsList("NewsTop.cshtml")
 </div>

@@ -22,12 +22,12 @@
     {
         foreach (var page in Model)
         {
-            var active = string.Compare(page.Alias, pageAlias, true) == 0 || string.IsNullOrEmpty(page.Alias)? "class='active'" : "";
+            var active = string.Compare(page.Alias, pageAlias, true) == 0 || string.IsNullOrEmpty(pageAlias) ? "class='active'" : "";
             var last = index == count ? "last" : "";
             index++;
 
             <li class="nav-item @last">
-                <a href="/@page.Alias" title="@page.Name"  @Html.Raw(active)>@page.Name</a>
+                <a href="/@page.Alias" title="@page.Name" @Html.Raw(active)>@page.Name</a>
                 @if (string.Compare(page.Alias, "tin/tin-tuc", true) == 0 && newsCategory != null)
                 {
                     <ul class="nav-submenu">

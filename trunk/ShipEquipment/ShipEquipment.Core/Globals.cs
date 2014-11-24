@@ -233,6 +233,32 @@ namespace ShipEquipment.Core
         #endregion
 
         #region Querystring utiliies
+
+        public static string GetQueryStringValue(string url, string queryKey)
+        {
+            if (string.IsNullOrEmpty(url))
+                return string.Empty;
+
+            var arr = url.Split(new string[] { "?" }, StringSplitOptions.RemoveEmptyEntries);
+            var queryString = arr.Length == 2 ? arr[1] : (arr != null ? arr[0] : "");
+
+            var arrkv = queryString.Split(new string[] { "&" }, StringSplitOptions.RemoveEmptyEntries);
+            if (arrkv != null && arrkv.Length > 0)
+            {
+                foreach (var kv in arrkv)
+                {
+                    var tmpkv = kv.Split('=');
+                    if (tmpkv != null && tmpkv.Length == 2 &&
+                        string.Compare(tmpkv[0], queryKey) == 0)
+                    {
+                        return tmpkv[1];
+                    }
+                }
+            }
+
+            return string.Empty;
+        }
+
         /// <summary>
         /// Adds a string to the current url determining the correct seperator character
         /// </summary>

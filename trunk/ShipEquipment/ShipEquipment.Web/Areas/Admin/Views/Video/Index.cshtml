@@ -26,7 +26,6 @@
 <table class="tb_table" cellspacing="0" cellpadding="0" border="0">
     <tr class="tb_content">
         <th>
-        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
@@ -44,10 +43,10 @@
     @foreach (var item in Model)
     {
         <tr class="tb_content">
-            <td>
+            <td class="colLeft">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            <td class="colLeft">
                 @Html.DisplayFor(modelItem => item.Url)
             </td>
             <td>
@@ -61,14 +60,9 @@
             </td>
             <td>
                 @Html.ActionLink("Sửa", "edit", new { id = item.Id }) |
-                @if (true)
-                {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "cmd-delete" })
-                }
-                else
-                {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "cmd-delete-no" })
-                }
+
+                @Html.ActionLink("Xóa", "delete", new { id = item.Id }, new { @class = "cmd-delete" })
+
             </td>
         </tr>
     }
@@ -86,12 +80,5 @@
 
             return false;
         })
-
-        $('.cmd-delete-no').click(function () {
-            var result = alert('Danh mục này đang được sử dụng. Bạn không thể xóa.')
-
-            return false;
-        })
-
     })
 </script>

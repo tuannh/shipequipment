@@ -509,21 +509,60 @@ namespace ShipEquipment.Core.Extensions
             return new MvcHtmlString(result);
         }
 
-        public static MvcHtmlString BrandList(this SiteControl control, string viewName = "BrandList.cshtml")
+        public static MvcHtmlString BrandList(this SiteControl control, int numberShow = int.MaxValue, string viewName = "BrandList.cshtml")
         {
             var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
             var db = new ShipEquipmentContext();
 
             var lst = db.Brands
-                                   .Where(p => p.Active)
-                                   .OrderBy(p => p.DisplayOrder)
-                                   .ThenBy(p => p.Name)
-                                   .ToList();
+                        .Where(p => p.Active)
+                        .OrderBy(p => p.DisplayOrder)
+                        .ThenBy(p => p.Name)
+                        .Take(numberShow)
+                        .ToList();
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
 
             db.Dispose();
             return new MvcHtmlString(result);
+        }
+
+        public static MvcHtmlString VideoList(this SiteControl control, int showVideo = int.MaxValue, string viewName = "VideoList.cshtml")
+        {
+            var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
+            var db = new ShipEquipmentContext();
+
+            var lst = db.Videos
+                        .Where(p => p.Active)
+                        .OrderBy(p => p.DisplayOrder)
+                        .ThenBy(p => p.Name)
+                        .Take(showVideo)
+                        .ToList();
+
+            var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
+
+            db.Dispose();
+            return new MvcHtmlString(result);
+        }
+
+        public static MvcHtmlString PhotoList(this SiteControl control, int showVideo = int.MaxValue, string viewName = "VideoList.cshtml")
+        {
+            var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
+            var db = new ShipEquipmentContext();
+
+            //var lst = db.Videos
+            //            .Where(p => p.Active)
+            //            .OrderBy(p => p.DisplayOrder)
+            //            .ThenBy(p => p.Name)
+            //            .Take(showVideo)
+            //            .ToList();
+            //var lst = new;
+
+            var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, null);
+
+            db.Dispose();
+            return new MvcHtmlString(result);
+
         }
 
         public static MvcHtmlString FaqList(this SiteControl control, string viewName = "FaqList.cshtml")
@@ -598,18 +637,36 @@ namespace ShipEquipment.Core.Extensions
             return new MvcHtmlString(result);
         }
 
-        public static MvcHtmlString HomeProduct(this SiteControl control, string viewName = "HomeProduct.cshtml")
+        public static MvcHtmlString HomeProduct(this SiteControl control, int numberShow = int.MaxValue, string viewName = "HomeProduct.cshtml")
         {
             var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
             var db = new ShipEquipmentContext();
 
-            var products = db.Products.Where(a => a.Active).ToList();
+            var lstNew = db.Products
+                            .Where(a => a.Active && a.Type == (int)ProductType.New)
+                            .OrderBy(a => a.DislayOrder)
+                            .ThenBy(a => a.Name)
+                            .Take(numberShow)
+                            .ToList();
 
+            var lstConsignment = db.Products.Where(a => a.Active && a.Type == (int)ProductType.Consignment)
+                                .OrderBy(a => a.DislayOrder)
+                                .ThenBy(a => a.Name)
+                                .Take(numberShow)
+                                .ToList();
 
-            var lstNew = products.Where(a => a.Type == (int)ProductType.New).ToList();
-            var lstConsignment = products.Where(a => a.Type == (int)ProductType.Consignment).ToList();
-            var lstSecondHand = products.Where(a => a.Type == (int)ProductType.SecondHand).ToList();
-            var lstBestSale = products.Where(a => a.Type == (int)ProductType.BestSale).ToList();
+            var lstSecondHand = db.Products.Where(a => a.Active && a.Type == (int)ProductType.SecondHand)
+                                    .OrderBy(a => a.DislayOrder)
+                                    .ThenBy(a => a.Name)
+                                    .Take(numberShow)
+                                    .ToList();
+
+            var lstBestSale = db.Products.Where(a => a.Active && a.Type == (int)ProductType.BestSale)
+                                .OrderBy(a => a.DislayOrder)
+                                .ThenBy(a => a.Name)
+                                .Take(numberShow)
+                                .ToList();
+
 
             var obj = new Dictionary<ProductType, List<Product>>();
             obj.Add(ProductType.New, lstNew);

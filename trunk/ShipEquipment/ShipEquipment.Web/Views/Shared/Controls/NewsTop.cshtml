@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.NewsArticle>
+           
+
+@if (Model != null)
+{
+    var news = Model.Take(8);
+    <ul>
+        @foreach (var article in news)
+        {
+            <li><a href="/tin-tuc/chi-tiet/@article.Alias" title="@article.Title">@article.Title</a></li>
+        }
+    </ul>
+}
