@@ -1,0 +1,32 @@
+﻿Hi {username},
+<p>&nbsp;</p>
+<h2>Thông tin khách hàng</h2>
+Tên khách hàng: <b>{username}</b><br />
+Địa chỉ: <b>{address}</b><br />
+Email: <b>{email}</b><br />
+Phone: <b>{phone}</b><br />
+<p>&nbsp;</p>
+<h2>
+    Thông tin đơn hàng
+</h2>
+
+Mã đơn hàng: <b>{orderid}</b><br />
+Ngày đặt: <b>{orderdate}</b><br />
+<h2>
+    Chi tiết đơn hàng
+</h2>
+<table>
+    <tr>
+        <td>Tên sp</td>
+        <td>Đơn giá</td>
+        <td>SL</td>
+        <td>Thành tiên</td>
+    </tr>
+    {orderdetail}
+</table>
+Tổng: <b>{total}</b>
+<p>&nbsp;</p>
+ Ghi chú: {note}
+<br />
+<p>&nbsp;</p>
+    Regards,

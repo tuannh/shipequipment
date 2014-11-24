@@ -52,7 +52,7 @@ else if (pageType == PageType.Shopcart)
 }
 else if (pageType == PageType.Order)
 {
-    Html.RenderPartial("~/Views/Home/Order.cshtml", ViewData["Order"] as Order, ViewData);
+    Html.RenderPartial("~/Views/Home/_Order.cshtml", ViewData["Order"] as Order, ViewData);
     @section FooterScripts    {
         @Html.JsBundle("~/js/jqueryval")
     }
@@ -62,6 +62,13 @@ else if (pageType == PageType.Promotion)
     Layout = "~/Views/Layouts/Promotion.cshtml";
     @Html.Controls().PromotionList()
 }
+else if (pageType == PageType.Video)
+{
+    @Html.Controls().VideoList()
+}
+
+
+
 
 @section Styles{
     @if (pageType == PageType.Shopcart)

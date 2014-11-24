@@ -44,7 +44,7 @@
             </p>
 
             <p>
-                @Html.LabelFor(model => model.DistrictId, "DistrictId", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.DistrictId)
                 <select id="DistrictId" name="DistrictId">
                     <option value="0">Chọn quận/huyện</option>
                 </select>
@@ -52,7 +52,7 @@
 
             <p>
                 @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "order-note" })
-                @Html.EditorFor(model => model.Note, new { @class = "form-control", style = "height: 50px;" })
+                @Html.TextAreaFor(model => model.Note, new { @class = "form-control"})
                 @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
             </p>
 

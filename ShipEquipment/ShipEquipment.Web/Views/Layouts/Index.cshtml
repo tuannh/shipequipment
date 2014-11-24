@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>@ViewBag.Title</title>
     @Html.CssBundle("~/css/index")
+    @Html.CssBundle("~/css/lightGallery", "~/css/jquery/lightGallery.css")
     @Html.JsBundle("~/js/default")
 </head>
 <body>
@@ -30,13 +31,13 @@
                 @Html.Controls().LastViewProduct("LastViewProduct-Home.cshtml")
 
                 <div class="colLeft">
-                    @Html.Controls().HomeProduct()
+                    @Html.Controls().HomeProduct(6)
                 </div>
                 <aside class="colRight">
                     @{ Html.RenderPartial("~/Views/Shared/Partial/Shopcart.cshtml"); }
                     @{ Html.RenderPartial("~/Views/Shared/Partial/Weather.cshtml"); }
                     @{ Html.RenderPartial("~/Views/Shared/Partial/RightContact.cshtml"); }
-                    @Html.Controls().BrandList("BrandList-Home.cshtml")
+                    @Html.Controls().BrandList(3, "BrandList-Home.cshtml")
                 </aside>
                 <div class="frm2">
                     <div class="inner-frm2">

@@ -137,4 +137,10 @@ $(document).ready(function () {
         itemsMobile: [479, 1], // itemsMobile disabled - inherit from itemsTablet option
         navigation: true,
     });
+
+    $('#video-gallery').lightGallery();
+    $('.video a').click(function () {
+        var id = $(this).attr('data-id');
+        $(id).click();
+    })
 });

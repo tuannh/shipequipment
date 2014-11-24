@@ -293,11 +293,6 @@
     <Content Include="Scripts\thx\jquery.js" />
     <Content Include="Scripts\thx\owl.carousel.js" />
     <Content Include="Scripts\thx\script.js" />
-    <Content Include="Userfiles\Upload\images\Modules\BannerRotators\1-banner1.jpg" />
-    <Content Include="Userfiles\Upload\images\Modules\BannerRotators\2-banner2.jpg" />
-    <Content Include="Userfiles\Upload\images\Modules\BannerRotators\3-banner1.jpg" />
-    <Content Include="Userfiles\Upload\images\Modules\BannerRotators\4-banner2.jpg" />
-    <Content Include="Userfiles\Upload\images\Modules\BannerRotators\5-banner1.jpg" />
     <Content Include="utility\ckeditor\adapters\jquery.js" />
     <Content Include="utility\ckeditor\build-config.js" />
     <Content Include="utility\ckeditor\ckeditor.js" />
@@ -1349,13 +1344,18 @@
     <Content Include="Views\Layouts\Product.cshtml" />
     <Content Include="Views\Home\PageContent.cshtml" />
     <Content Include="Views\Shared\Partial\MainCart .cshtml" />
-    <Content Include="Views\Home\Order.cshtml" />
+    <Content Include="Views\Home\_Order.cshtml" />
     <Content Include="Views\Shared\Controls\PromotionList.cshtml" />
     <Content Include="Views\Layouts\Promotion.cshtml" />
     <Content Include="Views\Shared\Controls\LastViewProduct-Home.cshtml" />
     <Content Include="fonts\Slide-icons.eot" />
     <Content Include="fonts\Slide-icons.ttf" />
     <Content Include="fonts\Slide-icons.woff" />
+    <Content Include="Views\Shared\Controls\NewsTop.cshtml" />
+    <Content Include="Views\Shared\Controls\VideoList.cshtml" />
+    <Content Include="Views\Shared\Controls\VideoTop.cshtml" />
+    <Content Include="Views\Shared\Controls\PhotoList.cshtml" />
+    <Content Include="Userfiles\Templates\Order.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

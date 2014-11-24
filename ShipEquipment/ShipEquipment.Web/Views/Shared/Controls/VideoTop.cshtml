@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.Video>
+
+@if (Model != null)
+{
+    foreach (var video in Model)
+    {
+    
+    //http://img.youtube.com/vi/@(video.Description)/mqdefault.jp
+        <div class="video">
+            <a data-id="#v@(video.Id)" href="javascript:void(0)"><img src="http://i1.ytimg.com/vi/@(video.Description)/hqdefault.jpg" alt="" /></a>
+            <p>
+                <a data-id="#v@(video.Id)" href="javascript:void(0)">
+                    @video.Name
+                </a>
+            </p>
+        </div>
+    }
+
+    <ul id="video-gallery" style="display: none;">
+        @foreach (var video in Model)
+        {
+            <li id="v@(video.Id)" data-src="@video.Url">
+                <a href="#">
+                    @video.Name
+                </a>
+            </li>
+        }
+    </ul>
+}
