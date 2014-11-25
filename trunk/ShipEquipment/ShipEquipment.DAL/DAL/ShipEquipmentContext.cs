@@ -57,5 +57,7 @@ namespace ShipEquipment.Biz.DAL
         public System.Data.Entity.DbSet<ShipEquipment.Biz.Domain.Order> Orders { get; set; }
 
         public System.Data.Entity.DbSet<ShipEquipment.Biz.Domain.District> Districts { get; set; }
+
+        public System.Data.Entity.DbSet<ShipEquipment.Biz.Domain.Album> Albums { get; set; }
     }
 }

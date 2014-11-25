@@ -44,6 +44,11 @@
             // update maincart
             var tr = $(data.rowid);
             tr.find('.calc').html(data.sum);
+
+            var cartUpdate = tr.find('.cart-update');
+            cartUpdate.attr('data-change', 0);
+            cartUpdate.attr('data-quatity', cartUpdate.val());
+
             $('.rowTotal #qty').html(data.count);
             $('.rowTotal #total').html(data.total);
 
@@ -121,9 +126,12 @@ $(document).ready(function () {
     })
 
     $('.cart-update').blur(function () {
-        var id = $(this).attr('data-id');
-        var qty = $(this).val();
-        cart.update(id, qty)
+
+        if ($(this).attr('data-change') == '1') {
+            var id = $(this).attr('data-id');
+            var qty = $(this).val();
+            cart.update(id, qty);
+        }
 
     }).change(function () {
         var qty = parseInt(this.value);
@@ -132,8 +140,11 @@ $(document).ready(function () {
             this.value = $(this).attr('data-quatity');
             alert('Số lượng phải là 1 số dương');
         }
-        else
+        else {
             this.value = qty;
+            if ($(this).attr('data-quatity') != this.value)
+                $(this).attr('data-change', 1);
+        }
     })
 
     $('.cart-clear').click(function () {

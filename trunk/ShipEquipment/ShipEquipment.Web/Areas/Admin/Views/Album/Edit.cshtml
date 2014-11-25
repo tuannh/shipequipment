@@ -1,0 +1,87 @@
+﻿@model ShipEquipment.Biz.Domain.Album
+
+@{
+    ViewBag.Title = "Cập nhật album";
+    Layout = "~/Areas/Admin/Views/Shared/Layouts/Edit.cshtml";
+
+}
+
+<h2>Cập nhật album</h2>
+@using (Html.BeginForm("edit", "album", new { id = @Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="error">
+        @ViewBag.Error
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-horizontal">
+        <h4>Album</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Alias, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Alias, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Alias, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DisplayOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DisplayOrder, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DisplayOrder, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>&nbsp;</label>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cập nhật" class="btnAdd" />
+                <input type="button" value="Xóa" class="btnDelete" data-href="/admin/album/delete/@Model.Id" />
+                <input type="reset" value="Reset" class="btnCancel" />
+                <input type="button" value="Bỏ qua" class="btnCancel btnDiscard" data-href="/admin/album/" />
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#Name').blur(function () {
+            AutoGenerateAlias(this.value, 'Alias', false);
+        })
+
+        $('.btnDelete').click(function () {
+            var ok = confirm('Bạn muốn xóa album này không?')
+            if (ok)
+                location.href = $(this).attr('data-href');
+
+            return false;
+        })
+
+        $('.btnDiscard').click(function () {
+            location.href = $(this).attr('data-href');
+        })
+    })
+</script>
