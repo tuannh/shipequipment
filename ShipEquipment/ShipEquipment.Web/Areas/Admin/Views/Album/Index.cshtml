@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.Album>
+
+@{
+    ViewBag.Title = "Quản lý album";
+
+    var pagingModel = ViewBag.PagingModel as PagingModel;
+    pagingModel.SummaryInfoTemplate = "Trang {0}/{1} ({2} album)";
+    var kw = ViewBag.Keyword as string;
+}
+<div class="header">
+    <h1>Quản lý album</h1>
+    <div class="headerL">
+        @Html.ActionLink("Thêm album", "create")
+    </div>
+    <div class="headerR">
+        @Html.Raw(ViewBag.SearchReseult)
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <input id="kw" name="kw" type="text" placeholder="Từ khóa cần tìm" value="@kw" />
+            <input type="submit" value="Tìm" class="btnSearch" />
+        }
+
+    </div>
+</div>
+
+<table class="tb_table" cellspacing="0" cellpadding="0" border="0">
+    <tr class="tb_content">
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisplayOrder)
+        </th>
+        <th class="col-command"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="tb_content">
+            <td class="colLeft">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisplayOrder)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "edit", new { id = item.Id }) |
+                @Html.ActionLink("Xóa", "delete", new { id = item.Id }, new { @class = "cmd-delete" })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="paging">
+    @Html.Controls().Pager(pagingModel)
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.cmd-delete').click(function () {
+            var result = confirm('Bạn thực sự muốn xóa album này không?')
+            if (result)
+                return true;
+
+            return false;
+        })
+
+    })
+</script>
