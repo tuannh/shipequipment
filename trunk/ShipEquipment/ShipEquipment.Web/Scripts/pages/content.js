@@ -81,7 +81,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#lightGallery').lightGallery();
+    $('#lightGallery, #video-gallery').lightGallery();
 
     $('.img_detail a').click(function () {
         $('#lightGallery li:first').click();

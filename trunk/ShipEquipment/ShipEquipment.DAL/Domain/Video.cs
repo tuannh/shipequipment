@@ -28,6 +28,10 @@ namespace ShipEquipment.Biz.Domain
         [Display(Name = "Tên video")]
         public string Name { get; set; }
 
+        [StringLength(50, ErrorMessage = "Video id không được quá 50")]
+        [Display(Name = "Video id")]
+        public string VideoId { get; set; }
+
         [MaxLength, Column(TypeName = "ntext")]
         [Display(Name = "Mô tả")]
         public string Description { get; set; }
@@ -42,5 +46,8 @@ namespace ShipEquipment.Biz.Domain
 
         [Display(Name = "Link video")]
         public string Url { get; set; }
+
+        [Display(Name = "Ngày tạo")]
+        public DateTime? CreatedDate { get; set; }
     }
 }

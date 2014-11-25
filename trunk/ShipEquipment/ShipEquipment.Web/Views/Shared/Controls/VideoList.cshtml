@@ -1,114 +1,84 @@
 ﻿@model IEnumerable<ShipEquipment.Biz.Domain.Video>
-           
+
+@{
+    var count = Model != null ? Model.Count() : 0;
+    var mid = count / 2;
+    var index = 0;
+}
 
 <p class="link"><a href="#">Trang chủ</a><span>&gt;&gt;</span><a href="#" class="active">Video clip</a></p>
-<div class="inner-frm4">
-    <div id="owl2">
-        <div class="item">
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh1.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM1</a></p>
-                    <p class="date">01/11/2014</p>
+
+@if (Model != null)
+{
+    var lstVideos = Model.ToList();
+    <div class="inner-frm4">
+        <div id="owl2">
+            @for (var i = 0; i < mid; i++)
+            {
+                var video = lstVideos[i * 2];
+                var video1 = lstVideos[(i * 2) + 1];
+
+                <div class="item" >
+                    <div class="content_products" data-id="#v@(video.Id)">
+                        <div class="img_content">
+                            <a href="#">
+                                <img src="http://img.youtube.com/vi/@(video.VideoId)/default.jpg" alt="@video.Name" />
+                            </a>
+                        </div>
+                        <div class="text_infor2">
+                            <p><a title="@video.Name" href="#">@video.Name</a></p>
+                            <p class="date">@(video.CreatedDate.Value.ToString("dd/MM/yyyy"))</p>
+                        </div>
+                    </div>
+                    <div class="content_products" data-id="#v@(video1.Id)">
+                        <div class="img_content">
+                            <a href="#">
+                                <img src="http://img.youtube.com/vi/@(video1.VideoId)/default.jpg" alt="@video1.Name" />
+                            </a>
+                        </div>
+                        <div class="text_infor2">
+                            <p><a title="@video1.Name" href="#">@video1.Name</a></p>
+                            <p class="date">@(video1.CreatedDate.Value.ToString("dd/MM/yyyy"))</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh2.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM2</a></p>
-                    <p class="date">01/11/2014</p>
+            }
+            @if (count % 2 != 0)
+            {
+                var video = lstVideos.Last();
+                <div class="item">
+                    <div class="content_products" data-id="#v@(video.Id)">
+                        <div class="img_content">
+                            <a href="#">
+                                <img src="http://img.youtube.com/vi/@(video.VideoId)/default.jpg" alt="@video.Name" />
+                            </a>
+                        </div>
+                        <div class="text_infor2">
+                            <p><a title="@video.Name" href="#">@video.Name</a></p>
+                            <p class="date">@(video.CreatedDate.Value.ToString("dd/MM/yyyy"))</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
-        <div class="item">
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh3.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM3</a></p>
-                    <p class="date">01/11/2014</p>
-                </div>
-            </div>
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh4.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM4</a></p>
-                    <p class="date">01/11/2014</p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh3.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM5</a></p>
-                    <p class="date">01/11/2014</p>
-                </div>
-            </div>
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh4.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM6</a></p>
-                    <p class="date">01/11/2014</p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh4.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM7</a></p>
-                    <p class="date">01/11/2014</p>
-                </div>
-            </div>
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh2.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM8</a></p>
-                    <p class="date">01/11/2014</p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh1.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM9</a></p>
-                    <p class="date">01/11/2014</p>
-                </div>
-            </div>
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh2.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM10</a></p>
-                    <p class="date">01/11/2014</p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh3.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM11</a></p>
-                    <p class="date">01/11/2014</p>
-                </div>
-            </div>
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh4.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM12</a></p>
-                    <p class="date">01/11/2014</p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="content_products">
-                <div class="img_content"><a href="#"> <img src="/images/thx/hinh2.jpg" alt="" /></a></div>
-                <div class="text_infor2">
-                    <p><a href="#">ALBUM13</a></p>
-                    <p class="date">01/11/2014</p>
-                </div>
-            </div>
-        </div>
+        <div class="clear"></div>
     </div>
-    <div class="clear"></div>
-</div>
+
+    <ul id="video-gallery" style="display: none;">
+        @foreach (var video in Model)
+        {
+            <li data-src="@video.Url" id="v@(video.Id)">
+                <img src="http://img.youtube.com/vi/@(video.VideoId)/default.jpg" alt="@video.Name" />
+            </li>
+        }
+    </ul>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.content_products').click(function () {
+            var id = $(this).attr('data-id');
+            $(id).click();
+        })
+    })
+</script>
+
