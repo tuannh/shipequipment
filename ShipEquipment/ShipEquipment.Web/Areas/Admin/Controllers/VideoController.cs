@@ -59,7 +59,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // GET: /Admin/Video/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Video());
         }
 
         // POST: /Admin/Video/Create
@@ -72,7 +72,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                video.Description = Globals.GetQueryStringValue(video.Url, "v");
+                video.CreatedDate = DateTime.Now;
+                video.VideoId = Globals.GetQueryStringValue(video.Url, "v");
                 db.Videos.Add(video);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -102,12 +103,11 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Alias,Description,Url,Active,DisplayOrder")] Video video)
+        public ActionResult Edit([Bind(Include = "Id,Name,Alias,Description,Url,Active,DisplayOrder,VideoId")] Video video)
         {
             if (ModelState.IsValid)
             {
-                video.Description = Globals.GetQueryStringValue(video.Url, "v");
-
+                video.VideoId = Globals.GetQueryStringValue(video.Url, "v");
                 db.Entry(video).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -51,6 +51,9 @@ namespace ShipEquipment.Biz.Domain
         [Display(Name = "Tỉnh/Thành phố")]
         public int? ProviceId { get; set; }
 
+         [Display(Name = "Trang thái")]
+        public int Status { get; set; }
+
         public virtual ICollection<ProductOrder> ProductOrders { get; set; }
 
         public virtual User User { get; set; }
