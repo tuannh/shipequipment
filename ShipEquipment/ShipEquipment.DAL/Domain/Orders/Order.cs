@@ -49,7 +49,7 @@ namespace ShipEquipment.Biz.Domain
         public DateTime? OrderDate { get; set; }
 
         [Display(Name = "Tỉnh/Thành phố")]
-        public int? ProviceId { get; set; }
+        public int? ProvinceId { get; set; }
 
          [Display(Name = "Trang thái")]
         public int Status { get; set; }

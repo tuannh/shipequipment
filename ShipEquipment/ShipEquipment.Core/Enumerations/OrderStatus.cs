@@ -10,8 +10,8 @@ namespace ShipEquipment.Core.Enumerations
     {
         None = 0,
         New = 1,
-        Confirm = 3,
-        Delivery = 4,
-        Cancel = 5
+        Confirm = 2,
+        Delivery = 3,
+        Cancel = 4
     }
 }
