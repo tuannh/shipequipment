@@ -24,7 +24,7 @@ namespace ShipEquipment.Web.Controllers
 
         public ActionResult Index()
         {
-            
+
             // db.Entry(order).Collection(a => a.ProductOrders).Load();
 
 
@@ -90,10 +90,10 @@ namespace ShipEquipment.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                order.ProviceId = order.ProviceId == 0 ? null : order.ProviceId;
+                order.ProvinceId = order.ProvinceId == 0 ? null : order.ProvinceId;
                 order.DistrictId = order.DistrictId == 0 ? null : order.DistrictId;
-
                 order.OrderDate = DateTime.Now;
+                order.Status = (int)OrderStatus.New;
 
                 var cartList = Session[MyCart.ShopCart] as List<MyCart>;
                 if (cartList != null && cartList.Count > 0)

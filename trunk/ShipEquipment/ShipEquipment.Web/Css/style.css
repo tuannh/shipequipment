@@ -66,7 +66,7 @@ header { margin: 0px auto 0px; position: relative; max-width: 1170px; z-index: 9
 zoom: 1; position: relative; margin: 0; text-align: center; background:url(/images/thx/bg-li.png) no-repeat right 15px }
 .right { border-right: none; box-shadow: none }
 .nav-item.last{ background:none}
-.nav-item a { display:block; color: #3c382f; font-family:"Myriad Pro",  Helvetica, Arial, sans-serif; font-size: 16px; padding: 0px 22px 0 22px; -moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s; line-height: 44px }
+.nav-item a { display:block; color: #3c382f; font-family:"Myriad Pro",  Helvetica, Arial, sans-serif; font-size: 16px; padding: 0 19px; -moz-transition: all 0.3s ease 0s; -webkit-transition: all 0.3s ease 0s; -o-transition: all 0.3s ease 0s; -ms-transition: all 0.3s ease 0s; transition: all 0.3s ease 0s; line-height: 44px }
 .nav-item > a:hover, .nav-item a.active { background: #fd7100; text-decoration: none ; color:#fff}
 .nav-item > a:hover .addArrow{ display:none !important}
 .nav-item:hover .nav-submenu { display: block; }
