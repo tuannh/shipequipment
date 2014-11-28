@@ -18,9 +18,9 @@ namespace ShipEquipment.Web
         {
             var dbContext = new ShipEquipmentContext();
 
-#if  DEBUG
-            dbContext.Initialize();
-#endif
+//#if  DEBUG
+//            dbContext.Initialize();
+//#endif
 
             SiteConfiguration.GetConfig();
 
