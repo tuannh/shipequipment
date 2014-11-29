@@ -13,7 +13,8 @@
     var newsCategory = ViewBag.NewsCategory as IEnumerable<ShipEquipment.Biz.Domain.NewsCategory>;
     var productCategory = ViewBag.ProductCategory as IEnumerable<ShipEquipment.Biz.Domain.Category>;
 
-    var cateAlias = Html.ViewContext.RouteData.Values["newscategoryalias"] as string;
+    var newCateAlias = Html.ViewContext.RouteData.Values["newscategoryalias"] as string;
+    
 }
 
 
@@ -30,53 +31,31 @@
                 <a href="/@page.Alias" title="@page.Name" @Html.Raw(active)>@page.Name</a>
                 @if (string.Compare(page.Alias, "tin/tin-tuc", true) == 0 && newsCategory != null)
                 {
-                    <ul class="nav-submenu">
+                    <ul id="news" class="nav-submenu">
                         @foreach (var cate in newsCategory)
                         {
-                            var activeCate = string.Compare(cateAlias, cate.Alias, true) == 0 ? "active" : "";
+                            var activeCate = string.Compare(newCateAlias, cate.Alias, true) == 0 ? "active" : "";
                             <li class="nav-submenu-item">
                                 <a class="@activeCate" href="/tin/@cate.Alias">@cate.Name</a>
                             </li>
                         }
                     </ul>
                 }
-                else if (string.Compare(page.UniqueKey, PageType.Product.ToString(), true) == 0 && productCategory != null)
+
+                @if (string.Compare(page.UniqueKey, PageType.Product.ToString(), true) == 0)
                 {
-                    <ul class="nav-submenu">
-                        @foreach (var cate in productCategory)
-                        {
-                            @ViewCategory(cate)
-                            
-                            @*var activeCate = string.Compare(cateAlias, cate.Alias, true) == 0 ? "active" : "";
-                            <li class="nav-submenu-item">
-                                <a class="@activeCate" href="/san-pham/@cate.Alias">@cate.Name</a>
-                            </li>*@
-                        }
-                    </ul>
+                    Html.RenderPartial("~/Views/Shared/Partial/MenuNav-Category.cshtml", productCategory);
                 }
             </li>
         }
     }
 </ul>
-
-@helper ViewCategory(Category cate)
-{
-    if (cate != null)
-    {
-        var lst = cate.GetSubCategory();
-        <li class="nav-submenu-item">
-            <a href="/danh-muc/@cate.Alias">
-                @cate.Name
-            </a>
-            @if (lst != null)
-            {
-                <ul class="nav-submenu2">
-                    @foreach (var category in lst)
-                    {
-                        @ViewCategory(category)
-                    }
-                </ul>
-            }
-        </li>
-    }
-}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var news = $('#news .active');
+        if (news.length > 0)
+        {
+            $('#news .active').closest('ul').prev().addClass('active');
+        }
+    })
+</script>

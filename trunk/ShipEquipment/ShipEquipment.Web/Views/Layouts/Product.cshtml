@@ -29,15 +29,16 @@
             </header>
             <div class="content">
                 <div class="filter">
-                   @Html.Controls().BrandList()
+                    @{Html.RenderPartial("~/Views/Shared/Partial/Breadcum-Product.cshtml");}
+                    @Html.Controls().BrandList()
                 </div>
 
                 <aside class="colRight">
                     @{ Html.RenderPartial("~/Views/Shared/Partial/Shopcart.cshtml"); }
                 </aside>
                 <div class="clear"></div>
-                
-                    @Html.Controls().ProductList()
+
+                @Html.Controls().ProductList()
 
                 <div class="frm2">
                     @Html.Controls().LastViewProduct()

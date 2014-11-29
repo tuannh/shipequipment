@@ -46,6 +46,8 @@ namespace ShipEquipment.Biz.Domain
 
         public virtual Category Parent { get; set; }
 
+        #region support method
+
         public IEnumerable<Category> GetSubCategory()
         {
             var db = new ShipEquipmentContext();
@@ -54,6 +56,24 @@ namespace ShipEquipment.Biz.Domain
                         .OrderBy(p => p.DisplayOrder)
                         .ThenBy(p => p.Name)
                         .ToList();
+
+            return lst;
+        }
+
+        public IEnumerable<Category> GetAllSubCategory()
+        {
+            var subList = GetSubCategory();
+            var lst = new List<Category>();
+
+            if (subList != null && subList.Count() > 0)
+            {
+                foreach (var cate in subList)
+                {
+                    lst.AddRange(cate.GetAllSubCategory());
+                }
+
+                lst.AddRange(subList);
+            }
 
             return lst;
         }
@@ -108,5 +128,19 @@ namespace ShipEquipment.Biz.Domain
             return cate == null || cate.Id == this.Id;
         }
 
+        public bool IsActive(string cateAlias)
+        {
+            var lst = GetAllSubCategory();
+            if (lst != null && lst.Count() > 0)
+            {
+                var cate = lst.FirstOrDefault(a => string.Compare(a.Alias, cateAlias, true) == 0);
+
+                return cate != null;
+            }
+
+            return false;
+        }
+
+        #endregion
     }
 }

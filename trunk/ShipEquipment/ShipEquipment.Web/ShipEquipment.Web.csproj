@@ -1368,6 +1368,8 @@
     <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\ChangePwd.cshtml" />
+    <Content Include="Views\Shared\Partial\MenuNav-Category.cshtml" />
+    <Content Include="Views\Shared\Partial\Breadcum-Product.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
