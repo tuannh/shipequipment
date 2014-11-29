@@ -387,7 +387,7 @@ footer .design_by .face-book{ position:absolute; right:0; top:0px}
 .data-table td img{ width:100%; min-width:65px}
 .cart-table td+td+td+td+td input{ text-align:center}
 .data-table tfoot tr td{ padding:25px 10px}
-.data-table tfoot button{ background:#fd7100; height:29px; border:none; padding:0 20px; color:#fff; cursor:pointer; margin-right:5px}
+.data-table tfoot button{ white-space:nowrap; background:#fd7100; height:29px; border:none; padding:0 20px; color:#fff; cursor:pointer; margin-right:5px}
 .data-table tfoot button:hover{ background:#000}
 .data-table tfoot td{ padding:14px 0}
 
