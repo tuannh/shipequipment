@@ -59,7 +59,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProvinceId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ProvinceId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ProvinceId", null, htmlAttributes: new { @class = "ddl-province" })
                 @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,7 +67,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("DistrictId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("DistrictId", null, new { @class = "ddl-district" })
                 @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -117,4 +117,18 @@
         })
 
     })
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.ddl-province').change(function () {
+            var id = $(this).val();
+            var data = { '': id };
+            $.post("/api/cart/district", data, loadCompelete);
+        })
+    })
+
+    function loadCompelete(data) {
+        $('.ddl-district').html(data.data);
+    }
 </script>

@@ -18,15 +18,15 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         private ShipEquipmentContext db = new ShipEquipmentContext();
 
         // GET: Admin/Order
-        public ActionResult Index(string kw)
+        public ActionResult Index(string kw, int? status)
         {
-
-            List<Order> lst = null;
+            var lst = db.Orders.ToList();
+            if (status.HasValue && status.Value > 0)
+                lst = lst.Where(o => o.Status == status).ToList();
 
             if (!string.IsNullOrEmpty(kw))
             {
                 var keyword = kw.ToLower();
-                lst = db.Orders.ToList();
                 lst = lst.Where(a => a.CustomerName.ToLower().Contains(keyword) || (a.Address ?? "").ToLower().Contains(keyword) || (a.Phone ?? "").ToLower().Contains(keyword))
                          .OrderByDescending(a => a.OrderDate)
                          .ThenBy(a => a.CustomerName)
@@ -37,10 +37,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 else
                     ViewBag.SearchReseult = string.Format("Không tìm thấy kết quả với từ khóa <b>{0}</b>", kw);
             }
-            else
-            {
-                lst = db.Orders.ToList();
-            }
+           
 
             var pagingModel = new PagingModel();
             pagingModel.ItemsPerPage = PageSize;

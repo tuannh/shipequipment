@@ -29,14 +29,18 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         private ShipEquipmentContext db = new ShipEquipmentContext();
 
         // GET: Admin/Product
-        public ActionResult Index(string kw)
+        public ActionResult Index(string kw, int? type)
         {
-            List<Product> lst = null;
+            var lst = db.Products.ToList();
+
+            if (type.HasValue && type.Value > 0)
+                lst = lst.Where(p => p.Type == type).ToList();
 
             if (!string.IsNullOrEmpty(kw))
             {
                 var keyword = kw.ToLower();
-                lst = db.Products.ToList();
+
+
                 lst = lst.Where(a => a.Name.ToLower().Contains(keyword) || (a.Description ?? "").ToLower().Contains(keyword))
                          .OrderBy(a => a.DislayOrder)
                          .ThenBy(a => a.Name)
@@ -46,10 +50,6 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     ViewBag.SearchReseult = string.Format("<b>{0}</b> kết quả được tìm thấy", lst.Count);
                 else
                     ViewBag.SearchReseult = string.Format("Không tìm thấy kết quả với từ khóa <b>{0}</b>", kw);
-            }
-            else
-            {
-                lst = db.Products.ToList();
             }
 
             var pagingModel = new PagingModel();
@@ -69,8 +69,9 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         // GET: Admin/Product/Create
         public ActionResult Create()
         {
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Alias");
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Alias");
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name");
+            ViewBag.CategoryId = new SelectList(SelectCategoryList(), "Value", "Text");
+            // ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
 
             return View(new Product());
         }
@@ -117,8 +118,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Alias", product.BrandId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Alias", product.CategoryId);
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", product.BrandId);
+            ViewBag.CategoryId = new SelectList(SelectCategoryList(), "Value", "Text", product.CategoryId);
 
             return View(product);
         }
@@ -189,8 +190,10 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Alias", product.BrandId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Alias", product.CategoryId);
+
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", product.BrandId);
+            ViewBag.CategoryId = new SelectList(SelectCategoryList(), "Value", "Text", product.CategoryId);
+
             return View(product);
         }
 
@@ -258,8 +261,9 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Alias", product.BrandId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Alias", product.CategoryId);
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", product.BrandId);
+            ViewBag.CategoryId = new SelectList(SelectCategoryList(), "Value", "Text", product.CategoryId);
+
             return View(product);
         }
 
@@ -279,17 +283,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
             db.Products.Remove(product);
             db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
-        // POST: Admin/Product/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -301,5 +295,63 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        #region support methods
+
+        private List<SelectListItem> SelectCategoryList()
+        {
+            var root = db.Categories.Where(p => p.Parent == null)
+                                    .OrderBy(p => p.DisplayOrder)
+                                    .ThenBy(p => p.Name)
+                                    .ToList();
+
+            var selectList = new List<SelectListItem>();
+            var itemNone = new SelectListItem()
+            {
+                Text = "None",
+                Value = "0"
+            };
+            selectList.Add(itemNone);
+
+            if (root != null)
+            {
+                foreach (var cate in root)
+                {
+                    var item = new SelectListItem()
+                    {
+                        Text = cate.Name,
+                        Value = cate.Id.ToString()
+                    };
+                    selectList.Add(item);
+                    SubCategoryList(selectList, cate, "----");
+                }
+            }
+
+            return selectList;
+        }
+
+        private void SubCategoryList(List<SelectListItem> selectList, Category parent, string indexText)
+        {
+            var subCates = parent.GetSubCategory();
+
+            if (subCates != null)
+            {
+                foreach (var cate in subCates)
+                {
+                    var item = new SelectListItem()
+                    {
+                        Text = string.Format("{0}{1}", indexText, cate.Name),
+                        Value = cate.Id.ToString()
+                    };
+                    selectList.Add(item);
+                    var newIndex = indexText + indexText;
+                    SubCategoryList(selectList, cate, newIndex);
+                }
+            }
+
+        }
+
+        #endregion
     }
 }

@@ -132,6 +132,7 @@
     <Content Include="Css\jquery\lightGallery.css" />
     <Content Include="Css\resize.css" />
     <Content Include="Css\style.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\Slide-icons.dev.svg" />
     <Content Include="fonts\Slide-icons.svg" />
@@ -1248,6 +1249,7 @@
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserGuideController.cs" />
     <Compile Include="Areas\Admin\Controllers\VideoController.cs" />
     <Compile Include="Areas\Common\Controllers\UserController.cs" />
@@ -1257,6 +1259,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Models\ChangePassModel.cs" />
     <Compile Include="Models\MyCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1364,6 +1367,7 @@
     <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ChangePwd.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

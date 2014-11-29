@@ -76,7 +76,7 @@
     <tr class="tb_content">
         <td colspan="3"></td>
         <td>
-            Tổng cộng: @(Model.ProductOrders.Sum(a => a.Price * a.Quatity).ToString("0"))
+            Tổng cộng: @(Model.ProductOrders.Sum(a => a.Price * a.Quatity).ToString("N0"))
         </td>
     </tr>
 

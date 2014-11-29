@@ -1,48 +1,52 @@
 ﻿@model IEnumerable<ShipEquipment.Biz.Domain.Product>
 
-<div class="inner-frm3">
-    <h2><img src="/images/thx/arrow-icon.png" alt="" />SẢN PHẨM XEM GẦN NHẤT</h2>
-    <div class="productsView">
-        @if (Model != null)
-        {
-            <div id="owl1">
-                @foreach (var product in Model)
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="frm2">
+        <div class="inner-frm3">
+            <h2><img src="/images/thx/arrow-icon.png" alt="" />SẢN PHẨM XEM GẦN NHẤT</h2>
+            <div class="productsView">
+
+                <div id="owl1">
+                    @foreach (var product in Model)
                 {
-                    <div class="item">
-                        <div class="content_products">
-                            <div class="img_content">
-                                <a href="/chi-tiet-sp/@product.Alias">
-                                    @if (product.GetPhoto() != null)
+                <div class="item">
+                    <div class="content_products">
+                        <div class="img_content">
+                            <a href="/chi-tiet-sp/@product.Alias">
+                                @if (product.GetPhoto() != null)
                                     {
-                                        <img src="/Userfiles/Modules/Products/Thumb/@product.GetPhoto().FileName" alt="@product.GetPhoto().Title" />
+                                    <img src="/Userfiles/Modules/Products/Thumb/@product.GetPhoto().FileName" alt="@product.GetPhoto().Title" />
                                     }
                                     else
                                     {
-                                        @product.Name
+                                    @product.Name
                                     }
-                                </a>
-                            </div>
-                            <div class="text_infor">
-                                <p>@product.Name</p>
-                                @**@
-                                @if (product.SalePrice > 0)
+                            </a>
+                        </div>
+                        <div class="text_infor">
+                            <p>@product.Name</p>
+                            @**@
+                            @if (product.SalePrice > 0)
                                 {
-                                    <p class="priceSale1">
-                                        <span class="oldPrice">@product.Price.ToString("N0") VND</span>
-                                        <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
-                                    </p>
+                                <p class="priceSale1">
+                                    <span class="oldPrice">@product.Price.ToString("N0") VND</span>
+                                    <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
+                                </p>
                                 }
                                 else
                                 {
-                                    <p class="price">@product.Price.ToString("N0") VND</p>
+                                <p class="price">@product.Price.ToString("N0") VND</p>
                                 }
-                            </div>
-                            <a href="javascript:void(0)" data-id="@product.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
                         </div>
+                        <a href="javascript:void(0)" data-id="@product.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
                     </div>
+                </div>
                 }
+                </div>
+
             </div>
-        }
+            <div class="clear"></div>
+        </div>
     </div>
-    <div class="clear"></div>
-</div>  
+}

@@ -66,6 +66,14 @@ else if (pageType == PageType.Video)
 {
     @Html.Controls().VideoList()
 }
+else if (pageType == PageType.FishingContest)
+{
+    @Html.Controls().Content(pageAlias as string)
+}
+
+
+
+
 
 
 

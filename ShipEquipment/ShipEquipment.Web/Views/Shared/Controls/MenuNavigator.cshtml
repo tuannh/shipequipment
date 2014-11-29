@@ -45,10 +45,12 @@
                     <ul class="nav-submenu">
                         @foreach (var cate in productCategory)
                         {
-                            var activeCate = string.Compare(cateAlias, cate.Alias, true) == 0 ? "active" : "";
+                            @ViewCategory(cate)
+                            
+                            @*var activeCate = string.Compare(cateAlias, cate.Alias, true) == 0 ? "active" : "";
                             <li class="nav-submenu-item">
                                 <a class="@activeCate" href="/san-pham/@cate.Alias">@cate.Name</a>
-                            </li>
+                            </li>*@
                         }
                     </ul>
                 }
@@ -56,3 +58,25 @@
         }
     }
 </ul>
+
+@helper ViewCategory(Category cate)
+{
+    if (cate != null)
+    {
+        var lst = cate.GetSubCategory();
+        <li class="nav-submenu-item">
+            <a href="/danh-muc/@cate.Alias">
+                @cate.Name
+            </a>
+            @if (lst != null)
+            {
+                <ul class="nav-submenu2">
+                    @foreach (var category in lst)
+                    {
+                        @ViewCategory(category)
+                    }
+                </ul>
+            }
+        </li>
+    }
+}

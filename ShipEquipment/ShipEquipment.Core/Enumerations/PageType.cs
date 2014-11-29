@@ -22,6 +22,7 @@ namespace ShipEquipment.Core.Enumerations
         Shopcart,
         UserGuideDetail,
         Order,
-        NewsDetail
+        NewsDetail,
+        FishingContest
     }
 }

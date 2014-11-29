@@ -6,14 +6,29 @@
     var pagingModel = ViewBag.PagingModel as PagingModel;
     pagingModel.SummaryInfoTemplate = "Trang {0}/{1} ({2} tin tức)";
     var kw = ViewBag.Keyword as string;
+
+    var status = Context.Request.QueryString["status"] ?? "0";
+    var newClass = status == "1" ? "class='active'" : "";
+    var confirmClass = status == "2" ? "class='active'" : "";
+    var deliveryClass = status == "3" ? "class='active'" : "";
+    var cancelClass = status == "4" ? "class='active'" : "";
+    var allClass = status == "0" ? "class='active'" : "";
 }
 <div class="header">
     <h1>Quản lý đơn hàng</h1>
+    <div class="headerL">
+        <a @Html.Raw(allClass) href="/admin/order/?status=0">Tất cả</a> |
+        <a @Html.Raw(newClass) href="/admin/order/?status=1">ĐH mới</a> |
+        <a @Html.Raw(confirmClass) href="/admin/order/?status=2">ĐH đã xác nhân</a> |
+        <a @Html.Raw(deliveryClass) href="/admin/order/?status=3">ĐH đã giao</a> |
+        <a @Html.Raw(cancelClass) href="/admin/order/?status=4">ĐH đã hủy</a>
+    </div>
     <div class="headerR">
         @Html.Raw(ViewBag.SearchReseult)
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
+            <input id="status" name="status" type="hidden" value="@status" />
             <input id="kw" name="kw" type="text" placeholder="Từ khóa cần tìm" value="@kw" />
             <input type="submit" value="Tìm" class="btnSearch" />
         }
