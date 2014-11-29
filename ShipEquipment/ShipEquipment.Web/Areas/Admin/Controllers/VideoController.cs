@@ -11,11 +11,55 @@ using ShipEquipment.Biz.DAL;
 using ShipEquipment.Core.Models;
 using ShipEquipment.Core.Controllers;
 using ShipEquipment.Core;
+using ShipEquipment.Core.Extensions;
+using System.IO;
+using ShipEquipment.Core.Configurations;
+using ShipEquipment.Core.Utility;
+using System.Drawing;
 
 namespace ShipEquipment.Web.Areas.Admin.Controllers
 {
     public class VideoController : AdminController
     {
+        #region const
+
+        public const string Folder = "~/Userfiles/Modules/Video/";
+        public const string ThumbFolder = "~/Userfiles/Modules/Video/Thumb/";
+
+        public const int Width = 379;
+        public const int Height = 195;
+
+        public const int ThumbWidth = 170;
+        public const int ThumbHeight = 118;
+
+        public const string UrlTemplate = "http://img.youtube.com/vi/{0}/hqdefault.jpg";
+
+        private void MakeFolder()
+        {
+            var thumb = Globals.MapPath(ThumbFolder);
+            if (!Directory.Exists(thumb))
+                Directory.CreateDirectory(thumb);
+
+            var path = Globals.MapPath(Folder);
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+        }
+
+        private void DownloadPhoto(string url, string savePath)
+        {
+            try
+            {
+                var client = new WebClient();
+                client.DownloadFile(url, savePath);
+            }
+            catch (Exception exp)
+            {
+                exp.Log();
+            }
+        }
+
+        #endregion
+
         private ShipEquipmentContext db = new ShipEquipmentContext();
 
         // GET: /Admin/Video/
@@ -29,7 +73,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 lst = db.Videos.ToList();
                 lst = lst.Where(a => a.Name.ToLower().Contains(keyword) || (a.Description ?? "").ToLower().Contains(keyword))
                          .OrderBy(a => a.DisplayOrder)
-                         .ThenBy(a => a.Name)
+                         .ThenByDescending(a => a.CreatedDate)
                          .ToList();
 
                 if (lst.Count > 0)
@@ -74,12 +118,51 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             {
                 video.CreatedDate = DateTime.Now;
                 video.VideoId = Globals.GetQueryStringValue(video.Url, "v");
+
                 db.Videos.Add(video);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                SaveVideoPhoto(video);
+
+                return RedirectToAction("index");
             }
 
             return View(video);
+        }
+
+        private void SaveVideoPhoto(Video video)
+        {
+            MakeFolder();
+
+            var url = string.Format(UrlTemplate, video.VideoId);
+
+            var tmpPath = string.Format("{0}tmp-{1}.jpg", Folder, video.VideoId);
+            tmpPath = Globals.MapPath(tmpPath);
+
+            DownloadPhoto(url, tmpPath);
+
+            if (System.IO.File.Exists(tmpPath))
+            {
+                var quality = SiteConfiguration.GetConfig().Quality;
+                var bg = ColorTranslator.FromHtml(SiteConfiguration.GetConfig().Banner.Background);
+
+                var thumb = string.Format("{0}{1}.jpg", ThumbFolder, video.VideoId);
+                thumb = Globals.MapPath(thumb);
+
+                var path = string.Format("{0}{1}.jpg", Folder, video.VideoId);
+                path = Globals.MapPath(path);
+
+                if (System.IO.File.Exists(thumb))
+                    System.IO.File.Delete(thumb);
+
+                if (System.IO.File.Exists(path))
+                    System.IO.File.Delete(path);
+
+                ImageTools.CreateThumbnail(tmpPath, thumb, ThumbWidth, ThumbHeight, bg, quality);
+                ImageTools.CreateThumbnail(tmpPath, path, Width, Height, bg, quality);
+
+                System.IO.File.Delete(tmpPath);
+            }
         }
 
         // GET: /Admin/Video/Edit/5
@@ -110,7 +193,10 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 video.VideoId = Globals.GetQueryStringValue(video.Url, "v");
                 db.Entry(video).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                SaveVideoPhoto(video);
+
+                return RedirectToAction("index");
             }
             return View(video);
         }
