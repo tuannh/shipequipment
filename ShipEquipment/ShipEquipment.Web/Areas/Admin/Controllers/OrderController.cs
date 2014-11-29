@@ -37,6 +37,12 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 else
                     ViewBag.SearchReseult = string.Format("Không tìm thấy kết quả với từ khóa <b>{0}</b>", kw);
             }
+            else
+            {
+                lst = lst.OrderByDescending(a => a.OrderDate)
+                         .ThenBy(a => a.CustomerName)
+                         .ToList();
+            }
            
 
             var pagingModel = new PagingModel();
