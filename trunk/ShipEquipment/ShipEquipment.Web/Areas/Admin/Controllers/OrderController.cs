@@ -26,7 +26,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(kw))
             {
-                var keyword = kw.ToLower();
+                var keyword = kw.ToLower().Trim();
                 lst = lst.Where(a => a.CustomerName.ToLower().Contains(keyword) || (a.Address ?? "").ToLower().Contains(keyword) || (a.Phone ?? "").ToLower().Contains(keyword))
                          .OrderByDescending(a => a.OrderDate)
                          .ThenBy(a => a.CustomerName)

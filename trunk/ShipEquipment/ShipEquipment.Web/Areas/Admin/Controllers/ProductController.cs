@@ -37,16 +37,25 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 lst = lst.Where(p => p.Type == type).ToList();
 
             if (catid.HasValue && catid.Value > 0)
+            {
                 lst = lst.Where(p => p.CategoryId == catid).ToList();
+                ViewBag.Category = db.Categories.Find(catid);
+            }
 
             if (brandid.HasValue && brandid.Value > 0)
+            {
                 lst = lst.Where(p => p.BrandId == brandid).ToList();
+                ViewBag.Brand = db.Brands.Find(brandid);
+            }
 
             if (!string.IsNullOrEmpty(kw))
             {
-                var keyword = kw.ToLower();
+                var keyword = kw.ToLower().Trim();
 
-                lst = lst.Where(a => a.Name.ToLower().Contains(keyword) || (a.Description ?? "").ToLower().Contains(keyword))
+                lst = lst.Where(a => a.Name.ToLower().Contains(keyword) ||
+                                     (a.Code ?? "").ToLower().Contains(keyword) ||
+                                     (a.MadeIn ?? "").ToLower().Contains(keyword) ||
+                                     (a.Description ?? "").ToLower().Contains(keyword))
                          .OrderBy(a => a.DislayOrder)
                          .ThenByDescending(a => a.Id)
                          .ToList();

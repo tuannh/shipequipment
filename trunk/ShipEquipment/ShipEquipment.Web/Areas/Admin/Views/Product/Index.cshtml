@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ShipEquipment.Biz.Domain.Product>
 @{
-    ViewBag.Title = "Quản lý sản phẩm";
+    ViewBag.Title = "Danh sách sản phẩm";
 
     var types = new List<SelectListItem>()
         {
@@ -22,7 +22,17 @@
     var allClass = type == "0" ? "class='active'" : "";
 }
 <div class="header">
-    <h1>Quản lý sản phẩm</h1>
+    <h1>
+        Danh sách sản phẩm
+        @if (ViewBag.Category != null)
+        {
+            @Html.Raw(string.Format(" (Danh mục: {0})", ViewBag.Category.Name))
+        }
+        @if (ViewBag.Brand != null)
+        {
+            @Html.Raw(string.Format(" (Nhãn hiệu: {0})", ViewBag.Brand.Name))
+        }
+    </h1>
     <div class="headerL">
         @Html.ActionLink("Thêm", "create") |
         <a @Html.Raw(allClass) href="/admin/product/?type=0">Tất cả</a> |
@@ -51,7 +61,7 @@
         <th style="width: 120px;">
             @Html.DisplayNameFor(model => model.Code)
         </th>
-        <th style="width: 80px;">
+        <th style="width: 60px;">
             @Html.DisplayNameFor(model => model.Active)
         </th>
         <th style="width: 100px;">
@@ -63,8 +73,8 @@
         <th style="width: 120px;">
             @Html.DisplayNameFor(model => model.DislayOrder)
         </th>
-        <th style="width: 160px;">
-            @Html.DisplayNameFor(model => model.Type)
+        <th style="width: 100px;">
+            Loại SP
         </th>
         <th style="width: 160px;">
             Photo
@@ -82,13 +92,16 @@
                 @Html.DisplayFor(modelItem => item.Code)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Active)
+                @if (item.Active)
+                {
+                    <img src="~/images/admin/true.gif" alt="" style="width: 22px; height: 18px;">
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @item.Price.ToString("N0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SalePrice)
+                @item.SalePrice.ToString("N0")
             </td>
 
             <td>
