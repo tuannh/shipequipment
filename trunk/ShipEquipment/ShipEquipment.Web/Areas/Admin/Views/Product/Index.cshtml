@@ -13,17 +13,30 @@
     var pagingModel = ViewBag.PagingModel as PagingModel;
     pagingModel.SummaryInfoTemplate = "Trang {0}/{1} ({2} sản phẩm)";
     var kw = ViewBag.Keyword as string;
+
+    var type = Context.Request.QueryString["type"] ?? "0";
+    var newClass = type == "1" ? "class='active'" : "";
+    var kgClass = type == "2" ? "class='active'" : "";
+    var ndClass = type == "3" ? "class='active'" : "";
+    var bsClass = type == "4" ? "class='active'" : "";
+    var allClass = type == "0" ? "class='active'" : "";
 }
 <div class="header">
     <h1>Quản lý sản phẩm</h1>
     <div class="headerL">
-        @Html.ActionLink("Thêm sản phẩm", "create")
+        @Html.ActionLink("Thêm", "create") |
+        <a @Html.Raw(allClass) href="/admin/product/?type=0">Tất cả</a> |
+        <a @Html.Raw(newClass) href="/admin/product/?type=1">SP mới</a> |
+        <a @Html.Raw(kgClass) href="/admin/product/?type=2">SP ký gởi</a> |
+        <a @Html.Raw(ndClass) href="/admin/product/?type=3">SP 2ND</a> |
+        <a @Html.Raw(bsClass) href="/admin/product/?type=4">SP bán chạy</a>
     </div>
     <div class="headerR">
         @Html.Raw(ViewBag.SearchReseult)
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
+            <input id="type" name="type" type="hidden" value="@type" />
             <input id="kw" name="kw" type="text" placeholder="Từ khóa cần tìm" value="@kw" />
             <input type="submit" value="Tìm" class="btnSearch" />
         }
@@ -95,8 +108,8 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "cmd-delete" })
+                @Html.ActionLink("Sửa", "edit", new { id = item.Id }) |
+                @Html.ActionLink("Xóa", "delete", new { id = item.Id }, new { @class = "cmd-delete" })
             </td>
         </tr>
     }

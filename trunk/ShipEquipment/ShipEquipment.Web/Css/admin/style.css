@@ -104,3 +104,7 @@ margin-right: 10px;
 width: 96px;
 display: inline-block;
 }
+
+input[type=password]{ width: 350px; height:20px;border: solid 1px #bebcbb;}
+
+.headerL a.active {color: #dd5b29;}

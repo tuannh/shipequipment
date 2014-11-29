@@ -88,7 +88,6 @@ namespace ShipEquipment.Web.Controllers
             var session = SiteContext.Current.Context.Session;
             var lst = session[MyCart.ShopCart] as List<MyCart>;
 
-
             var sum = 0.0;
             var total = 0.0;
             var count = 0;
@@ -108,6 +107,26 @@ namespace ShipEquipment.Web.Controllers
             }
 
             return Json(new { error = 1, message = "Sản phẩn không tồn tại trong giỏ hàng", rowid = string.Format("#tr{0}", id), total = total.ToString("N0"), sum = sum.ToString("N0"), count = count.ToString("N0") });
+        }
+
+        [HttpPost]
+        [ActionName("district")]
+        public IHttpActionResult District([FromBody]int provinceId)
+        {
+            var db = new ShipEquipmentContext();
+            var lst = db.Districts.Where(a => a.ProvinceId == provinceId).ToList();
+
+            var data = @"<option value=""0"">Chọn quận/huyện</option>";
+            if (lst != null && lst.Count() > 0)
+            {
+                lst.ForEach(a => data += string.Format(@"<option value=""{0}"">{1}</option>", a.Id, a.Name));
+                
+                db.Dispose();
+
+                return Json(new { error = 0, message = "", data = data });
+            }
+
+            return Json(new { error = 1, message = "Không tìm thấy quận/huyện", data = data });
         }
     }
 }

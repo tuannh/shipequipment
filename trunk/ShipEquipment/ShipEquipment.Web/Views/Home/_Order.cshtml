@@ -51,14 +51,14 @@
             </p>
 
             <p>
-                @Html.LabelFor(model => model.ProviceId)
-                @Html.DropDownListFor(model => model.ProviceId, provinces, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProviceId, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.ProvinceId)
+                @Html.DropDownListFor(model => model.ProvinceId, provinces, new { @class = "ddl-province" })
+                @Html.ValidationMessageFor(model => model.ProvinceId, "", new { @class = "text-danger" })
             </p>
 
             <p>
                 @Html.LabelFor(model => model.DistrictId)
-                <select id="DistrictId" name="DistrictId">
+                <select id="DistrictId" name="DistrictId" class="ddl-district">
                     <option value="0">Chọn quận/huyện</option>
                 </select>
             </p>
@@ -76,3 +76,16 @@
     </form>
 </div>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.ddl-province').change(function () {
+            var id = $(this).val();
+            var data = { '': id };
+            $.post("/api/cart/district", data, loadCompelete);
+        })
+    })
+
+    function loadCompelete(data) {
+        $('.ddl-district').html(data.data);
+    }
+</script>

@@ -199,9 +199,9 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
         #region support methods
 
-        private List<SelectListItem> SelectCategoryList(int cateId)
+        private List<SelectListItem> SelectCategoryList(int editId)
         {
-            var root = db.Categories.Where(p => p.Parent == null && cateId != p.Id)
+            var root = db.Categories.Where(p => p.Parent == null && editId != p.Id)
                                     .OrderBy(p => p.DisplayOrder)
                                     .ThenBy(p => p.Name)
                                     .ToList();
@@ -224,7 +224,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                         Value = cate.Id.ToString()
                     };
                     selectList.Add(item);
-                    SubCategoryList(cateId, selectList, cate, "----");
+                    SubCategoryList(editId, selectList, cate, "----");
                 }
             }
 
