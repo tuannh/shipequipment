@@ -38,6 +38,9 @@
         <th style="width: 300px;">
             Danh mục cha
         </th>
+        <th style="width: 80px;">
+            Sản phẩm
+        </th>
         <th class="col-command"></th>
     </tr>
 
@@ -61,14 +64,21 @@
                 @Html.DisplayFor(modelItem => item.Parent.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) | 
-                @if (item.GetSubCategory().Count() == 0)
+                @if (item.HasProduct())
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "cmd-delete" })
+                    <a title="Click để xem danh sách chi tiết" href="/admin/product/?catid=@item.Id">@(item.Products().Count())</a>
                 }
                 else
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "cmd-delete-no" })
+                    <span>0</span>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.Id })
+                @if (item.GetSubCategory().Count() == 0 || !item.HasProduct())
+                {
+                    @Html.Raw(" | ")
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @class = "cmd-delete" })
                 }
             </td>
         </tr>

@@ -7,12 +7,12 @@
     pagingModel.SummaryInfoTemplate = "Trang {0}/{1} ({2} danh mục)";
     var kw = ViewBag.Keyword as string;
 
-    
+
 }
 <div class="header">
-    <h1>Quản lý danh mục</h1>
+    <h1>Quản lý nhãn hiệu</h1>
     <div class="headerL">
-        @Html.ActionLink("Thêm danh mục", "create")
+        @Html.ActionLink("Thêm nhãn hiệu", "create")
     </div>
     <div class="headerR">
         @Html.Raw(ViewBag.SearchReseult)
@@ -39,6 +39,9 @@
         <th style="width: 100px;">
             @Html.DisplayNameFor(model => model.DisplayOrder)
         </th>
+        <th style="width: 80px;">
+            Sản phẩm
+        </th>
         <th class="col-command"></th>
     </tr>
 
@@ -64,15 +67,24 @@
                 @Html.DisplayFor(modelItem => item.DisplayOrder)
             </td>
             <td>
-                @Html.ActionLink("Sửa", "edit", new { id = item.Id }) |
-                @if (true)
+                @if (item.HasProduct())
                 {
-                    @Html.ActionLink("Xóa", "delete", new { id = item.Id }, new { @class = "cmd-delete" })
+                    <a href="/admin/product/?catid=@item.Id">@(item.Products().Count())</a>
                 }
                 else
                 {
-                    @Html.ActionLink("Xóa", "delete", new { id = item.Id }, new { @class = "cmd-delete-no" })
+                    <span>0</span>
                 }
+            </td>
+            <td>
+
+                @Html.ActionLink("Sửa", "edit", new { id = item.Id })
+                @if (item.HasProduct())
+                {
+                    @Html.Raw(" | ")
+                    @Html.ActionLink("Xóa", "delete", new { id = item.Id }, new { @class = "cmd-delete" })
+                }
+
             </td>
         </tr>
     }
