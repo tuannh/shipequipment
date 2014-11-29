@@ -29,7 +29,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(kw))
             {
-                var keyword = kw.ToLower();
+                var keyword = kw.ToLower().Trim();
                 lst = db.Banners.ToList();
                 lst = lst.Where(a => a.Name.ToLower().Contains(keyword) || (a.Description ?? "").ToLower().Contains(keyword) ||
                                      (a.Url ?? "").ToLower().Contains(keyword) || (a.Target ?? "").ToLower().Contains(keyword))

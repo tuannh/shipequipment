@@ -24,7 +24,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(kw))
             {
-                var keyword = kw.ToLower();
+                var keyword = kw.ToLower().Trim();
                 lst = db.Contents.ToList();
                 lst = lst.Where(a => a.Name.ToLower().Contains(keyword))
                          .OrderBy(a => a.Name)

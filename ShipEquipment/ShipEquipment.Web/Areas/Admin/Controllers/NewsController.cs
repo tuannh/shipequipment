@@ -32,7 +32,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(kw))
             {
-                var keyword = kw.ToLower();
+                var keyword = kw.ToLower().Trim();
                 lst = db.NewsArticles.ToList();
                 lst = lst.Where(a => a.Title.ToLower().Contains(keyword) || (a.Summary ?? "").ToLower().Contains(keyword) || (a.Content ?? "").ToLower().Contains(keyword))
                          .OrderBy(a => a.DisplayOrder)
