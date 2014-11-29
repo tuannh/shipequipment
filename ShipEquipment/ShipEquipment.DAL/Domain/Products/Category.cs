@@ -24,7 +24,7 @@ namespace ShipEquipment.Biz.Domain
         [StringLength(100, ErrorMessage = "Alias không được quá 100 kí tự")]
         public string Alias { get; set; }
 
-        [StringLength(100, ErrorMessage="Tên không được quá 100 kí tự")]
+        [StringLength(100, ErrorMessage = "Tên không được quá 100 kí tự")]
         [Required(ErrorMessage = "Tên danh mục không thể rỗng")]
         [Display(Name = "Tên danh mục")]
         public string Name { get; set; }
@@ -58,30 +58,54 @@ namespace ShipEquipment.Biz.Domain
             return lst;
         }
 
+        public bool HasProduct()
+        {
+            var db = new ShipEquipmentContext();
+            var product = db.Products
+                        .Where(p => p.CategoryId == this.Id).FirstOrDefault();
+
+            db.Dispose();
+
+            return product != null;
+        }
+
+        public IEnumerable<Product> Products()
+        {
+            var db = new ShipEquipmentContext();
+            var product = db.Products
+                        .Where(p => p.CategoryId == this.Id).ToList();
+
+            db.Dispose();
+
+            return product;
+        }
+
         public bool IsValidAlias()
         {
             var db = new ShipEquipmentContext();
             var cate = db.Categories.SingleOrDefault(a => string.Compare(a.Alias, this.Alias, true) == 0);
+            db.Dispose();
 
             // add new
             if (Id == 0)
                 return cate == null;
 
             // update 
-            return cate == null || cate.Id != Id;
+            return cate == null || cate.Id == Id;
         }
 
         public bool IsValidName()
         {
             var db = new ShipEquipmentContext();
             var cate = db.Categories.SingleOrDefault(a => string.Compare(a.Name, this.Name, true) == 0);
+            db.Dispose();
 
             // add new
             if (this.Id == 0)
                 return cate == null;
 
             // update 
-            return cate == null || cate.Id != this.Id;
+            return cate == null || cate.Id == this.Id;
         }
 
     }

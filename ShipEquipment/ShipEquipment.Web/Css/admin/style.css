@@ -84,7 +84,7 @@ table.tb_table tbody th, table.tb_table tbody td {
 .headerR input[type=text] {width: 250px;}
 .headerR .btnSearch {width: 50px; height: 24px; border: 1px solid #bebcbb; }
 .colLeft { text-align: left !important; }
-.col-command {width: 100px;}
+.col-command {width: 120px;}
 .error {color: #F00;}
 
 .inner-fix { display: inline-block; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShipEquipment.Biz.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -81,6 +82,8 @@ namespace ShipEquipment.Biz.Domain
 
         public virtual ICollection<ProductPhoto> Photos { get; set; }
 
+        #region support methods
+
         public virtual ProductPhoto GetPhoto()
         {
             return Photos.FirstOrDefault();
@@ -95,5 +98,49 @@ namespace ShipEquipment.Biz.Domain
         {
             return string.Format("{0:N0} VND", SalePrice);
         }
+
+        public bool IsValidAlias()
+        {
+            var db = new ShipEquipmentContext();
+            var product = db.Products.SingleOrDefault(a => string.Compare(a.Alias, this.Alias, true) == 0);
+            db.Dispose();
+
+            // add new
+            if (Id == 0)
+                return product == null;
+
+            // update 
+            return product == null || product.Id == Id;
+        }
+
+        public bool IsValidName()
+        {
+            var db = new ShipEquipmentContext();
+            var product = db.Products.SingleOrDefault(a => string.Compare(a.Name, this.Name, true) == 0);
+            db.Dispose();
+
+            // add new
+            if (this.Id == 0)
+                return product == null;
+
+            // update 
+            return product == null || product.Id == this.Id;
+        }
+
+        public bool IsValidCode()
+        {
+            var db = new ShipEquipmentContext();
+            var product = db.Products.SingleOrDefault(a => string.Compare(a.Code, this.Code, true) == 0);
+            db.Dispose();
+
+            // add new
+            if (this.Id == 0)
+                return product == null;
+
+            // update 
+            return product == null || product.Id == this.Id;
+        }
+
+        #endregion
     }
 }

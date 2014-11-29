@@ -29,27 +29,38 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         private ShipEquipmentContext db = new ShipEquipmentContext();
 
         // GET: Admin/Product
-        public ActionResult Index(string kw, int? type)
+        public ActionResult Index(string kw, int? type, int? catid, int? brandid)
         {
             var lst = db.Products.ToList();
 
             if (type.HasValue && type.Value > 0)
                 lst = lst.Where(p => p.Type == type).ToList();
 
+            if (catid.HasValue && catid.Value > 0)
+                lst = lst.Where(p => p.CategoryId == catid).ToList();
+
+            if (brandid.HasValue && brandid.Value > 0)
+                lst = lst.Where(p => p.BrandId == brandid).ToList();
+
             if (!string.IsNullOrEmpty(kw))
             {
                 var keyword = kw.ToLower();
 
-
                 lst = lst.Where(a => a.Name.ToLower().Contains(keyword) || (a.Description ?? "").ToLower().Contains(keyword))
                          .OrderBy(a => a.DislayOrder)
-                         .ThenBy(a => a.Name)
+                         .ThenByDescending(a => a.Id)
                          .ToList();
 
                 if (lst.Count > 0)
                     ViewBag.SearchReseult = string.Format("<b>{0}</b> kết quả được tìm thấy", lst.Count);
                 else
                     ViewBag.SearchReseult = string.Format("Không tìm thấy kết quả với từ khóa <b>{0}</b>", kw);
+            }
+            else
+            {
+                lst = lst.OrderBy(a => a.DislayOrder)
+                         .ThenByDescending(a => a.Id)
+                         .ToList();
             }
 
             var pagingModel = new PagingModel();
@@ -84,6 +95,31 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Alias,Code,ShortDescription,Description,Active,Price,SalePrice,MadeIn,DislayOrder,CategoryId,BrandId,Type,Photos")] Product product)
         {
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", product.BrandId);
+            ViewBag.CategoryId = new SelectList(SelectCategoryList(), "Value", "Text", product.CategoryId);
+
+            #region custom valid data
+
+            if (!product.IsValidName())
+            {
+                ViewBag.Error = "Tên sản phẩm tồn tại";
+                return View(product);
+            }
+
+            if (!product.IsValidAlias())
+            {
+                ViewBag.Error = "Alias tồn tại";
+                return View(product);
+            }
+
+            if (!product.IsValidCode())
+            {
+                ViewBag.Error = "Mã sản phẩm tồn tại";
+                return View(product);
+            }
+
+            #endregion
+
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);
@@ -93,6 +129,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 if (photos != null)
                 {
                     MakeFolder();
+
+                    #region save photo
 
                     foreach (var photo in photos)
                     {
@@ -112,14 +150,13 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                             System.IO.File.Move(tmpThumbPath, thumPath);
                     }
 
+                    #endregion
+
                     db.SaveChanges();
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("index");
             }
-
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", product.BrandId);
-            ViewBag.CategoryId = new SelectList(SelectCategoryList(), "Value", "Text", product.CategoryId);
 
             return View(product);
         }
@@ -205,6 +242,31 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Alias,Code,ShortDescription,Description,Active,Price,SalePrice,MadeIn,DislayOrder,CategoryId,BrandId,Type,Photos")] Product product)
         {
+            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", product.BrandId);
+            ViewBag.CategoryId = new SelectList(SelectCategoryList(), "Value", "Text", product.CategoryId);
+
+            #region custom valid data
+
+            if (!product.IsValidName())
+            {
+                ViewBag.Error = "Tên sản phẩm tồn tại";
+                return View(product);
+            }
+
+            if (!product.IsValidAlias())
+            {
+                ViewBag.Error = "Alias tồn tại";
+                return View(product);
+            }
+
+            if (!product.IsValidCode())
+            {
+                ViewBag.Error = "Mã sản phẩm tồn tại";
+                return View(product);
+            }
+
+            #endregion
+
             if (ModelState.IsValid)
             {
                 var photos = product.Photos;
@@ -213,6 +275,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 if (photos != null)
                 {
                     MakeFolder();
+
+                    #region save photo
 
                     foreach (var photo in photos)
                     {
@@ -247,6 +311,9 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                             System.IO.File.Move(tmpThumbPath, thumPath);
                     }
                 }
+
+                    #endregion
+
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -258,11 +325,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 }
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("index");
             }
-
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", product.BrandId);
-            ViewBag.CategoryId = new SelectList(SelectCategoryList(), "Value", "Text", product.CategoryId);
 
             return View(product);
         }

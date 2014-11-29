@@ -2,6 +2,7 @@
 using ShipEquipment.Biz.DAL;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -47,27 +48,50 @@ namespace ShipEquipment.Biz.Domain
         {
             var db = new ShipEquipmentContext();
             var cate = db.Brands.SingleOrDefault(a => string.Compare(a.Alias, this.Alias, true) == 0);
+            db.Dispose();
 
             // add new
             if (Id == 0)
                 return cate == null;
 
             // update 
-            return cate == null || cate.Id != Id;
+            return cate == null || cate.Id == Id;
         }
 
         public bool IsValidName()
         {
             var db = new ShipEquipmentContext();
             var cate = db.Brands.SingleOrDefault(a => string.Compare(a.Name, this.Name, true) == 0);
+            db.Dispose();
 
             // add new
             if (this.Id == 0)
                 return cate == null;
 
             // update 
-            return cate == null || cate.Id != this.Id;
+            return cate == null || cate.Id == this.Id;
         }
 
+        public bool HasProduct()
+        {
+            var db = new ShipEquipmentContext();
+            var product = db.Products
+                        .Where(p => p.BrandId == this.Id).FirstOrDefault();
+
+            db.Dispose();
+
+            return product != null;
+        }
+
+        public IEnumerable<Product> Products()
+        {
+            var db = new ShipEquipmentContext();
+            var product = db.Products
+                        .Where(p => p.BrandId == this.Id).ToList();
+
+            db.Dispose();
+
+            return product;
+        }
     }
 }
