@@ -1,0 +1,24 @@
+﻿@{
+    var brandAlias = Html.ViewContext.RouteData.Values["brandalias"] as string;
+    var categoryAlias = Html.ViewContext.RouteData.Values["categoryalias"] as string;
+
+    Brand brand = null;
+    Brand category = null;
+}
+
+<p class="link">
+    <a href="/">Trang chủ</a>
+    
+    <span>&gt;&gt;</span>
+    <a href="/san-pham/">Sản phẩm</a>
+    
+    <span>&gt;&gt;</span>
+    <a href="#">Lưỡi câu</a>
+    
+    <span>&gt;&gt;</span>
+    <a href="#">Lưỡi đùm</a><span>&gt;&gt;</span>
+
+    <a href="#" class="active">Lưỡi lục chì trên</a>
+
+
+</p>

@@ -75,7 +75,7 @@ zoom: 1; position: relative; margin: 0; text-align: center; background:url(/imag
 .nav-submenu { display: none; position: absolute; left: 0; width: 220px; list-style: none; padding: 0; margin: 0 }
 .nav-submenu-item { position: relative }
 .nav-submenu-item a { background: #ff4800 !important; border-bottom: 1px solid #ec4908; display: block; padding:12px 15px; text-align: left; text-transform: none; line-height: 20px; color: #fff!important }
-.nav-submenu-item a:hover, .nav-submenu-item a:active { background: #f0e6e1!important; text-decoration: none; color: #231f20 !important }
+.nav-submenu-item a:hover, .nav-submenu-item a.active { background: #f0e6e1!important; text-decoration: none; color: #231f20 !important }
 .nav-submenu2 { display: none; position: absolute; left: 100%; top: 0; width: 100%; list-style: none; padding: 0; margin: 0 }
 
 .nav-submenu-item:hover .nav-submenu2 { display: block }
