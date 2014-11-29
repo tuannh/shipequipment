@@ -22,7 +22,7 @@
                     <div class="content_products" data-id="#v@(video.Id)">
                         <div class="img_content">
                             <a href="#">
-                                <img src="http://img.youtube.com/vi/@(video.VideoId)/default.jpg" alt="@video.Name" />
+                                <img src="/Userfiles/Modules/Video/Thumb/@(video.VideoId).jpg" alt="@video.Name" />
                             </a>
                         </div>
                         <div class="text_infor2">
@@ -33,7 +33,7 @@
                     <div class="content_products" data-id="#v@(video1.Id)">
                         <div class="img_content">
                             <a href="#">
-                                <img src="http://img.youtube.com/vi/@(video1.VideoId)/default.jpg" alt="@video1.Name" />
+                                <img src="/Userfiles/Modules/Video/Thumb/@(video1.VideoId).jpg" alt="@video.Name" />
                             </a>
                         </div>
                         <div class="text_infor2">
@@ -50,7 +50,7 @@
                     <div class="content_products" data-id="#v@(video.Id)">
                         <div class="img_content">
                             <a href="#">
-                                <img src="http://img.youtube.com/vi/@(video.VideoId)/default.jpg" alt="@video.Name" />
+                                <img src="/Userfiles/Modules/Video/Thumb/@(video.VideoId).jpg" alt="@video.Name" />
                             </a>
                         </div>
                         <div class="text_infor2">
@@ -68,7 +68,7 @@
         @foreach (var video in Model)
         {
             <li data-src="@video.Url" id="v@(video.Id)">
-                <img src="http://img.youtube.com/vi/@(video.VideoId)/default.jpg" alt="@video.Name" />
+                <img src="/Userfiles/Modules/Video/Thumb/@(video.VideoId).jpg" alt="@video.Name" />
             </li>
         }
     </ul>

@@ -7,7 +7,7 @@
     
     //http://img.youtube.com/vi/@(video.Description)/mqdefault.jp
         <div class="video">
-            <a data-id="#v@(video.Id)" href="javascript:void(0)"><img src="http://i1.ytimg.com/vi/@(video.VideoId)/hqdefault.jpg" alt="" /></a>
+            <a data-id="#v@(video.Id)" href="javascript:void(0)"><img src="/Userfiles/Modules/Video/@(video.VideoId).jpg" alt="@video.Name" /></a>
             <p>
                 <a data-id="#v@(video.Id)" href="javascript:void(0)">
                     @video.Name
@@ -21,7 +21,7 @@
         {
             <li id="v@(video.Id)" data-src="@video.Url">
                 <a href="#">
-                    @video.Name
+                    <img src="/Userfiles/Modules/Video/Thumb/@(video.VideoId).jpg" alt="@video.Name" />
                 </a>
             </li>
         }

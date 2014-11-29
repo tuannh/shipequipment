@@ -1,24 +1,40 @@
-﻿@{
+﻿@using System.Data.Entity
+@{
     var brandAlias = Html.ViewContext.RouteData.Values["brandalias"] as string;
     var categoryAlias = Html.ViewContext.RouteData.Values["categoryalias"] as string;
+    var db = new ShipEquipmentContext();
 
-    Brand brand = null;
-    Brand category = null;
+    Brand brand = db.Brands.Where(a => string.Compare(a.Alias, brandAlias, true) == 0).FirstOrDefault();
+    Category category = db.Categories.Include(a => a.Parent).Where(a => string.Compare(a.Alias, categoryAlias, true) == 0).FirstOrDefault();
 }
 
 <p class="link">
     <a href="/">Trang chủ</a>
-    
     <span>&gt;&gt;</span>
     <a href="/san-pham/">Sản phẩm</a>
-    
-    <span>&gt;&gt;</span>
-    <a href="#">Lưỡi câu</a>
-    
-    <span>&gt;&gt;</span>
-    <a href="#">Lưỡi đùm</a><span>&gt;&gt;</span>
 
-    <a href="#" class="active">Lưỡi lục chì trên</a>
+    @ViewCategory(category)
 
-
+    @if (brand != null)
+    {
+        <span>&gt;&gt;</span>
+        <a href="/nhan-hieu/@brand.Alias">@brand.Name</a>
+    }
 </p>
+
+@helper ViewCategory(Category cate)
+{
+    if (cate != null)
+    {
+        @ViewCategory(cate.Parent)
+        <span> &gt;&gt;</span>
+        <a href="/san-pham/@cate.Alias">@cate.Name</a>
+    }
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.filter .link a:last').addClass('active');
+    })
+</script>
