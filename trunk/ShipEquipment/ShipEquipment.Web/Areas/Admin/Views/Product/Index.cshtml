@@ -19,6 +19,7 @@
     var kgClass = type == "2" ? "class='active'" : "";
     var ndClass = type == "3" ? "class='active'" : "";
     var bsClass = type == "4" ? "class='active'" : "";
+    var normalClass = type == "5" ? "class='active'" : "";
     var allClass = type == "0" ? "class='active'" : "";
 }
 <div class="header">
@@ -36,6 +37,7 @@
     <div class="headerL">
         @Html.ActionLink("Thêm", "create") |
         <a @Html.Raw(allClass) href="/admin/product/?type=0">Tất cả</a> |
+        <a @Html.Raw(normalClass) href="/admin/product/?type=5">SP thường</a> |
         <a @Html.Raw(newClass) href="/admin/product/?type=1">SP mới</a> |
         <a @Html.Raw(kgClass) href="/admin/product/?type=2">SP ký gởi</a> |
         <a @Html.Raw(ndClass) href="/admin/product/?type=3">SP 2ND</a> |
@@ -148,8 +150,12 @@
 {
     switch (type)
     {
+        case 5:
+            @("SP thường")
+            break;
+            
         case 1:
-            @("SP mới")
+        @("SP mới")
             break;
 
         case 2:

@@ -300,26 +300,25 @@ namespace ShipEquipment.Core
             string[] arr = url.Split('?');
 
             if (arr.Length == 1)
-                return string.Format("{0}?{1}={2}", url, key, UrlEncode(value));
+                return string.Format("{0}?{1}={2}", url, key, urlEncoded ? UrlEncode(value) : value);
             else
             {
-                if (urlEncoded)
-                    value = UrlEncode(value);
-
-                string qs = arr[1];
-                StringBuilder query = new StringBuilder();
-                NameValueCollection nvQS = HttpUtility.ParseQueryString(qs);
+                var qs = arr[1];
+                var query = new StringBuilder();
+                var nvQS = HttpUtility.ParseQueryString(qs);
                 bool isExistKey = false;
 
                 foreach (string qskey in nvQS)
                 {
                     if (string.Compare(qskey, key, true) == 0)
                     {
-                        query.AppendFormat("{0}={1}&", qskey, value);
+                        query.AppendFormat("{0}={1}&", qskey, urlEncoded ? UrlEncode(value) : value);
                         isExistKey = true;
                     }
                     else
-                        query.AppendFormat("{0}={1}&", qskey, nvQS[qskey]);
+                    {
+                        query.AppendFormat("{0}={1}&", qskey, urlEncoded ? UrlEncode(nvQS[qskey]) : nvQS[qskey]);
+                    }
                 }
 
                 if (!isExistKey)

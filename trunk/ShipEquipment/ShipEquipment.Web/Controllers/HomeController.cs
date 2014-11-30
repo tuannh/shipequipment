@@ -24,10 +24,6 @@ namespace ShipEquipment.Web.Controllers
 
         public ActionResult Index()
         {
-
-            // db.Entry(order).Collection(a => a.ProductOrders).Load();
-
-
             var alias = ControllerContext.RouteData.Values["frontendpage"] != null ? ControllerContext.RouteData.Values["frontendpage"].ToString() : "index";
             var page = db.Pages
                                 .Where(p => string.Compare(p.Alias, alias, true) == 0)

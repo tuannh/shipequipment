@@ -1,9 +1,24 @@
 ﻿@{
     var kw = ShipEquipment.Core.SiteContext.Current.QueryString["kw"] ?? "";
+
+    var routeData = ShipEquipment.Core.SiteContext.Current.RouteData;
+    var cateAlias = routeData.Values["categoryalias"] != null ? routeData.Values["categoryalias"].ToString() : "";
+    var brandAlias = routeData.Values["brandAlias"] != null ? routeData.Values["brandAlias"].ToString() : "";
+    
+    var postUrl = "/san-pham/";
+    if (!string.IsNullOrEmpty(cateAlias))
+    {
+        postUrl = string.Format("/san-pham/{0}/", cateAlias);
+    }
+
+    if (!string.IsNullOrEmpty(brandAlias))
+    {
+        postUrl = string.Format("/nhan-hieu/{0}/", brandAlias);
+    }
 }
 
 <div id="search">
-    <form action="/san-pham" method="get">
+    <form action="@postUrl" method="get">
         <input type="text" id="kw" name="kw" class="text placeholder-fix" value="@kw" placeholder="Tên sp, mã sp, nơi sx..." />
         <input type="submit" class="button" value="Tìm" />
     </form>

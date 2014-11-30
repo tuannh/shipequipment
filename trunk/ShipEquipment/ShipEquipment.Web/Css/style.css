@@ -298,7 +298,10 @@ zoom: 1; position: relative; margin: 0; text-align: center; background:url(/imag
 .inner-frm4{border-left:1px solid #eee;border-right:1px solid #eee;border-bottom:1px solid #eee; overflow:hidden;border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px; -moz-border-radius:0 0 10px 10px; margin-bottom:0px; padding-bottom:5px}
 .text_infor2{ text-align:center}
 .frm3 p.date{ margin-bottom:15px}
-.frm3 p.link{ padding: 13px 20px 10px; /* padding: 3px 20px;*/ }
+.frm3 p.link {
+    margin: 0;
+    padding: 13px 20px 10px;
+}
 .frm3 p.link a{ color:#fff; display:inline-block}
 .frm3 p.link span{display:inline-block; padding:0 5px; color:#fff}
 .frm3 p.link a:hover,.frm3 p.link a.active{ color:#fd7100; text-decoration:none}
@@ -310,7 +313,15 @@ zoom: 1; position: relative; margin: 0; text-align: center; background:url(/imag
 /* */
 
 /*======= service======*/
-.inner-frm6{border-left:1px solid #eee;border-right:1px solid #eee;border-bottom:1px solid #eee; overflow:hidden;border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px; -moz-border-radius:0 0 10px 10px; margin-bottom:20px; padding:20px 20px 0}
+.inner-frm6 {
+    border-bottom: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-radius: 0 0 10px 10px;
+    border-right: 1px solid #eee;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding: 20px 20px 0;
+}
 
 .news2 { width:100%; float: left;border-bottom:1px dotted #eee; padding-bottom:20px ; margin-bottom:20px}
 .margin_right { margin-right: 0 !important }
