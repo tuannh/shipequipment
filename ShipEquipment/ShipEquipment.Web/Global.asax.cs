@@ -18,9 +18,9 @@ namespace ShipEquipment.Web
         {
             var dbContext = new ShipEquipmentContext();
 
-//#if  DEBUG
-//            dbContext.Initialize();
-//#endif
+            //#if  DEBUG
+            //            dbContext.Initialize();
+            //#endif
 
             SiteConfiguration.GetConfig();
 
@@ -38,6 +38,16 @@ namespace ShipEquipment.Web
             ViewEngines.Engines.Add(razorEngine);
         }
 
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            //Ensure SessionID in order to prevent the folloing exception
+            //when the Application Pool Recycles
+            //[HttpException]: Session state has created a session id, but cannot
+            //    save it because the response was already flushed by 
+            string sessionId = Session.SessionID;
+        }
+
+        #region api session required
 
         protected void Application_PostAuthorizeRequest()
         {
@@ -53,5 +63,7 @@ namespace ShipEquipment.Web
         {
             return HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.Contains(_WebApiExecutionPath);
         }
+
+        #endregion
     }
 }

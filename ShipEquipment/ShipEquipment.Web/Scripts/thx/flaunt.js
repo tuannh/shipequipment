@@ -4,7 +4,7 @@
 	// DOM ready
 	$(function() {
 		$('.nav').append($('<div class="nav-mobile"></div>'));
-		$('.nav').append($('<span class="name">Meny</span>'));
+		$('.nav').append($('<span class="name">Menu</span>'));
 		$('.nav-item').has('ul').prepend('<span class="nav-click"><i class="nav-arrow"></i></span>');
 		$('.nav-submenu-item').has('ul.nav-submenu2').prepend('<span class="nav-click"><i class="nav-arrow"></i></span>');
 		$('.nav-mobile').click(function(){

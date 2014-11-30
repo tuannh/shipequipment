@@ -14,6 +14,7 @@ using ShipEquipment.Core.Utility;
 using System.Drawing;
 using ShipEquipment.Core.Models;
 using ShipEquipment.Core.Controllers;
+using ShipEquipment.Core.Search;
 
 namespace ShipEquipment.Web.Areas.Admin.Controllers
 {
@@ -160,6 +161,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     }
 
                     #endregion
+
+                    SearchService.AddUpdateLuceneIndex(product);
 
                     db.SaveChanges();
                 }
@@ -332,6 +335,8 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                     var photo = db.ProductPhotos.Find(id);
                     db.ProductPhotos.Remove(photo);
                 }
+
+                SearchService.AddUpdateLuceneIndex(product);
                 db.SaveChanges();
 
                 return RedirectToAction("index");
@@ -354,10 +359,12 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
+            SearchService.ClearRecordIndex(product);
             db.Products.Remove(product);
+            
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("index");
         }
 
         protected override void Dispose(bool disposing)
@@ -380,12 +387,12 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                                     .ToList();
 
             var selectList = new List<SelectListItem>();
-            var itemNone = new SelectListItem()
-            {
-                Text = "None",
-                Value = "0"
-            };
-            selectList.Add(itemNone);
+            //var itemNone = new SelectListItem()
+            //{
+            //    Text = "None",
+            //    Value = "0"
+            //};
+            //selectList.Add(itemNone);
 
             if (root != null)
             {

@@ -16,6 +16,7 @@ using ShipEquipment.Biz.DAL;
 using ShipEquipment.Biz.Domain;
 using ShipEquipment.Core.Enumerations;
 using System.Web.UI.WebControls;
+using ShipEquipment.Core.Search;
 
 namespace ShipEquipment.Core.Extensions
 {
@@ -303,65 +304,35 @@ namespace ShipEquipment.Core.Extensions
 
         public static MvcHtmlString ProductList(this SiteControl control, string viewName = "ProductList.cshtml")
         {
+            #region get params 
+
             var ctx = SiteContext.Current;
             var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
+
             var db = new ShipEquipmentContext();
             var ps = ctx.QueryString["ps"] ?? "8";
             var pi = ctx.QueryString["p"] ?? "1";
             var sortField = ctx.QueryString["sort"] ?? "Price";
             var sortDirect = ctx.QueryString["order"] ?? "desc";
-            var kw = SiteContext.Current.QueryString["kw"] ?? "";
+            var kw = ctx.QueryString["kw"] ?? "";
+            var strType = ctx.QueryString["type"]??"0";
 
             var dirct = string.Compare(sortDirect, "desc", true) == 0 ? SortDirection.Descending : SortDirection.Ascending;
             var pagesize = 8;
             var pageindex = 1;
+            var type = 0;
+
             int.TryParse(ps, out pagesize);
             int.TryParse(pi, out pageindex);
-
-            var lst = new List<Product>();
-
-            #region get product list
-
-            lst = db.Products.Where(p => p.Active)
-                                 .OrderBy(p => p.DislayOrder)
-                                 .ThenBy(p => p.Name)
-                                 .ToList();
-
-            #endregion
-
-
-            #region check and filter category/brand
+            int .TryParse(strType, out type);
 
             var routeData = SiteContext.Current.RouteData;
             var cateAlias = routeData.Values["categoryalias"] != null ? routeData.Values["categoryalias"].ToString() : "";
             var brandAlias = routeData.Values["brandAlias"] != null ? routeData.Values["brandAlias"].ToString() : "";
 
-            if (!string.IsNullOrEmpty(cateAlias))
-            {
-                lst = lst.Where(p => p.Category != null && string.Compare(p.Category.Alias, cateAlias, true) == 0)
-                         .ToList();
-            }
-            else if (!string.IsNullOrEmpty(brandAlias))
-            {
-
-                lst = lst.Where(p => p.Brand != null && string.Compare(p.Brand.Alias, brandAlias, true) == 0)
-                         .ToList();
-            }
-
             #endregion
 
-
-            if (!string.IsNullOrEmpty(kw))
-            {
-                kw = kw.ToLower();
-                lst = lst.Where(a => (a.Name ?? "").ToLower().Contains(kw) ||
-                                     (a.Code ?? "").ToLower().Contains(kw) ||
-                                     (a.MadeIn ?? "").ToLower().Contains(kw) ||
-                                     (a.ShortDescription ?? "").ToLower().Contains(kw) ||
-                                     (a.Description ?? "").ToLower().Contains(kw)).ToList();
-
-                control.HtmlHelper.ViewContext.ViewBag.Message = string.Format("<span class='num-found'>{0}</span> sản phẩm được tìm thấy", lst.Count());
-            }
+            var lst = SearchService.Search(kw, cateAlias, brandAlias, type);
 
             var total = 0;
             if (lst != null)

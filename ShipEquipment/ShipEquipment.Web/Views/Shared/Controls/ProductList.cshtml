@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShipEquipment.Biz.Domain.Product>
+﻿@model IEnumerable<ShipEquipment.Core.Search.SearchItem>
 @using ShipEquipment.Core.Constant
 
 @{
@@ -17,29 +17,29 @@
                     <div class="content_products">
                         <div class="img_content">
                             <a href="/chi-tiet-sp/@product.Alias">
-                                @if (product.GetPhoto() != null)
+                                @if (!string.IsNullOrEmpty(product.Photo))
                                 {
-                            <img src="~/Userfiles/Modules/Products/Thumb/@product.GetPhoto().FileName" alt="@product.Name" />
+                                    <img src="~/Userfiles/Modules/Products/Thumb/@product.Photo" alt="@product.Name" />
                                 }
                                 else
                                 {
-                            @product.Name
+                                    @product.Name
                                 }
                             </a>
                         </div>
                         <div class="text_infor">
                             <p>@product.Name</p>
                             @if (@product.SalePrice > 0)
-                        {
-                        <p class="priceSale1">
-                            <span class="oldPrice">@product.Price.ToString("N0") VND</span>
-                            <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
-                        </p>
-                        }
-                        else
-                        {
-                        <p class="price">@product.GetPrice()</p>
-                        }
+                            {
+                                <p class="priceSale1">
+                                    <span class="oldPrice">@product.Price.ToString("N0") VND</span>
+                                    <span class="salePrice">@product.SalePrice.ToString("N0") VND</span>
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="price">@product.Price.ToString("N0")</p>
+                            }
                         </div>
                         <a href="javascript:void(0)" data-id="@product.Id" class="btn_chonmua cart-add">CHỌN MUA</a>
                     </div>

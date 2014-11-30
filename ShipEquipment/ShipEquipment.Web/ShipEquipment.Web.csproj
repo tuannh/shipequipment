@@ -141,7 +141,9 @@
     <Content Include="Config\log4net.config" />
     <Content Include="Config\routes.config" />
     <Content Include="Config\Bundles.config" />
-    <Content Include="Config\site.config" />
+    <Content Include="Config\site.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Images\admin\bg-btn-chonmua-hover.png" />
     <Content Include="Images\admin\bg-btn-chonmua.png" />
     <Content Include="Images\admin\bg-thead.png" />
