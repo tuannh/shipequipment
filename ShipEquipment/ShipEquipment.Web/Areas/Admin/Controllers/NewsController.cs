@@ -23,20 +23,22 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
 
         private ShipEquipmentContext db = new ShipEquipmentContext();
 
+        public NewsController(ShipEquipmentContext tdb)
+        {
+            var mydb = tdb;
+        }
+
         // GET: /Admin/News/
         public ActionResult Index(string kw)
         {
-            var newsarticles = db.NewsArticles.Include(n => n.Category);
-            //return View(newsarticles.ToList());
-            List<NewsArticle> lst = null;
+            var lst = db.NewsArticles.Include(n => n.Category).ToList();
 
             if (!string.IsNullOrEmpty(kw))
             {
                 var keyword = kw.ToLower().Trim();
-                lst = db.NewsArticles.ToList();
                 lst = lst.Where(a => a.Title.ToLower().Contains(keyword) || (a.Summary ?? "").ToLower().Contains(keyword) || (a.Content ?? "").ToLower().Contains(keyword))
                          .OrderBy(a => a.DisplayOrder)
-                         .ThenBy(a => a.Title)
+                         .ThenByDescending(a => a.CreatedDate)
                          .ToList();
 
                 if (lst.Count > 0)
@@ -46,7 +48,9 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             }
             else
             {
-                lst = db.NewsArticles.ToList();
+                lst = lst.OrderBy(a => a.DisplayOrder)
+                         .ThenByDescending(a => a.CreatedDate)
+                         .ToList();
             }
 
             var pagingModel = new PagingModel();

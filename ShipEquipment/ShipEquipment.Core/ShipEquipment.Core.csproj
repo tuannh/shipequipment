@@ -91,6 +91,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -150,6 +153,7 @@
   <ItemGroup>
     <Compile Include="BaseObjects\SiteControl.cs" />
     <Compile Include="Cache\SiteCache.cs" />
+    <Compile Include="Configurations\DbNinjectModule.cs" />
     <Compile Include="Constant\ModuleFolders.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -166,6 +170,7 @@
     <Compile Include="Extensions\StringLocalizeExtensions.cs" />
     <Compile Include="HttpModules\ErrorHttpModule.cs" />
     <Compile Include="Interfaces\ILogProvider.cs" />
+    <Compile Include="IoC.cs" />
     <Compile Include="Logs\LogProvider.cs" />
     <Compile Include="Logs\LogXmlLayout.cs" />
     <Compile Include="Models\PagingModel.cs" />

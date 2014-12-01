@@ -7,7 +7,7 @@
 }
 
 <h2>Cập nhật userguide</h2>
-@using (Html.BeginForm("edit", "news", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("edit", "userguide", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="error">
@@ -47,7 +47,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "myeditor" } })
+                @Html.TextAreaFor(model => model.Content,  new { @class = "myeditor" } )
                 @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
             </div>
         </div>
