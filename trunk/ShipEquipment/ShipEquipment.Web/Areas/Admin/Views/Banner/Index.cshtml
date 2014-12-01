@@ -75,14 +75,14 @@
                 @Html.DisplayFor(modelItem => item.DisplayOrder)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Sửa", "edit", new { id = item.Id }) |
                 @if (true)
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "cmd-delete" })
+                    @Html.ActionLink("Xóa", "delete", new { id = item.Id }, new { @class = "cmd-delete" })
                 }
                 else
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "cmd-delete-no" })
+                    @Html.ActionLink("Xóa", "delete", new { id = item.Id }, new { @class = "cmd-delete-no" })
                 }
             </td>
         </tr>

@@ -14,7 +14,7 @@
     var productCategory = ViewBag.ProductCategory as IEnumerable<ShipEquipment.Biz.Domain.Category>;
 
     var newCateAlias = Html.ViewContext.RouteData.Values["newscategoryalias"] as string;
-    
+
 }
 
 
@@ -29,15 +29,18 @@
 
             <li class="nav-item @last">
                 <a href="/@page.Alias" title="@page.Name" @Html.Raw(active)>@page.Name</a>
-                @if (string.Compare(page.Alias, "tin/tin-tuc", true) == 0 && newsCategory != null)
+                @if (string.Compare(page.Alias, "tin-tuc", true) == 0 && newsCategory != null)
                 {
                     <ul id="news" class="nav-submenu">
                         @foreach (var cate in newsCategory)
                         {
-                            var activeCate = string.Compare(newCateAlias, cate.Alias, true) == 0 ? "active" : "";
-                            <li class="nav-submenu-item">
-                                <a class="@activeCate" href="/tin/@cate.Alias">@cate.Name</a>
-                            </li>
+                            if (cate.Id > 1)
+                            {
+                                var activeCate = string.Compare(newCateAlias, cate.Alias, true) == 0 ? "active" : "";
+                                <li class="nav-submenu-item">
+                                    <a class="@activeCate" href="/tin/@cate.Alias">@cate.Name</a>
+                                </li>
+                            }
                         }
                     </ul>
                 }
@@ -53,9 +56,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var news = $('#news .active');
-        if (news.length > 0)
-        {
+        if (news.length > 0) {
             $('#news .active').closest('ul').prev().addClass('active');
         }
+
+        $('a[href*="/tin-tuc"]').attr('href', '/tin/tin-tuc');
     })
 </script>
