@@ -41,11 +41,44 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="display: none;">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="frm-photo frm-album">
+            <label>Quản lý photo</label>
+            <div>
+                <table class="photo-list tb_table" style="width: 100%;">
+                    <tbody>
+                        <tr class="tb_content">
+                            <th>Title</th>
+                            <th style="width: 300px;"> Photo</th>
+                            <th class="col-command"></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Upload photo (1024x768)</label>
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="file" name="file" id="file" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" class="btn-add-photo" value="Upload" />
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 
@@ -70,5 +103,67 @@
         $('.btnDiscard').click(function () {
             location.href = $(this).attr('data-href');
         })
+
+        $('.btn-add-photo').click(function () {
+
+            if ($("#file").val() == '') {
+                alert('Bạn chưa chọn photo upload');
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append("file", $("#file")[0].files[0]);
+            resetUpload();
+
+            $.ajax({
+                async: true,
+                type: 'POST',
+                url: '/admin/album/uploadfile/',
+                data: formData,
+                success: function (data) {
+                    data.src = "/Userfiles/_temp/Modules/Album/thumb/" + data.filename;
+
+                    var index = $('.photo-list tr').length - 1;
+                    var html = $('#template').html();
+
+                    html = html.replace(/#index#/g, index);
+                    html = html.replace(/#title#/g, data.title);
+                    html = html.replace(/#displayorder#/g, data.displayorder);
+                    html = html.replace(/#filename#/g, data.filename);
+                    html = html.replace(/#src#/g, data.src);
+
+                    $('.photo-list tbody').append(html).show();
+                    $('.photo-list').show();
+                    $('.btn-done').show();
+
+                    $('.del-photo').unbind('click').click(function () {
+                        $(this).closest('tr').remove();
+                    })
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        })
+
+        function resetUpload() {
+            $("#file").val('');
+        }
+
     })
+</script>
+
+<script type="text/html" id="template">
+    <tr class="tb_content">
+        <td>
+            <input id="Photos[#index#].Title" name="Photos[#index#].Title" value="#title#" type="text" style="width: 95%;" />
+            <input id="Photos[#index#].FileName" name="Photos[#index#].FileName" value="#filename#" type="hidden" />
+        </td>
+        <td>
+            <img style="max-width: 200px;" src="#src#" alt="#title#" />
+        </td>
+        <td>
+            <a href="javascript:void(0);" class="del-photo">Xóa</a>
+        </td>
+    </tr>
 </script>

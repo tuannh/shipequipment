@@ -1,12 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@using ShipEquipment.Core.Enumerations
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>@ViewBag.Title</title>
-    @Html.CssBundle("~/css/index")
+
+    @RenderSection("Styles", false)
     @Html.CssBundle("~/css/lightGallery", "~/css/jquery/lightGallery.css")
     @Html.JsBundle("~/js/default")
+    @RenderSection("HeaderScripts", false)
 </head>
 <body>
     <div id="body">
@@ -16,6 +19,7 @@
                     <div class="logo"><a href="/"><img src="/images/thx/logo.png" alt="logo" /></a></div>
                     @{ Html.RenderPartial("~/Views/Shared/Partial/MiniShopcart.cshtml"); }
                     <!--Mini Shopping Cart End-->
+
                     <div class="clear2"></div>
                     @{ Html.RenderPartial("~/Views/Shared/Partial/SearchBox.cshtml"); }
                     <nav class="nav">
@@ -27,11 +31,8 @@
                 <div class="clear"></div>
             </header>
             <div class="content">
-                @Html.Controls().Slider()
-                @Html.Controls().LastViewProduct("LastViewProduct-Home.cshtml")
-
                 <div class="colLeft">
-                    @Html.Controls().HomeProduct(9)
+                    @RenderBody()
                 </div>
                 <aside class="colRight">
                     @{ Html.RenderPartial("~/Views/Shared/Partial/Shopcart.cshtml"); }
@@ -39,23 +40,20 @@
                     @{ Html.RenderPartial("~/Views/Shared/Partial/RightContact.cshtml"); }
                     @Html.Controls().BrandList(3, "BrandList-Home.cshtml")
                 </aside>
-                <div class="frm2">
-                    <div class="inner-frm2">
-                        @{ Html.RenderPartial("~/Views/Shared/Partial/Home-Video-News.cshtml"); }
-                        <div class="clear"></div>
-                    </div>
-                </div>
+
+                @Html.Controls().LastViewProduct()
+                <div class="clear"></div>
+                <footer>
+                    @{ Html.RenderPartial("~/Views/Shared/Partial/Footer.cshtml"); }
+                </footer>
             </div>
-            <div class="clear"></div>
-            <footer>
-                @{ Html.RenderPartial("~/Views/Shared/Partial/Footer.cshtml"); }
-            </footer>
+            <!--end main-->
         </div>
-        <!--end main-->
+
     </div>
 
-    @RenderBody()
-    @Html.JsBundle("~/js/page/index")
+    @Html.JsBundle("~/js/page/content")
+    @RenderSection("FooterScripts", false)
     <div id="mask-loading">
         <div></div>
     </div>

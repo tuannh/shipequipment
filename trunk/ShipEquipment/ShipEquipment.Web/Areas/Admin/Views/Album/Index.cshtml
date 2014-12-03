@@ -32,6 +32,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DisplayOrder)
         </th>
+        <th>
+            Photo
+        </th>
         <th class="col-command"></th>
     </tr>
 
@@ -43,6 +46,13 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DisplayOrder)
+            </td>
+            <td>
+                @if (item.Photos.Count() > 0)
+                {
+                    var photo = item.Photos.First();
+                    <img alt="@photo.Title" src="~/Userfiles/Modules/Album/Thumb/@photo.FileName" />
+                }
             </td>
             <td>
                 @Html.ActionLink("Sửa", "edit", new { id = item.Id }) |

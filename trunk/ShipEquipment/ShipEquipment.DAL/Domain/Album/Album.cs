@@ -14,6 +14,7 @@ namespace ShipEquipment.Biz.Domain
         {
             DisplayOrder = 1000;
             CreatedDate = DateTime.Now;
+            Photos = new List<Photo>();
         }
 
         public int Id { get; set; }
@@ -41,7 +42,15 @@ namespace ShipEquipment.Biz.Domain
         [Display(Name = "Mô tả")]
         public string Description { get; set; }
 
+        public virtual ICollection<Photo> Photos { get; set; }
 
-        public ICollection<Photo> Photos { get; set; }
+        public Photo GetPhoto()
+        {
+            var photo = Photos.FirstOrDefault();
+            if (photo == null)
+                photo = new Photo();
+
+            return photo;
+        }
     }
 }
