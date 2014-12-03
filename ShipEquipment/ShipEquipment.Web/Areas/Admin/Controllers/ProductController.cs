@@ -15,6 +15,7 @@ using System.Drawing;
 using ShipEquipment.Core.Models;
 using ShipEquipment.Core.Controllers;
 using ShipEquipment.Core.Search;
+using ShipEquipment.Core.Extensions;
 
 namespace ShipEquipment.Web.Areas.Admin.Controllers
 {
@@ -333,6 +334,23 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 foreach (var id in delPhotos)
                 {
                     var photo = db.ProductPhotos.Find(id);
+
+                    var path = Globals.MapPath(Folder + photo.FileName);
+                    var thumPath = Globals.MapPath(ThumbFolder + photo.FileName);
+
+                    try
+                    {
+                        if (System.IO.File.Exists(path))
+                            System.IO.File.Delete(path);
+
+                        if (System.IO.File.Exists(thumPath))
+                            System.IO.File.Delete(thumPath);
+                    }
+                    catch (Exception exp)
+                    {
+                        exp.Log();
+                    }
+
                     db.ProductPhotos.Remove(photo);
                 }
 
@@ -358,6 +376,29 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (product.Photos != null)
+            {
+                foreach (var photo in product.Photos)
+                {
+                    var path = Globals.MapPath(Folder + photo.FileName);
+                    var thumPath = Globals.MapPath(ThumbFolder + photo.FileName);
+
+                    try
+                    {
+                        if (System.IO.File.Exists(path))
+                            System.IO.File.Delete(path);
+
+                        if (System.IO.File.Exists(thumPath))
+                            System.IO.File.Delete(thumPath);
+                    }
+                    catch (Exception exp)
+                    {
+                        exp.Log();
+                    }
+                }
+            }
+
 
             SearchService.ClearRecordIndex(product);
             db.Products.Remove(product);

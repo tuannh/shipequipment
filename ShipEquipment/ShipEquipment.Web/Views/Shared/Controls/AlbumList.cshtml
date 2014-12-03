@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ShipEquipment.Biz.Domain.Album>
+
+@{
+    var count = Model != null ? Model.Count() : 0;
+    var mid = count / 2;
+    var index = 0;
+}
+<div class="frm3">
+    <p class="link"><a href="#">Trang chủ</a><span>&gt;&gt;</span><a href="#" class="active">Album</a></p>
+
+    @if (Model != null)
+    {
+        var lstAlbums = Model.ToList();
+        <div class="inner-frm5">
+            <div id="owl3">
+                @for (var i = 0; i < mid; i++)
+                {
+                    var album = lstAlbums[i * 2];
+                    var album1 = lstAlbums[(i * 2) + 1];
+
+                    <div class="item">
+                        <div class="content_products">
+                            <div class="img_content">
+                                <a href="album/@album.Alias">
+                                    <img src="/Userfiles/Modules/Album/Thumb/@(album.GetPhoto().FileName)" alt="@album.GetPhoto().Title" />
+                                </a>
+                            </div>
+                            <div class="text_infor2">
+                                <p><a title="@album.Name" href="#">@album.Name</a></p>
+                                <p class="date">@(album.CreatedDate.ToString("dd/MM/yyyy"))</p>
+                            </div>
+                        </div>
+                        <div class="content_products">
+                            <div class="img_content">
+                                <a href="album/@album1.Alias">
+                                    <img src="/Userfiles/Modules/album/Thumb/@(album1.GetPhoto().FileName)" alt="@album.GetPhoto().Title" />
+                                </a>
+                            </div>
+                            <div class="text_infor2">
+                                <p><a title="@album1.Name" href="#">@album1.Name</a></p>
+                                <p class="date">@(album1.CreatedDate.ToString("dd/MM/yyyy"))</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (count % 2 != 0)
+                {
+                    var album = lstAlbums.Last();
+                    <div class="item">
+                        <div class="content_products">
+                            <div class="img_content">
+                                <a href="album/@album.Alias">
+                                    <img src="/Userfiles/Modules/album/Thumb/@(album.GetPhoto().FileName).jpg" alt="@album.Name" />
+                                </a>
+                            </div>
+                            <div class="text_infor2">
+                                <p><a title="@album.Name" href="#">@album.Name</a></p>
+                                <p class="date">@(album.CreatedDate.ToString("dd/MM/yyyy"))</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="clear"></div>
+        </div>
+    }
+</div>

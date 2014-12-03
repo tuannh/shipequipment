@@ -304,7 +304,7 @@ namespace ShipEquipment.Core.Extensions
 
         public static MvcHtmlString ProductList(this SiteControl control, string viewName = "ProductList.cshtml")
         {
-            #region get params 
+            #region get params
 
             var ctx = SiteContext.Current;
             var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
@@ -315,7 +315,7 @@ namespace ShipEquipment.Core.Extensions
             var sortField = ctx.QueryString["sort"] ?? "Price";
             var sortDirect = ctx.QueryString["order"] ?? "desc";
             var kw = ctx.QueryString["kw"] ?? "";
-            var strType = ctx.QueryString["type"]??"0";
+            var strType = ctx.QueryString["type"] ?? "0";
 
             var dirct = string.Compare(sortDirect, "desc", true) == 0 ? SortDirection.Descending : SortDirection.Ascending;
             var pagesize = 8;
@@ -324,7 +324,7 @@ namespace ShipEquipment.Core.Extensions
 
             int.TryParse(ps, out pagesize);
             int.TryParse(pi, out pageindex);
-            int .TryParse(strType, out type);
+            int.TryParse(strType, out type);
 
             var routeData = SiteContext.Current.RouteData;
             var cateAlias = routeData.Values["categoryalias"] != null ? routeData.Values["categoryalias"].ToString() : "";
@@ -406,6 +406,24 @@ namespace ShipEquipment.Core.Extensions
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, product);
 
             db.Dispose();
+            return new MvcHtmlString(result);
+        }
+
+        public static MvcHtmlString AlbumDetail(this SiteControl control, string viewName = "AlbumDetail.cshtml")
+        {
+            var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
+            var db = new ShipEquipmentContext();
+
+            var routeData = SiteContext.Current.RouteData;
+            var alias = routeData.Values["albumalias"] != null ? routeData.Values["albumalias"].ToString() : "";
+
+            var product = db.Albums
+                            .FirstOrDefault(p => string.Compare(p.Alias, alias, true) == 0);
+
+            var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, product);
+
+            db.Dispose();
+
             return new MvcHtmlString(result);
         }
 
@@ -508,6 +526,22 @@ namespace ShipEquipment.Core.Extensions
                         .OrderBy(p => p.DisplayOrder)
                         .ThenBy(p => p.Name)
                         .Take(showVideo)
+                        .ToList();
+
+            var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);
+
+            db.Dispose();
+            return new MvcHtmlString(result);
+        }
+
+        public static MvcHtmlString AlbumList(this SiteControl control, string viewName = "AlbumList.cshtml")
+        {
+            var viewPath = string.Format("~/Views/Shared/Controls/{0}", viewName);
+            var db = new ShipEquipmentContext();
+
+            var lst = db.Albums
+                        .OrderBy(p => p.DisplayOrder)
+                        .ThenByDescending(p => p.CreatedDate)
                         .ToList();
 
             var result = RenderViewToString(control.HtmlHelper.ViewContext.Controller, viewPath, lst);

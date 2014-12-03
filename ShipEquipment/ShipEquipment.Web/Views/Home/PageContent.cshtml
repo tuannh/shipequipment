@@ -65,12 +65,16 @@ else if (pageType == PageType.Promotion)
 else if (pageType == PageType.Video)
 {
     @Html.Controls().VideoList()
+    @Html.Controls().AlbumList()
 }
 else if (pageType == PageType.FishingContest)
 {
     @Html.Controls().Content(pageAlias as string)
 }
-
+else if (pageType == PageType.AlbumDetail)
+{
+    @Html.Controls().AlbumDetail()
+}
 
 
 

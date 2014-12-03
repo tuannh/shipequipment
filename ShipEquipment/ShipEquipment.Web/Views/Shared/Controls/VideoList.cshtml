@@ -6,19 +6,20 @@
     var index = 0;
 }
 
-<p class="link"><a href="#">Trang chủ</a><span>&gt;&gt;</span><a href="#" class="active">Video clip</a></p>
+<div class="frm3">
+    <p class="link"><a href="#">Trang chủ</a><span>&gt;&gt;</span><a href="#" class="active">Video clip</a></p>
 
-@if (Model != null)
-{
-    var lstVideos = Model.ToList();
-    <div class="inner-frm4">
-        <div id="owl2">
-            @for (var i = 0; i < mid; i++)
-            {
-                var video = lstVideos[i * 2];
-                var video1 = lstVideos[(i * 2) + 1];
+    @if (Model != null)
+    {
+        var lstVideos = Model.ToList();
+        <div class="inner-frm4">
+            <div id="owl2">
+                @for (var i = 0; i < mid; i++)
+                {
+                    var video = lstVideos[i * 2];
+                    var video1 = lstVideos[(i * 2) + 1];
 
-                <div class="item" >
+                <div class="item">
                     <div class="content_products" data-id="#v@(video.Id)">
                         <div class="img_content">
                             <a href="#">
@@ -42,10 +43,10 @@
                         </div>
                     </div>
                 </div>
-            }
-            @if (count % 2 != 0)
-            {
-                var video = lstVideos.Last();
+                }
+                @if (count % 2 != 0)
+                {
+                    var video = lstVideos.Last();
                 <div class="item">
                     <div class="content_products" data-id="#v@(video.Id)">
                         <div class="img_content">
@@ -59,26 +60,28 @@
                         </div>
                     </div>
                 </div>
-            }
+                }
+            </div>
+            <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
 
-    <ul id="video-gallery" style="display: none;">
-        @foreach (var video in Model)
-        {
+        <ul id="video-gallery" style="display: none;">
+            @foreach (var video in Model)
+            {
             <li data-src="@video.Url" id="v@(video.Id)">
                 <img src="/Userfiles/Modules/Video/Thumb/@(video.VideoId).jpg" alt="@video.Name" />
             </li>
-        }
-    </ul>
-}
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.content_products').click(function () {
-            var id = $(this).attr('data-id');
-            $(id).click();
+            }
+        </ul>
+    }
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.content_products[data-id]').click(function () {
+                var id = $(this).attr('data-id');
+                $(id).click();
+            })
         })
-    })
-</script>
+    </script>
 
+</div>

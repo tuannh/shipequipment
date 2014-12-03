@@ -1,0 +1,38 @@
+﻿@model ShipEquipment.Biz.Domain.Album
+
+<p class="link">
+    <a href="/">Trang chủ</a><span>&gt;&gt;</span>
+    <a href="/hinh-anh-clip/">Hình ảnh & clip</a><span>&gt;&gt;</span><a href="#" class="active">Chi tiết album</a>
+</p>
+<div class="inner-frm6">
+    <div class="detail">
+        @if (Model != null)
+        {
+            <h3>@Model.Name</h3>
+            <div class="img_detail">
+                <a href="#">
+
+                    @if (Model.GetPhoto() != null)
+                    {
+                        <img src="~/Userfiles/Modules/Album/@Model.GetPhoto().FileName" alt="@Model.GetPhoto().FileName" />
+                    }
+                    else
+                    {
+                        @Model.Name
+                    }
+                </a>
+                @if (Model.Photos != null && Model.Photos.Count() > 0)
+                {
+                    <ul id="lightGallery">
+                        @foreach (var photo in Model.Photos)
+                        {
+                            <li data-src="/Userfiles/Modules/Album/@photo.FileName">
+                                <img src="~/Userfiles/Modules/Album/Thumb/@photo.FileName" alt="@photo.Title" />
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        }
+    </div>
+</div>

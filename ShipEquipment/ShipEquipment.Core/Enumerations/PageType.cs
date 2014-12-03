@@ -23,6 +23,7 @@ namespace ShipEquipment.Core.Enumerations
         UserGuideDetail,
         Order,
         NewsDetail,
-        FishingContest
+        FishingContest,
+        AlbumDetail
     }
 }

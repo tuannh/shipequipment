@@ -108,3 +108,5 @@ display: inline-block;
 input[type=password]{ width: 350px; height:20px;border: solid 1px #bebcbb;}
 
 .headerL a.active {color: #dd5b29;}
+
+.frm-album {float: left; width: 50%}
