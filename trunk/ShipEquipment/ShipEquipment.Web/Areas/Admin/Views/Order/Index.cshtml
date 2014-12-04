@@ -4,7 +4,7 @@
     ViewBag.Title = "Quản lý đơn hàng";
 
     var pagingModel = ViewBag.PagingModel as PagingModel;
-    pagingModel.SummaryInfoTemplate = "Trang {0}/{1} ({2} tin tức)";
+    pagingModel.SummaryInfoTemplate = "Trang {0}/{1} ({2} đơn hàng)";
     var kw = ViewBag.Keyword as string;
 
     var status = Context.Request.QueryString["status"] ?? "0";
