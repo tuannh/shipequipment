@@ -1,14 +1,11 @@
 ﻿
 <div class="contentF">
     <div class="design_by">
-        <p>
-            <span class="color">Copyright © 2014 : Cửa hàng dụng cụ câu cá TUẤN HÀNG XANH</span> <br />
-            Điện thoại: <span class="color">Văn phòng: 080.xxx xxx</span><br />
-            Email:<a href="#"> dungcucaucatuanhangxanh@yahoo.com</a><br />
-            Tel :<span class="color"> 093.xx.xxx.xx - 0904.xx.xxx.xx</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fax: <span class="color">080.xxx.xxx</span>
-        </p>
-        <div class="face-book"><a href="#"><img src="/images/thx/face-book.png" alt="" /></a></div>
+        @Html.Controls().Content("Footer", "Content-Footer.cshtml")
+      
+        <div class="face-book">
+            @Html.Controls().Content("Facebook", "Content-Footer.cshtml")
+        </div>
     </div>
-
     <div class="clear"></div>
 </div>
