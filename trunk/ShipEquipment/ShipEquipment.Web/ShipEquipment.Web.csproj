@@ -1388,6 +1388,9 @@
     <Content Include="Views\Shared\Controls\AlbumList.cshtml" />
     <Content Include="Views\Layouts\Video.cshtml" />
     <Content Include="Views\Shared\Controls\AlbumDetail.cshtml" />
+    <Content Include="Views\Shared\Controls\Content-Footer.cshtml" />
+    <Content Include="Userfiles\Templates\Forgotpw.cshtml" />
+    <Content Include="Userfiles\Templates\Order-Info.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

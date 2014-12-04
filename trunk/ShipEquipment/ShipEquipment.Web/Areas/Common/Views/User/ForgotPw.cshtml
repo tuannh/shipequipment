@@ -8,8 +8,10 @@
     <h1>Quên mật khẩu</h1>
     @using (Html.BeginForm())
     {
+        @Html.AntiForgeryToken()
         <div class="error">
             @ViewBag.Error
+            @ViewBag.Message
             @Html.ValidationSummary(true)
         </div>
         <p>

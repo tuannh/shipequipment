@@ -113,10 +113,15 @@ namespace ShipEquipment.Web.Controllers
                                             .Where(c => c.Id == order.Id)
                                             .FirstOrDefault();
 
+                    var orderSessionId = Guid.NewGuid().ToString("N");
+                    var url = string.Format("/dat-hang/?status=1&order={0}", orderSessionId);
+
                     SendEmail(newOrder);
+                    GetOrderInfo(newOrder, orderSessionId);
+
                     Session[MyCart.ShopCart] = null;
 
-                    return Redirect("/dat-hang/?status=1");
+                    return Redirect(url);
                 }
             }
 
@@ -184,6 +189,57 @@ namespace ShipEquipment.Web.Controllers
                 catch (Exception exp)
                 {
                     exp.Log("Problem send order mail");
+                }
+            }
+        }
+
+        protected void GetOrderInfo(Order order, string orderSessionId)
+        {
+            var path = Globals.MapPath("~/Userfiles/Templates/Order-Info.cshtml");
+            if (order != null && System.IO.File.Exists(path))
+            {
+                var bodyTemplate = System.IO.File.ReadAllText(path);
+                var rowTemplate = @"<tr>
+                                        <td>{productname}</td>
+                                        <td>{price}</td>
+                                        <td>{quatity}</td>
+                                        <td>{sum}</td>
+                                    </tr>";
+
+                var settings = SiteConfiguration.GetConfig();
+
+                try
+                {
+
+                    var body = bodyTemplate;
+                    var address = string.Format("{0}, {1}, {2}", order.Address, (order.District != null ? order.District.Name : ""), (order.Province != null ? order.Province.Name : ""));
+
+                    var orderdetail = new StringBuilder();
+                    foreach (var detail in order.ProductOrders)
+                    {
+                        var row = rowTemplate.Replace("{productname}", detail.Product.Name);
+                        row = row.Replace("{price}", detail.Price.ToString("N0"));
+                        row = row.Replace("{quatity}", detail.Quatity.ToString("N0"));
+                        row = row.Replace("{sum}", (detail.Quatity * detail.Price).ToString("N0"));
+
+                        orderdetail.Append(row);
+                    }
+
+                    body = body.Replace("{username}", order.CustomerName);
+                    body = body.Replace("{address}", address);
+                    body = body.Replace("{email}", order.Email);
+                    body = body.Replace("{phone}", order.Phone);
+                    body = body.Replace("{note}", order.Note);
+                    body = body.Replace("{orderid}", order.Id.ToString());
+                    body = body.Replace("{orderdate}", order.OrderDate.Value.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture));
+                    body = body.Replace("{orderdetail}", orderdetail.ToString());
+                    body = body.Replace("{total}", order.ProductOrders.Sum(a => a.Price * a.Quatity).ToString("N0"));
+
+                    Session[orderSessionId] = body;
+                }
+                catch (Exception exp)
+                {
+                    exp.Log("Problem get order info");
                 }
             }
         }
