@@ -192,6 +192,7 @@
     <Content Include="Images\jquery\jquery.ui\ui-icons_888888_256x240.png" />
     <Content Include="Images\jquery\jquery.ui\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Images\loading.gif" />
+    <Content Include="Images\logo.jpg" />
     <Content Include="Images\thx\arrow-icon.png" />
     <Content Include="Images\thx\arrowCategory.png" />
     <Content Include="Images\thx\arrowCategoryHover.png" />
@@ -1391,6 +1392,8 @@
     <Content Include="Views\Shared\Controls\Content-Footer.cshtml" />
     <Content Include="Userfiles\Templates\Forgotpw.cshtml" />
     <Content Include="Userfiles\Templates\Order-Info.cshtml" />
+    <Content Include="Userfiles\Templates\Order-Row.cshtml" />
+    <Content Include="Userfiles\Templates\Order-Info-Row.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

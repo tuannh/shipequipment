@@ -25,6 +25,14 @@
         </td>
         <td class="colLeft">
             Địa chỉ: @Model.Address
+            @if (Model.District != null)
+            {
+                @Html.Raw(", " + Model.District.Name)
+            }
+            @if (Model.Province != null)
+            {
+                @Html.Raw(", " + Model.Province.Name)
+            }
         </td>
         <td class="colLeft">
             Điện thoại: @Html.DisplayFor(model => model.Phone)

@@ -43,7 +43,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                          .ThenBy(a => a.CustomerName)
                          .ToList();
             }
-           
+
 
             var pagingModel = new PagingModel();
             pagingModel.ItemsPerPage = PageSize;
@@ -103,7 +103,7 @@ namespace ShipEquipment.Web.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var order = db.Orders.Include(a => a.ProductOrders.Select(b => b.Product))
+            var order = db.Orders.Include(a => a.ProductOrders.Select(b => b.Product)).Include(a => a.District).Include(a => a.Province)
                                          .Where(c => c.Id == id)
                                          .FirstOrDefault();
 

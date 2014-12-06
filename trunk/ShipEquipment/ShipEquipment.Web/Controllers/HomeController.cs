@@ -82,7 +82,7 @@ namespace ShipEquipment.Web.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Order([Bind(Include = "CustomerName,Phone,Email,Address,DistrictId,ProviceId,Note")] Order order)
+        public ActionResult Order([Bind(Include = "CustomerName,Phone,Email,Address,DistrictId,ProvinceId,Note")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace ShipEquipment.Web.Controllers
                     db.Orders.Add(order);
                     db.SaveChanges();
 
-                    var newOrder = db.Orders.Include(a => a.ProductOrders.Select(b => b.Product))
+                    var newOrder = db.Orders.Include(a => a.ProductOrders.Select(b => b.Product)).Include(a => a.Province).Include(a => a.District)
                                             .Where(c => c.Id == order.Id)
                                             .FirstOrDefault();
 
@@ -140,24 +140,23 @@ namespace ShipEquipment.Web.Controllers
         protected void SendEmail(Order order)
         {
             var path = Globals.MapPath("~/Userfiles/Templates/Order.cshtml");
+            var rowPath = Globals.MapPath("~/Userfiles/Templates/Order-Row.cshtml");
+
             if (order != null && System.IO.File.Exists(path))
             {
                 var bodyTemplate = System.IO.File.ReadAllText(path);
-                var rowTemplate = @"<tr>
-                                        <td>{productname}</td>
-                                        <td>{price}</td>
-                                        <td>{quatity}</td>
-                                        <td>{sum}</td>
-                                    </tr>";
+                var rowTemplate = "";
+
+                if (System.IO.File.Exists(rowPath))
+                    rowTemplate = System.IO.File.ReadAllText(rowPath);
 
                 var settings = SiteConfiguration.GetConfig();
 
                 try
                 {
-
-                    var subject = string.Format("Xác nhận đơn hàng {0}", order.Id);
+                    var subject = string.Format("Xác nhận đơn hàng #{0}", order.Id);
                     var body = bodyTemplate;
-                    var address = string.Format("{0}, {1}, {2}", order.Address, (order.District != null ? order.District.Name : ""), (order.Province != null ? order.Province.Name : ""));
+                    var address = string.Format("{0}{1}{2}", order.Address, (order.District != null ? ", " + order.District.Name : ""), (order.Province != null ? ", " + order.Province.Name : ""));
 
                     var orderdetail = new StringBuilder();
                     foreach (var detail in order.ProductOrders)
@@ -196,15 +195,15 @@ namespace ShipEquipment.Web.Controllers
         protected void GetOrderInfo(Order order, string orderSessionId)
         {
             var path = Globals.MapPath("~/Userfiles/Templates/Order-Info.cshtml");
+            var rowPath = Globals.MapPath("~/Userfiles/Templates/Order-Info-Row.cshtml");
+
             if (order != null && System.IO.File.Exists(path))
             {
                 var bodyTemplate = System.IO.File.ReadAllText(path);
-                var rowTemplate = @"<tr>
-                                        <td>{productname}</td>
-                                        <td>{price}</td>
-                                        <td>{quatity}</td>
-                                        <td>{sum}</td>
-                                    </tr>";
+                var rowTemplate = "";
+
+                if (System.IO.File.Exists(rowPath))
+                    rowTemplate = System.IO.File.ReadAllText(rowPath);
 
                 var settings = SiteConfiguration.GetConfig();
 
@@ -212,7 +211,7 @@ namespace ShipEquipment.Web.Controllers
                 {
 
                     var body = bodyTemplate;
-                    var address = string.Format("{0}, {1}, {2}", order.Address, (order.District != null ? order.District.Name : ""), (order.Province != null ? order.Province.Name : ""));
+                    var address = string.Format("{0}{1}{2}", order.Address, (order.District != null ? ", " + order.District.Name : ""), (order.Province != null ? ", " + order.Province.Name : ""));
 
                     var orderdetail = new StringBuilder();
                     foreach (var detail in order.ProductOrders)
