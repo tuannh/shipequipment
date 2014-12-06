@@ -1,31 +1,30 @@
-﻿Hi {username},
-<p>&nbsp;</p>
-<h2>Thông tin khách hàng</h2>
-Tên khách hàng: <b>{username}</b><br />
-Địa chỉ: <b>{address}</b><br />
-Email: <b>{email}</b><br />
-Phone: <b>{phone}</b><br />
-<p>&nbsp;</p>
-<h2>
-    Thông tin đơn hàng
-</h2>
+﻿<h5>Đặt hàng thành công</h5><br/>
+<h3>Thông tin khách hàng</h3><br />
+<p>Tên khách hàng: {username}</p>
+<p>Địa chỉ: {address}</p>
+<p>Email: {email}</p>
+<p>Phone: {phone}</p>
+<p>Ghi chú:  {note}</p>
 
-Mã đơn hàng: <b>{orderid}</b><br />
-Ngày đặt: <b>{orderdate}</b><br />
-<h2>
-    Chi tiết đơn hàng
-</h2>
-<table>
-    <tr>
-        <td>Tên sp</td>
-        <td>Đơn giá</td>
-        <td>SL</td>
-        <td>Thành tiên</td>
-    </tr>
-    {orderdetail}
+<h3>Thông tin đơn hàng</h3><br />
+<p>Mã đơn hàng: #{orderid}</p>
+<p>Ngày đặt: {orderdate}</p>
+<table class="data-table cart-table" id="shopping-cart-table">
+    <thead>
+        <tr class="first last">
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr></tr>
+    </tfoot>
+    <tbody>
+        {orderdetail}
+        <tr class="rowTotal">
+            <td colspan="4"><p class="total">Tổng tiền: <span id="total">{total}</span> VND</p></td>
+        </tr>
+    </tbody>
 </table>
-Tổng: <b>{total}</b>
-<p>&nbsp;</p>
- Ghi chú: {note}
-<br />
-<p>&nbsp;</p>

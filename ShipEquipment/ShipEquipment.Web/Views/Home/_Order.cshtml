@@ -3,29 +3,20 @@
 @{
     var provinces = ViewData["Provinces"] as List<SelectListItem>;
     var hasStatus = ShipEquipment.Core.SiteContext.Current.QueryString["status"];
-    
-    var orderSessionId = ShipEquipment.Core.SiteContext.Current.QueryString["order"] ?? "order";
-    var orderInfo = ShipEquipment.Core.SiteContext.Current.Context.Session[orderSessionId] as string;
+
+    var ctx = ShipEquipment.Core.SiteContext.Current;
+
+    var orderSessionId = ctx.QueryString["order"] ?? "order";
+    var orderInfo = ctx.Context.Session[orderSessionId] as string;
 }
 
 <p class="link"><a href="#">Giỏ hàng</a><a href="#" class="active"><span>&gt;&gt;</span>Thông tin giao hàng</a></p>
 
 <div class="inner-frm6">
-    @*@if (hasStatus != null)
-        {
-            if (hasStatus.ToString() == "0")
-            {
-                <div class="error">Đặt hàng không thành công.</div>
-            }
-            else
-            {
-                <div class="info">Đặt hàng thành công.</div>
-            }
-        }*@
-
     @if (!string.IsNullOrEmpty(orderInfo))
     {
         @Html.Raw(orderInfo)
+        ctx.Context.Session[orderSessionId] = null;
     }
     else
     {
