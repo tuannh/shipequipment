@@ -524,7 +524,7 @@ namespace ShipEquipment.Core.Extensions
             var lst = db.Videos
                         .Where(p => p.Active)
                         .OrderBy(p => p.DisplayOrder)
-                        .ThenBy(p => p.Name)
+                        .ThenByDescending(p => p.CreatedDate)
                         .Take(showVideo)
                         .ToList();
 
