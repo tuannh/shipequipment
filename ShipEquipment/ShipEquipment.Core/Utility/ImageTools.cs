@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShipEquipment.Core.Logs;
+using System;
 using System.Linq;
 using System.Collections;
 using System.Drawing;
@@ -231,11 +232,21 @@ namespace ShipEquipment.Core.Utility
                     var newWidth = width;
                     var newHeight = height;
 
-                    float ratio = (float)width / (float)height;
+                    var tmpWidth = thumbWidth;
+                    float tmpHeight = (float)(height * thumbWidth) / width;
+                    var intTmpHeight = (int)tmpHeight;
 
-                    // width ratio great than height ratio. Height is fix scale
-                    if (width >= thumbWidth || height >= thumbHeight)
+                    // thumb is ratio scale with src image
+                    if (tmpHeight == (float)intTmpHeight && intTmpHeight == thumbHeight)
                     {
+                        newWidth = thumbWidth;
+                        newHeight = thumbHeight;
+                    }
+                    // width ratio great than height ratio. Height is fix scale
+                    else if (width > thumbWidth && height > thumbHeight)
+                    {
+                        var ratio = (float)width / (float)height;
+
                         if (ratio >= 1) // fix height
                         {
                             newHeight = thumbHeight;
@@ -270,8 +281,8 @@ namespace ShipEquipment.Core.Utility
                     }
                     else
                     {
-                        pasteX = Math.Abs((newWidth - thumbWidth) / 2);
-                        pasteY = Math.Abs((newHeight - thumbHeight) / 2);
+                        pasteX = (thumbWidth - newWidth) / 2;
+                        pasteY = (thumbHeight - newHeight) / 2;
                     }
 
                     #region make dest image
@@ -281,8 +292,9 @@ namespace ShipEquipment.Core.Utility
                         using (var graphic = Graphics.FromImage(destImage))
                         {
                             graphic.FillRectangle(new SolidBrush(bgColor), new Rectangle(0, 0, thumbWidth, thumbHeight));
+                            //graphic.PixelOffsetMode = PixelOffsetMode.Half;
+                            //graphic.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; /* new way */
 
-                            graphic.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; /* new way */
                             graphic.DrawImage(srcImg, pasteX, pasteY, newWidth, newHeight);
 
                             var ext = Path.GetExtension(targetFile);
@@ -339,7 +351,7 @@ namespace ShipEquipment.Core.Utility
             if (!string.IsNullOrEmpty(sourceFile))
             {
                 var tmpPath = string.Format(@"{0}\{1}{2}", Path.GetDirectoryName(sourceFile), Guid.NewGuid(), Path.GetFileName(sourceFile));
-                if (CreateThumbnail(sourceFile, tmpPath, thumbWidth, thumbHeight, bgColor, quality = 80))
+                if (CreateThumbnail(sourceFile, tmpPath, thumbWidth, thumbHeight, bgColor, quality))
                 {
                     using (var image = Image.FromFile(tmpPath))
                     {
@@ -354,7 +366,7 @@ namespace ShipEquipment.Core.Utility
                         }
                         catch (Exception exp)
                         {
-                            exp.Log("CreateThumbnail");
+                            exp.Log();
                         }
 
                         return copy;
@@ -412,7 +424,17 @@ namespace ShipEquipment.Core.Utility
                     var eps = new EncoderParameters(1);
                     eps.Param[0] = new EncoderParameter(Encoder.Quality, quality);
 
-                    if (srcWidth == width && srcHeight == height)
+                    var tmpWidth = width;
+                    float tmpHeight = (float)(width * srcHeight) / srcWidth;
+                    var intTmpHeight = (int)tmpHeight;
+
+                    // thumb is ratio scale with src image
+                    if (tmpHeight == (float)intTmpHeight && intTmpHeight == height)
+                    {
+                        newWidth = width;
+                        newHeight = height;
+                    }
+                    else if (srcWidth == width && srcHeight == height)
                     {
                         var fileInfo = new FileInfo(sourceFile);
                         var size = fileInfo.Length;
@@ -457,8 +479,6 @@ namespace ShipEquipment.Core.Utility
                         using (var graphic = Graphics.FromImage(destImage))
                         {
                             graphic.FillRectangle(new SolidBrush(bgColor), new Rectangle(0, 0, width, height));
-
-                            graphic.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; /* new way */
                             graphic.DrawImage(srcImg, pasteX, pasteY, newWidth, newHeight);
 
                             destImage.Save(targetFile, codec, eps);
@@ -475,7 +495,7 @@ namespace ShipEquipment.Core.Utility
             }
             catch (Exception exp)
             {
-                exp.Log("FixResizeImage");
+                exp.Log();
                 return false;
             }
 
@@ -524,7 +544,7 @@ namespace ShipEquipment.Core.Utility
                         }
                         catch (Exception exp)
                         {
-                            exp.Log("CreateThumbnail");
+                            exp.Log();
                         }
 
                         return copy;
@@ -605,7 +625,6 @@ namespace ShipEquipment.Core.Utility
                             {
                                 graphic.FillRectangle(new SolidBrush(bgColor), new Rectangle(0, 0, newWidth, newHeight));
 
-                                graphic.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; /* new way */
                                 graphic.DrawImage(srcImg, 0, 0, newWidth, newHeight);
 
                                 destImage.Save(targetFile, codec, eps);
@@ -634,7 +653,7 @@ namespace ShipEquipment.Core.Utility
             }
             catch (Exception exp)
             {
-                exp.Log("ResizeImage");
+                exp.Log();
                 return false;
             }
 
@@ -684,7 +703,7 @@ namespace ShipEquipment.Core.Utility
                         }
                         catch (Exception exp)
                         {
-                            exp.Log("CreateThumbnail");
+                            exp.Log();
                         }
 
                         return copy;
@@ -749,7 +768,7 @@ namespace ShipEquipment.Core.Utility
             }
             catch (Exception exp)
             {
-                exp.Log("SaveImage");
+                exp.Log();
                 return false;
             }
 
